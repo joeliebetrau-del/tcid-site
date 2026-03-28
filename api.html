@@ -189,7 +189,7 @@
       <p class="doc-body">The TCID Registry API provides programmatic access to the Trading Card Identification Number registry. The API returns structured metadata for every registered card type, keyed by its permanent TCID identifier.</p>
       <p class="doc-body">The TCID identifier itself is always free to reference. API membership unlocks enriched metadata, batch processing, and commercial use rights.</p>
       <div class="notice">
-        <strong>Status:</strong> API launching Q3 2026. This documentation reflects the planned interface. Contact <strong>info@tcid.org</strong> to join the early access list.
+        <strong>Status:</strong> API launching Q3 2026. This documentation reflects the planned interface. Contact <strong>info@api.tradingcardid.org</strong> to join the early access list.
       </div>
     </div>
 
@@ -205,7 +205,7 @@
     <!-- BASE URL -->
     <div class="doc-section" id="base-url">
       <h2 class="doc-h2">Base URL</h2>
-      <div class="code-block"><pre>https://api.tcid.org/v1</pre></div>
+      <div class="code-block"><pre>https://api.api.tradingcardid.org/v1</pre></div>
       <p class="doc-body">All endpoints are versioned. The current version is <code style="font-family:var(--mono);color:var(--navy);">v1</code>. Breaking changes will be introduced in a new version with a minimum 90-day deprecation notice.</p>
     </div>
 
@@ -275,7 +275,7 @@
             </tbody>
           </table>
           <div class="code-label">Example request</div>
-          <div class="code-block"><pre>GET https://api.tcid.org/v1/cards/<span class="code-string">SC-4X7KQ29R3A</span>
+          <div class="code-block"><pre>GET https://api.api.tradingcardid.org/v1/cards/<span class="code-string">SC-4X7KQ29R3A</span>
 Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div>
           <div class="code-label">Example response</div>
           <div class="code-block"><pre>{
@@ -322,7 +322,7 @@ Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div
             </tbody>
           </table>
           <div class="code-label">Example request</div>
-          <div class="code-block"><pre>GET https://api.tcid.org/v1/cards/search?player=<span class="code-string">Ohtani</span>&sport=<span class="code-string">Baseball</span>&autograph=<span class="code-num">true</span>
+          <div class="code-block"><pre>GET https://api.api.tradingcardid.org/v1/cards/search?player=<span class="code-string">Ohtani</span>&sport=<span class="code-string">Baseball</span>&autograph=<span class="code-num">true</span>
 Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div>
         </div>
       </div>
@@ -406,7 +406,7 @@ X-RateLimit-Reset:     <span class="code-string">2026-07-01T00:00:00Z</span></pr
       <p class="doc-body">TCID identifiers are published under Creative Commons Attribution 4.0 International (CC BY 4.0). You may reference, store, and redistribute TCID identifiers in any system, commercial or otherwise, provided attribution is maintained.</p>
       <p class="doc-body">API access is governed by the TCID API Terms of Service. Commercial use of enriched metadata (player names, product details, images) requires Silver or Gold membership and compliance with manufacturer data terms.</p>
       <div class="notice">
-        <strong>Questions?</strong> Contact <strong>info@tcid.org</strong> for licensing, enterprise agreements, or manufacturer partnership inquiries.
+        <strong>Questions?</strong> Contact <strong>info@api.tradingcardid.org</strong> for licensing, enterprise agreements, or manufacturer partnership inquiries.
       </div>
     </div>
 
@@ -414,7 +414,7 @@ X-RateLimit-Reset:     <span class="code-string">2026-07-01T00:00:00Z</span></pr
 </div>
 
 <footer>
-  <p class="footer-copy">&copy; 2026 TCID Standards Organization &nbsp;·&nbsp; TCID identifiers published under CC BY 4.0 &nbsp;·&nbsp; <a href="index.html" style="color:#4a5f80;text-decoration:none;">tcid.org</a></p>
+  <p class="footer-copy">&copy; 2026 TCID Standards Organization &nbsp;·&nbsp; TCID identifiers published under CC BY 4.0 &nbsp;·&nbsp; <a href="index.html" style="color:#4a5f80;text-decoration:none;">api.tradingcardid.org</a></p>
 </footer>
 
 </body>
