@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Documentation — TCID</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:   #0a1628;
+      --blue:   #1a3a6e;
+      --accent: #c8a84b;
+      --rule:   #d0d5de;
+      --light:  #f4f5f7;
+      --white:  #ffffff;
+      --text:   #1c2333;
+      --muted:  #5a6378;
+      --mono:   'IBM Plex Mono', monospace;
+      --sans:   'IBM Plex Sans', sans-serif;
+      --serif:  'IBM Plex Serif', serif;
+    }
+    body { font-family: var(--sans); color: var(--text); background: var(--white); font-size: 16px; line-height: 1.6; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--navy); border-bottom: 2px solid var(--accent);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 56px;
+    }
+    .nav-brand { font-family: var(--mono); font-size: 14px; font-weight: 500; color: var(--white); letter-spacing: 0.08em; text-decoration: none; }
+    .nav-brand span { color: var(--accent); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 13px; color: #aab2c4; text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+
+    /* LAYOUT */
+    .page-wrapper { margin-top: 56px; display: flex; }
+    .sidebar {
+      width: 220px; flex-shrink: 0;
+      position: sticky; top: 56px; height: calc(100vh - 56px);
+      overflow-y: auto; background: var(--light);
+      border-right: 1px solid var(--rule);
+      padding: 32px 0;
+    }
+    .sidebar-section { margin-bottom: 28px; }
+    .sidebar-label {
+      font-family: var(--mono); font-size: 10px; font-weight: 500;
+      color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 0 24px; margin-bottom: 8px;
+    }
+    .sidebar-links { list-style: none; }
+    .sidebar-links a {
+      display: block; padding: 6px 24px;
+      font-size: 13px; color: var(--muted); text-decoration: none;
+      transition: color 0.2s, background 0.2s;
+    }
+    .sidebar-links a:hover { color: var(--navy); background: var(--rule); }
+    .sidebar-links a.active { color: var(--accent); font-weight: 500; }
+
+    .content { flex: 1; padding: 48px 56px 80px; max-width: 840px; }
+
+    /* HEADINGS */
+    .doc-section { margin-bottom: 60px; }
+    .doc-label { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px; }
+    .doc-h1 { font-family: var(--serif); font-size: 34px; font-weight: 300; color: var(--navy); margin-bottom: 12px; }
+    .doc-h2 { font-family: var(--sans); font-size: 20px; font-weight: 600; color: var(--navy); margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
+    .doc-h3 { font-family: var(--mono); font-size: 14px; font-weight: 500; color: var(--navy); margin-bottom: 8px; margin-top: 28px; }
+    .doc-rule { width: 36px; height: 2px; background: var(--accent); margin-bottom: 24px; }
+    .doc-body { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 16px; }
+
+    /* ENDPOINT */
+    .endpoint {
+      border: 1px solid var(--rule); border-radius: 2px;
+      overflow: hidden; margin-bottom: 32px;
+    }
+    .endpoint-header {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 20px; background: var(--light);
+      border-bottom: 1px solid var(--rule);
+    }
+    .method {
+      font-family: var(--mono); font-size: 12px; font-weight: 500;
+      padding: 4px 10px; border-radius: 2px; letter-spacing: 0.06em;
+    }
+    .method-get { background: #e8f5e9; color: #2e7d32; }
+    .method-post { background: #e3f2fd; color: #1565c0; }
+    .endpoint-path { font-family: var(--mono); font-size: 14px; color: var(--navy); }
+    .endpoint-desc { font-size: 13px; color: var(--muted); margin-left: auto; }
+    .endpoint-body { padding: 20px; }
+
+    /* CODE */
+    .code-block {
+      background: #0d1f3c; border-radius: 2px;
+      padding: 20px 24px; overflow-x: auto; margin: 12px 0 20px;
+    }
+    .code-block pre { font-family: var(--mono); font-size: 13px; color: #c8d0e0; line-height: 1.8; margin: 0; }
+    .code-comment { color: #4a5f80; }
+    .code-key { color: #7eb8f7; }
+    .code-string { color: #a8d08d; }
+    .code-num { color: var(--accent); }
+    .code-label {
+      font-family: var(--mono); font-size: 11px; color: var(--muted);
+      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px;
+    }
+
+    /* PARAMS TABLE */
+    table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 14px; }
+    thead th { text-align: left; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 2px solid var(--rule); }
+    tbody td { padding: 10px 12px; border-bottom: 1px solid var(--rule); color: var(--muted); vertical-align: top; }
+    tbody td:first-child { font-family: var(--mono); font-size: 13px; color: var(--navy); }
+    tbody tr:last-child td { border-bottom: none; }
+    .required { color: var(--accent); font-size: 11px; font-family: var(--mono); }
+
+    /* TIERS */
+    .tier-table { border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; margin-top: 20px; }
+    .tier-table table { margin: 0; }
+    .tier-table thead th { background: var(--navy); color: var(--accent); border-bottom: none; }
+    .tier-badge {
+      font-family: var(--mono); font-size: 11px; font-weight: 500;
+      padding: 3px 8px; border-radius: 2px; letter-spacing: 0.06em;
+    }
+    .tier-free { background: rgba(200,168,75,0.12); color: #8a6820; }
+    .tier-silver { background: #e8f0fd; color: #1a3a6e; }
+    .tier-gold { background: #fdf3e8; color: #8a4a10; }
+
+    /* NOTICE */
+    .notice {
+      background: rgba(200,168,75,0.08); border: 1px solid rgba(200,168,75,0.25);
+      border-radius: 2px; padding: 14px 20px; margin: 16px 0;
+      font-size: 13px; color: var(--muted); font-family: var(--mono);
+    }
+    .notice strong { color: var(--accent); }
+
+    footer { background: #060e1a; border-top: 2px solid var(--accent); padding: 32px 40px; text-align: center; }
+    .footer-copy { font-size: 12px; color: #2a3a55; font-family: var(--mono); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html"><span>TCID</span> &nbsp;Trading Card Identification Number</a>
+  <ul class="nav-links">
+    <li><a href="index.html#what">Standard</a></li>
+    <li><a href="index.html#governance">Governance</a></li>
+    <li><a href="lookup.html">Lookup</a></li>
+    <li><a href="api.html" class="active">API</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrapper">
+  <div class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Overview</div>
+      <ul class="sidebar-links">
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#auth">Authentication</a></li>
+        <li><a href="#base-url">Base URL</a></li>
+        <li><a href="#tiers">Access Tiers</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Endpoints</div>
+      <ul class="sidebar-links">
+        <li><a href="#lookup-tcid">GET /cards/{tcid}</a></li>
+        <li><a href="#search">GET /cards/search</a></li>
+        <li><a href="#batch">POST /cards/batch</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Reference</div>
+      <ul class="sidebar-links">
+        <li><a href="#fields">Data Fields</a></li>
+        <li><a href="#errors">Error Codes</a></li>
+        <li><a href="#rate-limits">Rate Limits</a></li>
+        <li><a href="#licensing">Licensing</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- INTRO -->
+    <div class="doc-section" id="intro">
+      <div class="doc-label">API Documentation</div>
+      <h1 class="doc-h1">TCID Registry API</h1>
+      <div class="doc-rule"></div>
+      <p class="doc-body">The TCID Registry API provides programmatic access to the Trading Card Identification Number registry. The API returns structured metadata for every registered card type, keyed by its permanent TCID identifier.</p>
+      <p class="doc-body">The TCID identifier itself is always free to reference. API membership unlocks enriched metadata, batch processing, and commercial use rights.</p>
+      <div class="notice">
+        <strong>Status:</strong> API launching Q3 2026. This documentation reflects the planned interface. Contact <strong>info@tcid.org</strong> to join the early access list.
+      </div>
+    </div>
+
+    <!-- AUTH -->
+    <div class="doc-section" id="auth">
+      <h2 class="doc-h2">Authentication</h2>
+      <p class="doc-body">All API requests require a Bearer token passed in the Authorization header. API keys are issued per organization at the time of membership enrollment.</p>
+      <div class="code-label">Request header</div>
+      <div class="code-block"><pre>Authorization: Bearer <span class="code-string">tcid_live_xxxxxxxxxxxxxxxxxxxx</span></pre></div>
+      <p class="doc-body">Free tier lookups (up to 1,000/month) do not require authentication. Include the header to track usage against your key and avoid rate limiting.</p>
+    </div>
+
+    <!-- BASE URL -->
+    <div class="doc-section" id="base-url">
+      <h2 class="doc-h2">Base URL</h2>
+      <div class="code-block"><pre>https://api.tcid.org/v1</pre></div>
+      <p class="doc-body">All endpoints are versioned. The current version is <code style="font-family:var(--mono);color:var(--navy);">v1</code>. Breaking changes will be introduced in a new version with a minimum 90-day deprecation notice.</p>
+    </div>
+
+    <!-- TIERS -->
+    <div class="doc-section" id="tiers">
+      <h2 class="doc-h2">Access Tiers</h2>
+      <p class="doc-body">TCID API access is governed by annual membership tier. All tiers include the right to reference TCID identifiers in your own systems.</p>
+      <div class="tier-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Tier</th>
+              <th>Lookups / Month</th>
+              <th>Batch</th>
+              <th>Full Metadata</th>
+              <th>Commercial Use</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="tier-badge tier-free">Free</span></td>
+              <td>1,000</td>
+              <td>No</td>
+              <td>Basic</td>
+              <td>No</td>
+              <td>$0</td>
+            </tr>
+            <tr>
+              <td><span class="tier-badge tier-silver">Silver</span></td>
+              <td>50,000</td>
+              <td>Up to 500/request</td>
+              <td>Full</td>
+              <td>Yes</td>
+              <td>Contact Us</td>
+            </tr>
+            <tr>
+              <td><span class="tier-badge tier-gold">Gold</span></td>
+              <td>Unlimited</td>
+              <td>Unlimited</td>
+              <td>Full + Images</td>
+              <td>Yes</td>
+              <td>Contact Us</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- LOOKUP -->
+    <div class="doc-section" id="lookup-tcid">
+      <h2 class="doc-h2">Endpoints</h2>
+
+      <div class="endpoint">
+        <div class="endpoint-header">
+          <span class="method method-get">GET</span>
+          <span class="endpoint-path">/cards/{tcid}</span>
+          <span class="endpoint-desc">Resolve a single TCID</span>
+        </div>
+        <div class="endpoint-body">
+          <p class="doc-body">Returns full metadata for a single card type identified by its TCID.</p>
+          <div class="doc-h3">Path Parameters</div>
+          <table>
+            <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>tcid</td><td>string</td><td>The TCID to resolve (e.g., <code style="font-family:var(--mono)">SC-4X7KQ29R3A</code>) <span class="required">required</span></td></tr>
+            </tbody>
+          </table>
+          <div class="code-label">Example request</div>
+          <div class="code-block"><pre>GET https://api.tcid.org/v1/cards/<span class="code-string">SC-4X7KQ29R3A</span>
+Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div>
+          <div class="code-label">Example response</div>
+          <div class="code-block"><pre>{
+  <span class="code-key">"tcid"</span>:         <span class="code-string">"SC-4X7KQ29R3A"</span>,
+  <span class="code-key">"sport"</span>:        <span class="code-string">"Baseball"</span>,
+  <span class="code-key">"manufacturer"</span>: <span class="code-string">"Topps"</span>,
+  <span class="code-key">"season"</span>:       <span class="code-string">"2025"</span>,
+  <span class="code-key">"product"</span>:      <span class="code-string">"Topps Series 1"</span>,
+  <span class="code-key">"card_number"</span>:  <span class="code-string">"27"</span>,
+  <span class="code-key">"player"</span>:       <span class="code-string">"Shohei Ohtani"</span>,
+  <span class="code-key">"team"</span>:         <span class="code-string">"Los Angeles Dodgers"</span>,
+  <span class="code-key">"card_type"</span>:    <span class="code-string">"Base"</span>,
+  <span class="code-key">"parallel"</span>:     <span class="code-num">null</span>,
+  <span class="code-key">"print_run"</span>:    <span class="code-num">null</span>,
+  <span class="code-key">"autograph"</span>:    <span class="code-num">false</span>,
+  <span class="code-key">"relic"</span>:        <span class="code-num">false</span>,
+  <span class="code-key">"namespace"</span>:    <span class="code-string">"SC"</span>,
+  <span class="code-key">"registered"</span>:   <span class="code-string">"2026-01-15"</span>
+}</pre></div>
+        </div>
+      </div>
+
+      <!-- SEARCH -->
+      <div class="endpoint" id="search">
+        <div class="endpoint-header">
+          <span class="method method-get">GET</span>
+          <span class="endpoint-path">/cards/search</span>
+          <span class="endpoint-desc">Search the registry</span>
+        </div>
+        <div class="endpoint-body">
+          <p class="doc-body">Search the registry by player, product, manufacturer, or sport. Returns paginated results.</p>
+          <div class="doc-h3">Query Parameters</div>
+          <table>
+            <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>player</td><td>string</td><td>Player name (partial match supported)</td></tr>
+              <tr><td>sport</td><td>string</td><td>Baseball, Football, Basketball, Hockey</td></tr>
+              <tr><td>manufacturer</td><td>string</td><td>Topps, Panini, Leaf, Upper Deck</td></tr>
+              <tr><td>season</td><td>string</td><td>e.g. 2025, 2024-25</td></tr>
+              <tr><td>product</td><td>string</td><td>Product name (partial match supported)</td></tr>
+              <tr><td>autograph</td><td>boolean</td><td>Filter to autograph cards</td></tr>
+              <tr><td>page</td><td>integer</td><td>Page number (default: 1)</td></tr>
+              <tr><td>per_page</td><td>integer</td><td>Results per page (default: 25, max: 100)</td></tr>
+            </tbody>
+          </table>
+          <div class="code-label">Example request</div>
+          <div class="code-block"><pre>GET https://api.tcid.org/v1/cards/search?player=<span class="code-string">Ohtani</span>&sport=<span class="code-string">Baseball</span>&autograph=<span class="code-num">true</span>
+Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div>
+        </div>
+      </div>
+
+      <!-- BATCH -->
+      <div class="endpoint" id="batch">
+        <div class="endpoint-header">
+          <span class="method method-post">POST</span>
+          <span class="endpoint-path">/cards/batch</span>
+          <span class="endpoint-desc">Bulk TCID resolution — Silver/Gold only</span>
+        </div>
+        <div class="endpoint-body">
+          <p class="doc-body">Resolve up to 500 TCIDs in a single request. Silver tier: 500/request. Gold tier: unlimited.</p>
+          <div class="code-label">Request body</div>
+          <div class="code-block"><pre>{
+  <span class="code-key">"tcids"</span>: [
+    <span class="code-string">"SC-4X7KQ29R3A"</span>,
+    <span class="code-string">"SC-7B2MN58P1K"</span>,
+    <span class="code-string">"SC-9K3QR72A8D"</span>
+  ]
+}</pre></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FIELDS -->
+    <div class="doc-section" id="fields">
+      <h2 class="doc-h2">Data Fields</h2>
+      <p class="doc-body">Every TCID record contains the following fields. Fields marked with an asterisk are available on all tiers; remaining fields require Silver or above.</p>
+      <table>
+        <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>tcid *</td><td>string</td><td>The permanent TCID identifier</td></tr>
+          <tr><td>sport *</td><td>string</td><td>Sport (Baseball, Football, Basketball, Hockey)</td></tr>
+          <tr><td>manufacturer *</td><td>string</td><td>Card manufacturer</td></tr>
+          <tr><td>season *</td><td>string</td><td>Product season or year</td></tr>
+          <tr><td>product *</td><td>string</td><td>Product name</td></tr>
+          <tr><td>card_number *</td><td>string</td><td>Card number within the set</td></tr>
+          <tr><td>player</td><td>string</td><td>Player name</td></tr>
+          <tr><td>team</td><td>string</td><td>Team at time of card production</td></tr>
+          <tr><td>card_type</td><td>string</td><td>Base, Parallel, Autograph, Rookie, etc.</td></tr>
+          <tr><td>parallel</td><td>string | null</td><td>Parallel name, if applicable</td></tr>
+          <tr><td>print_run</td><td>integer | null</td><td>Numbered print run, if applicable</td></tr>
+          <tr><td>autograph</td><td>boolean</td><td>Whether the card includes an autograph</td></tr>
+          <tr><td>relic</td><td>boolean</td><td>Whether the card includes a memorabilia relic</td></tr>
+          <tr><td>namespace</td><td>string</td><td>Registry namespace prefix (SC = Sports Cards)</td></tr>
+          <tr><td>registered</td><td>date</td><td>Date of TCID registration</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ERRORS -->
+    <div class="doc-section" id="errors">
+      <h2 class="doc-h2">Error Codes</h2>
+      <table>
+        <thead><tr><th>HTTP Status</th><th>Code</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>400</td><td>invalid_tcid</td><td>Malformed TCID format</td></tr>
+          <tr><td>401</td><td>unauthorized</td><td>Missing or invalid API key</td></tr>
+          <tr><td>403</td><td>tier_restricted</td><td>Endpoint not available on current tier</td></tr>
+          <tr><td>404</td><td>not_found</td><td>TCID not found in registry</td></tr>
+          <tr><td>429</td><td>rate_limited</td><td>Monthly lookup limit exceeded</td></tr>
+          <tr><td>500</td><td>server_error</td><td>Internal server error</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- RATE LIMITS -->
+    <div class="doc-section" id="rate-limits">
+      <h2 class="doc-h2">Rate Limits</h2>
+      <p class="doc-body">Limits are enforced per API key per calendar month. Concurrent request rate is capped at 10 requests/second across all tiers. Rate limit status is returned in response headers.</p>
+      <div class="code-block"><pre>X-RateLimit-Tier:      <span class="code-string">silver</span>
+X-RateLimit-Limit:     <span class="code-num">50000</span>
+X-RateLimit-Remaining: <span class="code-num">48312</span>
+X-RateLimit-Reset:     <span class="code-string">2026-07-01T00:00:00Z</span></pre></div>
+    </div>
+
+    <!-- LICENSING -->
+    <div class="doc-section" id="licensing">
+      <h2 class="doc-h2">Licensing</h2>
+      <p class="doc-body">TCID identifiers are published under Creative Commons Attribution 4.0 International (CC BY 4.0). You may reference, store, and redistribute TCID identifiers in any system, commercial or otherwise, provided attribution is maintained.</p>
+      <p class="doc-body">API access is governed by the TCID API Terms of Service. Commercial use of enriched metadata (player names, product details, images) requires Silver or Gold membership and compliance with manufacturer data terms.</p>
+      <div class="notice">
+        <strong>Questions?</strong> Contact <strong>info@tcid.org</strong> for licensing, enterprise agreements, or manufacturer partnership inquiries.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p class="footer-copy">&copy; 2026 TCID Standards Organization &nbsp;·&nbsp; TCID identifiers published under CC BY 4.0 &nbsp;·&nbsp; <a href="index.html" style="color:#4a5f80;text-decoration:none;">tcid.org</a></p>
+</footer>
+
+</body>
+</html>
