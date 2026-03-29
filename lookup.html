@@ -22,7 +22,6 @@
       --serif:  'IBM Plex Serif', serif;
     }
     body { font-family: var(--sans); color: var(--text); background: var(--light); font-size: 16px; line-height: 1.6; }
-
     /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -35,7 +34,6 @@
     .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a { font-size: 13px; color: #aab2c4; text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--white); }
-
     /* HEADER */
     .page-header {
       margin-top: 56px; background: var(--navy);
@@ -44,7 +42,6 @@
     .page-header-inner { max-width: 900px; margin: 0 auto; }
     .page-label { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 10px; }
     .page-title { font-family: var(--serif); font-size: 32px; font-weight: 300; color: var(--white); }
-
     /* SEARCH */
     .search-section { padding: 40px; }
     .search-inner { max-width: 900px; margin: 0 auto; }
@@ -78,7 +75,6 @@
       font-family: var(--sans); cursor: pointer;
     }
     .search-filters select:focus { outline: none; border-color: var(--accent); }
-
     /* RESULTS */
     .results-header {
       display: flex; justify-content: space-between; align-items: center;
@@ -86,7 +82,6 @@
     }
     .results-count { font-family: var(--mono); font-size: 13px; color: var(--muted); }
     .results-count span { color: var(--navy); font-weight: 500; }
-
     .result-card {
       background: var(--white); border: 1px solid var(--rule);
       border-radius: 2px; margin-bottom: 8px; overflow: hidden;
@@ -120,7 +115,6 @@
     }
     .detail-field label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 2px; }
     .detail-field span { font-size: 14px; color: var(--navy); font-family: var(--mono); }
-
     /* EMPTY STATE */
     .empty-state {
       background: var(--white); border: 1px solid var(--rule);
@@ -129,7 +123,6 @@
     .empty-icon { font-size: 32px; margin-bottom: 16px; opacity: 0.3; }
     .empty-title { font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
     .empty-sub { font-size: 14px; color: var(--muted); }
-
     /* NOTICE */
     .demo-notice {
       background: rgba(200,168,75,0.08); border: 1px solid rgba(200,168,75,0.25);
@@ -137,13 +130,11 @@
       font-size: 13px; color: var(--muted); font-family: var(--mono);
     }
     .demo-notice strong { color: var(--accent); }
-
     footer { background: #060e1a; border-top: 2px solid var(--accent); padding: 32px 40px; text-align: center; }
     .footer-copy { font-size: 12px; color: #2a3a55; font-family: var(--mono); }
   </style>
 </head>
 <body>
-
 <nav>
   <a class="nav-brand" href="index.html"><span>TCID</span> &nbsp;Trading Card Identification Number</a>
   <ul class="nav-links">
@@ -153,25 +144,21 @@
     <li><a href="api.html">API</a></li>
   </ul>
 </nav>
-
 <div class="page-header">
   <div class="page-header-inner">
     <div class="page-label">Registry Lookup</div>
     <div class="page-title">Search the TCID Registry</div>
   </div>
 </div>
-
 <div class="search-section">
   <div class="search-inner">
-
     <div class="demo-notice">
       <strong>Demo mode:</strong> Displaying sample registry data. Full registry access available via API membership.
     </div>
-
     <div class="search-box">
       <label>Search by Player Name, Card Number, or TCID</label>
       <div class="search-row">
-        <input type="text" id="search-input" placeholder="e.g. Shohei Ohtani, SC-4X7KQ29R3A, #27..." autocomplete="off">
+        <input type="text" id="search-input" placeholder="e.g. Shohei Ohtani, SC4X7KQ29R3A, #27..." autocomplete="off">
         <button class="btn-search" onclick="runSearch()">Search</button>
       </div>
       <div class="search-filters">
@@ -204,7 +191,6 @@
         </select>
       </div>
     </div>
-
     <div id="results-container">
       <div class="empty-state">
         <div class="empty-icon">◈</div>
@@ -212,46 +198,41 @@
         <div class="empty-sub">Search by player name, TCID, card number, or use the filters above.</div>
       </div>
     </div>
-
   </div>
 </div>
-
 <footer>
   <p class="footer-copy">&copy; 2026 TCID Standards Organization &nbsp;·&nbsp; TCID identifiers published under CC BY 4.0 &nbsp;·&nbsp; <a href="index.html" style="color:#4a5f80;text-decoration:none;">api.tradingcardid.org</a></p>
 </footer>
-
 <script>
 // Demo registry data — representative sample
 const REGISTRY = [
-  { tcid: "SC-4X7KQ29R3A", sport: "Baseball", manufacturer: "Topps", season: "2025", product: "Topps Series 1", card_number: "27", player: "Shohei Ohtani", team: "Los Angeles Dodgers", card_type: "Base", parallel: null, print_run: null, autograph: false, relic: false },
-  { tcid: "SC-7B2MN58P1K", sport: "Baseball", manufacturer: "Topps", season: "2025", product: "Topps Series 1", card_number: "27", player: "Shohei Ohtani", team: "Los Angeles Dodgers", card_type: "Parallel", parallel: "Gold Foil", print_run: 2025, autograph: false, relic: false },
-  { tcid: "SC-9K3QR72A8D", sport: "Baseball", manufacturer: "Topps", season: "2025", product: "Topps Series 1", card_number: "27", player: "Shohei Ohtani", team: "Los Angeles Dodgers", card_type: "Autograph", parallel: null, print_run: 25, autograph: true, relic: false },
-  { tcid: "SC-2L9PT41B6E", sport: "Baseball", manufacturer: "Topps", season: "2025", product: "Topps Series 1", card_number: "100", player: "Aaron Judge", team: "New York Yankees", card_type: "Base", parallel: null, print_run: null, autograph: false, relic: false },
-  { tcid: "SC-5H8VW23C9F", sport: "Baseball", manufacturer: "Topps", season: "2025", product: "Topps Series 1", card_number: "100", player: "Aaron Judge", team: "New York Yankees", card_type: "Autograph", parallel: null, print_run: 10, autograph: true, relic: false },
-  { tcid: "SC-3M7XY64D2G", sport: "Basketball", manufacturer: "Panini", season: "2024-25", product: "Panini Prizm", card_number: "1", player: "LeBron James", team: "Los Angeles Lakers", card_type: "Base", parallel: null, print_run: null, autograph: false, relic: false },
-  { tcid: "SC-8N1ZA75E3H", sport: "Basketball", manufacturer: "Panini", season: "2024-25", product: "Panini Prizm", card_number: "1", player: "LeBron James", team: "Los Angeles Lakers", card_type: "Parallel", parallel: "Silver Prizm", print_run: null, autograph: false, relic: false },
-  { tcid: "SC-6P4BC86F5J", sport: "Basketball", manufacturer: "Panini", season: "2024-25", product: "Panini Prizm", card_number: "1", player: "LeBron James", team: "Los Angeles Lakers", card_type: "Autograph", parallel: "Gold Prizm", print_run: 10, autograph: true, relic: false },
-  { tcid: "SC-1Q5CD97G6K", sport: "Basketball", manufacturer: "Panini", season: "2024-25", product: "Panini Prizm", card_number: "3", player: "Stephen Curry", team: "Golden State Warriors", card_type: "Base", parallel: null, print_run: null, autograph: false, relic: false },
-  { tcid: "SC-7R6DE08H7L", sport: "Football", manufacturer: "Panini", season: "2024", product: "Panini Prizm", card_number: "201", player: "Patrick Mahomes", team: "Kansas City Chiefs", card_type: "Base", parallel: null, print_run: null, autograph: false, relic: false },
-  { tcid: "SC-2S7EF19J8M", sport: "Football", manufacturer: "Panini", season: "2024", product: "Panini Prizm", card_number: "201", player: "Patrick Mahomes", team: "Kansas City Chiefs", card_type: "Autograph", parallel: null, print_run: 50, autograph: true, relic: false },
-  { tcid: "SC-4T8FG20K9N", sport: "Football", manufacturer: "Panini", season: "2024", product: "Panini Prizm", card_number: "301", player: "Caleb Williams", team: "Chicago Bears", card_type: "Rookie Base", parallel: null, print_run: null, autograph: false, relic: false },
-  { tcid: "SC-9U1GH31L0P", sport: "Football", manufacturer: "Panini", season: "2024", product: "Panini Prizm", card_number: "301", player: "Caleb Williams", team: "Chicago Bears", card_type: "Rookie Autograph", parallel: null, print_run: 99, autograph: true, relic: false },
-  { tcid: "SC-3V2HJ42M1Q", sport: "Hockey", manufacturer: "Topps", season: "2024-25", product: "Topps NHL", card_number: "97", player: "Connor McDavid", team: "Edmonton Oilers", card_type: "Base", parallel: null, print_run: null, autograph: false, relic: false },
-  { tcid: "SC-8W5KL53N2R", sport: "Hockey", manufacturer: "Topps", season: "2024-25", product: "Topps NHL", card_number: "97", player: "Connor McDavid", team: "Edmonton Oilers", card_type: "Autograph", parallel: null, print_run: 25, autograph: true, relic: false },
-  { tcid: "SC-1X6MN64P3S", sport: "Baseball", manufacturer: "Leaf", season: "2024", product: "Leaf Trinity", card_number: "50", player: "Juan Soto", team: "New York Mets", card_type: "Autograph", parallel: null, print_run: 15, autograph: true, relic: false },
-  { tcid: "SC-5Y7NP75Q4T", sport: "Basketball", manufacturer: "Panini", season: "2024-25", product: "Panini Prizm", card_number: "14", player: "Victor Wembanyama", team: "San Antonio Spurs", card_type: "Base", parallel: null, print_run: null, autograph: false, relic: false },
-  { tcid: "SC-2Z8PQ86R5U", sport: "Basketball", manufacturer: "Panini", season: "2024-25", product: "Panini Prizm", card_number: "14", player: "Victor Wembanyama", team: "San Antonio Spurs", card_type: "Autograph", parallel: "Gold Prizm", print_run: 10, autograph: true, relic: false },
-  { tcid: "SC-6A9QR97S6V", sport: "Football", manufacturer: "Leaf", season: "2024", product: "Leaf Trinity", card_number: "101", player: "Jayden Daniels", team: "Washington Commanders", card_type: "Rookie Autograph", parallel: null, print_run: 25, autograph: true, relic: false },
-  { tcid: "SC-3B0ST08T7W", sport: "Baseball", manufacturer: "Topps", season: "2025", product: "Topps Series 1", card_number: "150", player: "Freddie Freeman", team: "Los Angeles Dodgers", card_type: "Base", parallel: null, print_run: null, autograph: false, relic: false },
+  { tcid: "SC4X7KQ29R3A", sport: "Baseball", manufacturer: "Topps", season: "2025", product: "Topps Series 1", card_number: "27", player: "Shohei Ohtani", team: "Los Angeles Dodgers", card_type: "Base", parallel: null, print_run: null, autograph: false, relic: false },
+  { tcid: "SC7B2MN58P1K", sport: "Baseball", manufacturer: "Topps", season: "2025", product: "Topps Series 1", card_number: "27", player: "Shohei Ohtani", team: "Los Angeles Dodgers", card_type: "Parallel", parallel: "Gold Foil", print_run: 2025, autograph: false, relic: false },
+  { tcid: "SC9K3QR72A8D", sport: "Baseball", manufacturer: "Topps", season: "2025", product: "Topps Series 1", card_number: "27", player: "Shohei Ohtani", team: "Los Angeles Dodgers", card_type: "Autograph", parallel: null, print_run: 25, autograph: true, relic: false },
+  { tcid: "SC2L9PT41B6E", sport: "Baseball", manufacturer: "Topps", season: "2025", product: "Topps Series 1", card_number: "100", player: "Aaron Judge", team: "New York Yankees", card_type: "Base", parallel: null, print_run: null, autograph: false, relic: false },
+  { tcid: "SC5H8VW23C9F", sport: "Baseball", manufacturer: "Topps", season: "2025", product: "Topps Series 1", card_number: "100", player: "Aaron Judge", team: "New York Yankees", card_type: "Autograph", parallel: null, print_run: 10, autograph: true, relic: false },
+  { tcid: "SC3M7XY64D2G", sport: "Basketball", manufacturer: "Panini", season: "2024-25", product: "Panini Prizm", card_number: "1", player: "LeBron James", team: "Los Angeles Lakers", card_type: "Base", parallel: null, print_run: null, autograph: false, relic: false },
+  { tcid: "SC8N1ZA75E3H", sport: "Basketball", manufacturer: "Panini", season: "2024-25", product: "Panini Prizm", card_number: "1", player: "LeBron James", team: "Los Angeles Lakers", card_type: "Parallel", parallel: "Silver Prizm", print_run: null, autograph: false, relic: false },
+  { tcid: "SC6P4BC86F5J", sport: "Basketball", manufacturer: "Panini", season: "2024-25", product: "Panini Prizm", card_number: "1", player: "LeBron James", team: "Los Angeles Lakers", card_type: "Autograph", parallel: "Gold Prizm", print_run: 10, autograph: true, relic: false },
+  { tcid: "SC1Q5CD97G6K", sport: "Basketball", manufacturer: "Panini", season: "2024-25", product: "Panini Prizm", card_number: "3", player: "Stephen Curry", team: "Golden State Warriors", card_type: "Base", parallel: null, print_run: null, autograph: false, relic: false },
+  { tcid: "SC7R6DE08H7L", sport: "Football", manufacturer: "Panini", season: "2024", product: "Panini Prizm", card_number: "201", player: "Patrick Mahomes", team: "Kansas City Chiefs", card_type: "Base", parallel: null, print_run: null, autograph: false, relic: false },
+  { tcid: "SC2S7EF19J8M", sport: "Football", manufacturer: "Panini", season: "2024", product: "Panini Prizm", card_number: "201", player: "Patrick Mahomes", team: "Kansas City Chiefs", card_type: "Autograph", parallel: null, print_run: 50, autograph: true, relic: false },
+  { tcid: "SC4T8FG20K9N", sport: "Football", manufacturer: "Panini", season: "2024", product: "Panini Prizm", card_number: "301", player: "Caleb Williams", team: "Chicago Bears", card_type: "Rookie Base", parallel: null, print_run: null, autograph: false, relic: false },
+  { tcid: "SC9U1GH31L0P", sport: "Football", manufacturer: "Panini", season: "2024", product: "Panini Prizm", card_number: "301", player: "Caleb Williams", team: "Chicago Bears", card_type: "Rookie Autograph", parallel: null, print_run: 99, autograph: true, relic: false },
+  { tcid: "SC3V2HJ42M1Q", sport: "Hockey", manufacturer: "Topps", season: "2024-25", product: "Topps NHL", card_number: "97", player: "Connor McDavid", team: "Edmonton Oilers", card_type: "Base", parallel: null, print_run: null, autograph: false, relic: false },
+  { tcid: "SC8W5KL53N2R", sport: "Hockey", manufacturer: "Topps", season: "2024-25", product: "Topps NHL", card_number: "97", player: "Connor McDavid", team: "Edmonton Oilers", card_type: "Autograph", parallel: null, print_run: 25, autograph: true, relic: false },
+  { tcid: "SC1X6MN64P3S", sport: "Baseball", manufacturer: "Leaf", season: "2024", product: "Leaf Trinity", card_number: "50", player: "Juan Soto", team: "New York Mets", card_type: "Autograph", parallel: null, print_run: 15, autograph: true, relic: false },
+  { tcid: "SC5Y7NP75Q4T", sport: "Basketball", manufacturer: "Panini", season: "2024-25", product: "Panini Prizm", card_number: "14", player: "Victor Wembanyama", team: "San Antonio Spurs", card_type: "Base", parallel: null, print_run: null, autograph: false, relic: false },
+  { tcid: "SC2Z8PQ86R5U", sport: "Basketball", manufacturer: "Panini", season: "2024-25", product: "Panini Prizm", card_number: "14", player: "Victor Wembanyama", team: "San Antonio Spurs", card_type: "Autograph", parallel: "Gold Prizm", print_run: 10, autograph: true, relic: false },
+  { tcid: "SC6A9QR97S6V", sport: "Football", manufacturer: "Leaf", season: "2024", product: "Leaf Trinity", card_number: "101", player: "Jayden Daniels", team: "Washington Commanders", card_type: "Rookie Autograph", parallel: null, print_run: 25, autograph: true, relic: false },
+  { tcid: "SC3B0ST08T7W", sport: "Baseball", manufacturer: "Topps", season: "2025", product: "Topps Series 1", card_number: "150", player: "Freddie Freeman", team: "Los Angeles Dodgers", card_type: "Base", parallel: null, print_run: null, autograph: false, relic: false },
 ];
-
 function runSearch() {
   const query = document.getElementById('search-input').value.trim().toLowerCase();
   const sportFilter = document.getElementById('filter-sport').value;
   const mfgFilter = document.getElementById('filter-manufacturer').value;
   const seasonFilter = document.getElementById('filter-season').value;
   const autoFilter = document.getElementById('filter-auto').value;
-
   let results = REGISTRY.filter(card => {
     const matchesQuery = !query ||
       card.player.toLowerCase().includes(query) ||
@@ -267,10 +248,8 @@ function runSearch() {
       (autoFilter === 'relic' && card.relic);
     return matchesQuery && matchesSport && matchesMfg && matchesSeason && matchesAuto;
   });
-
   renderResults(results, query || 'all');
 }
-
 function renderResults(results, query) {
   const container = document.getElementById('results-container');
   if (results.length === 0) {
@@ -282,18 +261,15 @@ function renderResults(results, query) {
       </div>`;
     return;
   }
-
   let html = `<div class="results-header">
     <span class="results-count"><span>${results.length}</span> card type${results.length !== 1 ? 's' : ''} found</span>
   </div>`;
-
   results.forEach((card, i) => {
     const badges = [];
     if (card.autograph) badges.push(`<span class="badge badge-auto">AUTO</span>`);
     if (card.relic) badges.push(`<span class="badge badge-relic">RELIC</span>`);
     if (card.parallel) badges.push(`<span class="badge badge-parallel">${card.parallel}</span>`);
     badges.push(`<span class="badge badge-sport">${card.sport}</span>`);
-
     html += `
     <div class="result-card" onclick="toggleCard(this)">
       <div class="result-card-inner">
@@ -324,19 +300,15 @@ function renderResults(results, query) {
       </div>
     </div>`;
   });
-
   container.innerHTML = html;
 }
-
 function toggleCard(el) {
   el.classList.toggle('expanded');
 }
-
 // Allow Enter key to trigger search
 document.getElementById('search-input').addEventListener('keydown', e => {
   if (e.key === 'Enter') runSearch();
 });
-
 // Auto-search on filter change
 ['filter-sport','filter-manufacturer','filter-season','filter-auto'].forEach(id => {
   document.getElementById(id).addEventListener('change', () => {
