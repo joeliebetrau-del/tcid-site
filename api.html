@@ -287,7 +287,7 @@ Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div
     </div>
 <div class="doc-section" id="fields">
       <h2 class="doc-h2">Data Fields</h2>
-      <p class="doc-body">Every TCID record contains the following fields. Fields marked with an asterisk are available on all tiers; remaining fields require Silver or above.</p>
+      <p class="doc-body">Every TCID record contains the following fields. Fields marked with an asterisk are available on all tiers; remaining fields require Bronze or above.</p>
       <table>
         <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
         <tbody>
@@ -303,10 +303,10 @@ Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div
           <tr><td>parallel *</td><td>string | null</td><td>Parallel name, if applicable</td></tr>
           <tr><td>autograph *</td><td>boolean</td><td>Whether the card includes an autograph</td></tr>
           <tr><td>relic *</td><td>boolean</td><td>Whether the card includes a memorabilia relic</td></tr>
-          <tr><td>print_run</td><td>integer | null</td><td>Numbered print run, if applicable. Silver and above.</td></tr>
-          <tr><td>image_ref_url</td><td>string | null</td><td>Manufacturer image reference URL. Silver and above.</td></tr>
-          <tr><td>retail_channel</td><td>string | null</td><td>Retail distribution channel. Gold only.</td></tr>
-          <tr><td>notes</td><td>string | null</td><td>Additional registry notes. Gold only.</td></tr>
+          <tr><td>print_run</td><td>integer | null</td><td>Numbered print run, if applicable. Bronze and above.</td></tr>
+          <tr><td>image_ref_url</td><td>string | null</td><td>Manufacturer image reference URL. Bronze and above.</td></tr>
+          <tr><td>retail_channel</td><td>string | null</td><td>Retail distribution channel. Bronze and above.</td></tr>
+          <tr><td>notes</td><td>string | null</td><td>Additional registry notes. Bronze and above.</td></tr>
         </tbody>
       </table>
     </div>
@@ -330,8 +330,8 @@ Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div
       <h2 class="doc-h2">Rate Limits</h2>
       <p class="doc-body">Limits are enforced per API key per calendar month. Concurrent request rate is capped at 10 requests/second across all tiers. Rate limit status is returned in response headers.</p>
       <div class="code-block"><pre>X-RateLimit-Tier:      <span class="code-string">silver</span>
-X-RateLimit-Limit:     <span class="code-num">50000</span>
-X-RateLimit-Remaining: <span class="code-num">48312</span>
+X-RateLimit-Limit:     <span class="code-num">100000</span>
+X-RateLimit-Remaining: <span class="code-num">98312</span>
 X-RateLimit-Reset:     <span class="code-string">2026-07-01T00:00:00Z</span></pre></div>
     </div>
 
