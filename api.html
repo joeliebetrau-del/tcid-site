@@ -159,7 +159,7 @@
       <p class="doc-body">All API requests require a Bearer token passed in the Authorization header. API keys are issued per organization at the time of membership enrollment.</p>
       <div class="code-label">Request header</div>
       <div class="code-block"><pre>Authorization: Bearer <span class="code-string">tcid_live_xxxxxxxxxxxxxxxxxxxx</span></pre></div>
-      <p class="doc-body">Free tier lookups (up to 1,000/month) do not require authentication. Include the header to track usage against your key and avoid rate limiting.</p>
+      <p class="doc-body">All API access requires a valid Bearer token. Free tier users access the registry via the website lookup at tradingcardid.org/lookup and do not receive API keys.</p>
     </div>
 
     <div class="doc-section" id="base-url">
@@ -270,10 +270,10 @@ Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div
         <div class="endpoint-header">
           <span class="method method-post">POST</span>
           <span class="endpoint-path">/cards/batch</span>
-          <span class="endpoint-desc">Bulk TCID resolution -- Silver/Gold only</span>
+          <span class="endpoint-desc">Bulk TCID resolution - Bronze, Silver, and Gold only</span>
         </div>
         <div class="endpoint-body">
-          <p class="doc-body">Resolve up to 500 TCIDs in a single request. Silver tier: 500/request. Gold tier: unlimited.</p>
+          <p class="doc-body">Submit multiple TCIDs in a single request. Each TCID in the batch counts as one lookup against your monthly limit. Requests that would exceed your remaining monthly allowance are rejected in full, partial processing is not performed.</p>
           <div class="code-label">Request body</div>
           <div class="code-block"><pre>{
   <span class="code-key">"tcids"</span>: [
@@ -338,7 +338,7 @@ X-RateLimit-Reset:     <span class="code-string">2026-07-01T00:00:00Z</span></pr
     <div class="doc-section" id="licensing">
       <h2 class="doc-h2">Licensing</h2>
       <p class="doc-body">TCID identifiers are published under Creative Commons Attribution 4.0 International (CC BY 4.0). You may reference, store, and redistribute TCID identifiers in any system, commercial or otherwise, provided attribution is maintained.</p>
-      <p class="doc-body">API access is governed by the TCID API Terms of Service. Commercial use of enriched metadata (player names, product details, images) requires Silver or Gold membership and compliance with manufacturer data terms.</p>
+      <p class="doc-body">API access is governed by the TCID API Terms of Service. Commercial use of enriched metadata (player names, product details, images) requires Bronze membership or above and compliance with manufacturer data terms.</p>
       <div class="notice">
         <strong>Questions?</strong> Contact <strong>info@tradingcardid.org</strong> for licensing, enterprise agreements, or manufacturer partnership inquiries.
       </div>
