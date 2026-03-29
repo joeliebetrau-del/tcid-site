@@ -110,7 +110,6 @@
     <li><a href="api.html" class="active">API</a></li>
   </ul>
 </nav>
-
 <div class="page-wrapper">
   <div class="sidebar">
     <div class="sidebar-section">
@@ -140,9 +139,7 @@
       </ul>
     </div>
   </div>
-
   <div class="content">
-
     <div class="doc-section" id="intro">
       <div class="doc-label">API Documentation</div>
       <h1 class="doc-h1">TCID Registry API</h1>
@@ -153,7 +150,6 @@
         <strong>Status:</strong> API launching Q3 2026. This documentation reflects the planned interface. Contact <strong>info@tradingcardid.org</strong> to join the early access list.
       </div>
     </div>
-
     <div class="doc-section" id="auth">
       <h2 class="doc-h2">Authentication</h2>
       <p class="doc-body">All API requests require a Bearer token passed in the Authorization header. API keys are issued per organization at the time of membership enrollment.</p>
@@ -161,13 +157,11 @@
       <div class="code-block"><pre>Authorization: Bearer <span class="code-string">tcid_live_xxxxxxxxxxxxxxxxxxxx</span></pre></div>
       <p class="doc-body">All API access requires a valid Bearer token. Free tier users access the registry via the website lookup at tradingcardid.org/lookup and do not receive API keys.</p>
     </div>
-
     <div class="doc-section" id="base-url">
       <h2 class="doc-h2">Base URL</h2>
       <div class="code-block"><pre>https://api.tradingcardid.org/v1</pre></div>
       <p class="doc-body">All endpoints are versioned. The current version is <code style="font-family:var(--mono);color:var(--navy);">v1</code>. Breaking changes will be introduced in a new version with a minimum 90-day deprecation notice.</p>
     </div>
-
 <div class="doc-section" id="tiers">
   <h2 class="doc-h2">Access Tiers</h2>
   <p class="doc-body">TCID API access is governed by annual membership tier. All tiers include the right to reference TCID identifiers in your own systems.</p>
@@ -200,7 +194,6 @@
 </div>
 <div class="doc-section" id="lookup-tcid">
       <h2 class="doc-h2">Endpoints</h2>
-
       <div class="endpoint">
         <div class="endpoint-header">
           <span class="method method-get">GET</span>
@@ -213,15 +206,15 @@
           <table>
             <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td>tcid</td><td>string</td><td>The TCID to resolve (e.g., <code style="font-family:var(--mono)">SC-XA7KDPJPK</code>) <span class="required">required</span></td></tr>
+              <tr><td>tcid</td><td>string</td><td>The TCID to resolve (e.g., <code style="font-family:var(--mono)">SCXA7KDPJPK</code>) <span class="required">required</span></td></tr>
             </tbody>
           </table>
           <div class="code-label">Example request</div>
-          <div class="code-block"><pre>GET https://api.tradingcardid.org/v1/cards/<span class="code-string">SC-XA7KDPJPK</span>
+          <div class="code-block"><pre>GET https://api.tradingcardid.org/v1/cards/<span class="code-string">SCXA7KDPJPK</span>
 Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div>
           <div class="code-label">Example response</div>
           <div class="code-block"><pre>{
-  <span class="code-key">"tcid"</span>:         <span class="code-string">"SC-XA7KDPJPK"</span>,
+  <span class="code-key">"tcid"</span>:         <span class="code-string">"SCXA7KDPJPK"</span>,
   <span class="code-key">"sport"</span>:        <span class="code-string">"Baseball"</span>,
   <span class="code-key">"manufacturer"</span>: <span class="code-string">"Topps"</span>,
   <span class="code-key">"season"</span>:       <span class="code-string">"2025"</span>,
@@ -237,7 +230,6 @@ Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div
 }</pre></div>
         </div>
       </div>
-
       <div class="endpoint" id="search">
         <div class="endpoint-header">
           <span class="method method-get">GET</span>
@@ -265,7 +257,6 @@ Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div
 Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div>
         </div>
       </div>
-
       <div class="endpoint" id="batch">
         <div class="endpoint-header">
           <span class="method method-post">POST</span>
@@ -277,9 +268,9 @@ Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div
           <div class="code-label">Request body</div>
           <div class="code-block"><pre>{
   <span class="code-key">"tcids"</span>: [
-    <span class="code-string">"SC-XA7KDPJPK"</span>,
-    <span class="code-string">"SC-JKBWH2EWE"</span>,
-    <span class="code-string">"SC-6574G7PX6"</span>
+    <span class="code-string">"SCXA7KDPJPK"</span>,
+    <span class="code-string">"SCJKBWH2EWE"</span>,
+    <span class="code-string">"SC6574G7PX6"</span>
   ]
 }</pre></div>
         </div>
@@ -310,7 +301,6 @@ Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div
         </tbody>
       </table>
     </div>
-
     <div class="doc-section" id="errors">
       <h2 class="doc-h2">Error Codes</h2>
       <table>
@@ -325,7 +315,6 @@ Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div
         </tbody>
       </table>
     </div>
-
     <div class="doc-section" id="rate-limits">
       <h2 class="doc-h2">Rate Limits</h2>
       <p class="doc-body">Limits are enforced per API key per calendar month. Concurrent request rate is capped at 10 requests/second across all tiers. Rate limit status is returned in response headers.</p>
@@ -334,7 +323,6 @@ X-RateLimit-Limit:     <span class="code-num">100000</span>
 X-RateLimit-Remaining: <span class="code-num">98312</span>
 X-RateLimit-Reset:     <span class="code-string">2026-07-01T00:00:00Z</span></pre></div>
     </div>
-
     <div class="doc-section" id="licensing">
       <h2 class="doc-h2">Licensing</h2>
       <p class="doc-body">TCID identifiers are published under Creative Commons Attribution 4.0 International (CC BY 4.0). You may reference, store, and redistribute TCID identifiers in any system, commercial or otherwise, provided attribution is maintained.</p>
@@ -343,13 +331,10 @@ X-RateLimit-Reset:     <span class="code-string">2026-07-01T00:00:00Z</span></pr
         <strong>Questions?</strong> Contact <strong>info@tradingcardid.org</strong> for licensing, enterprise agreements, or manufacturer partnership inquiries.
       </div>
     </div>
-
   </div>
 </div>
-
 <footer>
   <p class="footer-copy">&copy; 2026 TCID Standards Organization &nbsp;·&nbsp; TCID identifiers published under CC BY 4.0 &nbsp;·&nbsp; <a href="index.html" style="color:#4a5f80;text-decoration:none;">tradingcardid.org</a></p>
 </footer>
-
 </body>
 </html>
