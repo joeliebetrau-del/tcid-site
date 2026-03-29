@@ -39,11 +39,13 @@
       background: var(--navy);
       border-bottom: 2px solid var(--accent);
       display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap;
       padding: 0 40px; height: 56px;
     }
     .nav-brand {
       font-family: var(--mono); font-size: 14px; font-weight: 500;
       color: var(--white); letter-spacing: 0.08em; text-decoration: none;
+      white-space: nowrap;
     }
     .nav-brand span { color: var(--accent); }
     .nav-links { display: flex; gap: 32px; list-style: none; }
@@ -54,12 +56,74 @@
     }
     .nav-links a:hover { color: var(--white); }
 
+    /* Hamburger — hidden on desktop */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--accent);
+      transition: opacity 0.2s;
+    }
+
+    /* ── MOBILE NAV ── */
+    @media (max-width: 720px) {
+      nav {
+        height: auto;
+        padding: 14px 20px;
+        gap: 0;
+      }
+      .nav-brand {
+        font-size: 13px;
+      }
+      .nav-hamburger {
+        display: flex;
+      }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+        padding: 8px 0 4px;
+        margin-top: 8px;
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .nav-links li {
+        border-bottom: 1px solid #1e2f50;
+      }
+      .nav-links li:last-child {
+        border-bottom: none;
+      }
+      .nav-links a {
+        display: block;
+        padding: 11px 0;
+        font-size: 14px;
+      }
+    }
+
     /* ── HERO ── */
     .hero {
       margin-top: 56px;
       background: var(--navy);
       padding: 100px 40px 80px;
       border-bottom: 1px solid #1e2f50;
+    }
+    @media (max-width: 720px) {
+      .hero {
+        /* account for taller mobile nav */
+        margin-top: 0;
+        padding-top: 80px;
+      }
     }
     .hero-inner { max-width: 900px; margin: 0 auto; }
     .hero-label {
@@ -105,6 +169,7 @@
 
     /* ── SECTION BASE ── */
     section { padding: 80px 40px; }
+    @media (max-width: 720px) { section { padding: 60px 20px; } }
     .section-inner { max-width: 900px; margin: 0 auto; }
     .section-label {
       font-family: var(--mono); font-size: 11px; font-weight: 500;
@@ -132,6 +197,7 @@
       border-bottom: 1px solid var(--rule);
       padding: 40px;
     }
+    @media (max-width: 720px) { .stats-bar { padding: 32px 20px; } }
     .stats-inner {
       max-width: 900px; margin: 0 auto;
       display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -152,7 +218,7 @@
       display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
       margin-top: 48px;
     }
-    @media (max-width: 680px) { .what-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 680px) { .what-grid { grid-template-columns: 1fr; gap: 32px; } }
     .what-item {}
     .what-item h3 {
       font-family: var(--sans); font-size: 14px; font-weight: 600;
@@ -181,10 +247,12 @@
       display: flex; align-items: center; justify-content: center;
       padding: 20px 12px; text-align: center;
     }
+    @media (max-width: 560px) { .stack-layer { width: 64px; font-size: 9px; } }
     .stack-layer.l1 { background: var(--blue); }
     .stack-layer.l2 { background: #2a4a80; }
     .stack-layer.l3 { background: var(--navy); }
     .stack-content { padding: 20px 28px; flex: 1; }
+    @media (max-width: 560px) { .stack-content { padding: 16px; } }
     .stack-content strong {
       display: block; font-size: 14px; font-weight: 600;
       color: var(--navy); margin-bottom: 4px;
@@ -194,6 +262,7 @@
       font-family: var(--mono); font-size: 13px; color: var(--accent);
       margin-top: 6px; display: block;
     }
+    @media (max-width: 560px) { .stack-id { font-size: 11px; word-break: break-all; } }
 
     /* ── ANALOGS ── */
     .analogs-grid {
@@ -247,7 +316,7 @@
       display: flex; align-items: center; justify-content: center;
       grid-column: 1 / -1; border-top: 1px solid var(--rule);
       font-family: var(--mono); font-size: 12px; color: var(--muted);
-      letter-spacing: 0.06em;
+      letter-spacing: 0.06em; text-align: center;
     }
 
     /* ── API PREVIEW ── */
@@ -259,6 +328,7 @@
       border: 1px solid #1e3055; border-radius: 2px;
       padding: 28px 32px; overflow-x: auto;
     }
+    @media (max-width: 720px) { .code-block { padding: 16px; } }
     .code-block pre {
       font-family: var(--mono); font-size: 13px;
       color: #c8d0e0; line-height: 1.8; margin: 0;
@@ -269,7 +339,7 @@
     .code-num { color: var(--accent); }
     .tiers {
       margin-top: 40px;
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1px; background: #1e3055;
       border: 1px solid #1e3055;
     }
@@ -297,6 +367,7 @@
       border-top: 2px solid var(--accent);
       padding: 48px 40px;
     }
+    @media (max-width: 720px) { footer { padding: 40px 20px; } }
     .footer-inner {
       max-width: 900px; margin: 0 auto;
       display: flex; justify-content: space-between; align-items: flex-start;
@@ -336,8 +407,11 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-brand" href="index.html"><span>TCID</span> &nbsp;Trading Card Identification Number</a>
-  <ul class="nav-links">
+  <a class="nav-brand" href="index.html"><span>TCID</span> &nbsp;Trading Card ID</a>
+  <button class="nav-hamburger" aria-label="Toggle navigation" onclick="document.getElementById('nav-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-menu">
     <li><a href="#what">Standard</a></li>
     <li><a href="#how">How It Works</a></li>
     <li><a href="#governance">Governance</a></li>
@@ -517,7 +591,7 @@
     <p class="section-body">The TCID Registry API provides structured, authenticated access to card type data. The identifier itself is always free. API membership unlocks enriched metadata, batch lookup, and commercial use rights.</p>
     <div class="code-block">
       <pre><span class="code-comment">// Example: Resolve a TCID to full card metadata</span>
-GET https://api.api.tradingcardid.org/v1/cards/<span class="code-string">SC-4X7KQ29R3A</span>
+GET https://api.tradingcardid.org/v1/cards/<span class="code-string">SC-4X7KQ29R3A</span>
 Authorization: Bearer <span class="code-string">{api_key}</span>
 
 <span class="code-comment">// Response</span>
@@ -543,10 +617,21 @@ Authorization: Bearer <span class="code-string">{api_key}</span>
         <div class="tier-price">$0</div>
         <div class="tier-period">always free</div>
         <ul class="tier-features">
-          <li>TCID lookup by card</li>
+          <li>Web lookup only</li>
           <li>Basic card metadata</li>
           <li>1,000 lookups / month</li>
           <li>Non-commercial use</li>
+        </ul>
+      </div>
+      <div class="tier-card">
+        <div class="tier-name">Bronze</div>
+        <div class="tier-price">Contact Us</div>
+        <div class="tier-period">annual membership</div>
+        <ul class="tier-features">
+          <li>API access</li>
+          <li>Full metadata fields</li>
+          <li>10,000 lookups / month</li>
+          <li>Commercial use rights</li>
         </ul>
       </div>
       <div class="tier-card">
@@ -554,9 +639,9 @@ Authorization: Bearer <span class="code-string">{api_key}</span>
         <div class="tier-price">Contact Us</div>
         <div class="tier-period">annual membership</div>
         <ul class="tier-features">
+          <li>API access</li>
           <li>Full metadata fields</li>
-          <li>Batch lookup (CSV)</li>
-          <li>50,000 lookups / month</li>
+          <li>100,000 lookups / month</li>
           <li>Commercial use rights</li>
         </ul>
       </div>
@@ -565,10 +650,9 @@ Authorization: Bearer <span class="code-string">{api_key}</span>
         <div class="tier-price">Contact Us</div>
         <div class="tier-period">annual membership</div>
         <ul class="tier-features">
-          <li>Full metadata + images</li>
-          <li>Bulk data export rights</li>
-          <li>Unlimited lookups</li>
-          <li>SLA + priority support</li>
+          <li>API access</li>
+          <li>Full metadata + priority support</li>
+          <li>Custom volume</li>
           <li>Enterprise licensing</li>
         </ul>
       </div>
@@ -592,7 +676,7 @@ Authorization: Bearer <span class="code-string">{api_key}</span>
         <li><a href="lookup.html">Card Lookup</a></li>
         <li><a href="api.html">API Documentation</a></li>
         <li><a href="#governance">Governance</a></li>
-        <li><a href="mailto:info@api.tradingcardid.org">Contact</a></li>
+        <li><a href="mailto:info@tradingcardid.org">Contact</a></li>
       </ul>
     </div>
   </div>
