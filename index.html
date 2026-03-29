@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:wght@300;400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --navy:   #0a1628;
       --blue:   #1a3a6e;
@@ -22,9 +21,7 @@
       --sans:   'IBM Plex Sans', sans-serif;
       --serif:  'IBM Plex Serif', serif;
     }
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: var(--sans);
       color: var(--text);
@@ -32,7 +29,6 @@
       font-size: 16px;
       line-height: 1.6;
     }
-
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -55,7 +51,6 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--white); }
-
     /* Hamburger — hidden on desktop */
     .nav-hamburger {
       display: none;
@@ -73,7 +68,6 @@
       background: var(--accent);
       transition: opacity 0.2s;
     }
-
     /* ── MOBILE NAV ── */
     @media (max-width: 720px) {
       nav {
@@ -110,7 +104,6 @@
         font-size: 14px;
       }
     }
-
     /* ── HERO ── */
     .hero {
       margin-top: 56px;
@@ -166,7 +159,6 @@
       transition: border-color 0.2s, color 0.2s;
     }
     .btn-outline:hover { border-color: var(--accent); color: var(--white); }
-
     /* ── SECTION BASE ── */
     section { padding: 80px 40px; }
     @media (max-width: 720px) { section { padding: 60px 20px; } }
@@ -189,7 +181,6 @@
       font-size: 16px; color: var(--muted); line-height: 1.75;
       max-width: 680px;
     }
-
     /* ── STATS BAR ── */
     .stats-bar {
       background: var(--light);
@@ -212,7 +203,6 @@
       font-size: 12px; font-weight: 400; color: var(--muted);
       letter-spacing: 0.06em; text-transform: uppercase; margin-top: 4px;
     }
-
     /* ── WHAT IS TCID ── */
     .what-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
@@ -227,7 +217,6 @@
       border-bottom: 1px solid var(--rule);
     }
     .what-item p { font-size: 15px; color: var(--muted); line-height: 1.7; }
-
     /* ── HOW IT WORKS ── */
     .how-bg { background: var(--light); }
     .stack-diagram {
@@ -263,7 +252,6 @@
       margin-top: 6px; display: block;
     }
     @media (max-width: 560px) { .stack-id { font-size: 11px; word-break: break-all; } }
-
     /* ── ANALOGS ── */
     .analogs-grid {
       margin-top: 48px;
@@ -288,7 +276,6 @@
       margin-top: 10px; font-size: 12px; color: var(--muted);
       font-style: italic;
     }
-
     /* ── GOVERNANCE ── */
     .gov-diagram {
       margin-top: 48px;
@@ -318,7 +305,6 @@
       font-family: var(--mono); font-size: 12px; color: var(--muted);
       letter-spacing: 0.06em; text-align: center;
     }
-
     /* ── API PREVIEW ── */
     .api-bg { background: var(--navy); }
     .api-bg .section-title { color: var(--white); }
@@ -360,7 +346,6 @@
     .tier-features li { padding: 5px 0; border-bottom: 1px solid #1a3055; }
     .tier-features li:last-child { border-bottom: none; }
     .tier-features li::before { content: "— "; color: var(--accent); }
-
     /* ── FOOTER ── */
     footer {
       background: #060e1a;
@@ -390,7 +375,6 @@
     }
     .footer-copy { font-size: 12px; color: #2a3a55; font-family: var(--mono); }
     .footer-cc { font-size: 12px; color: #2a3a55; }
-
     /* ── NOTICE BANNER ── */
     .notice {
       background: rgba(200,168,75,0.08);
@@ -404,7 +388,6 @@
   </style>
 </head>
 <body>
-
 <!-- NAV -->
 <nav>
   <a class="nav-brand" href="index.html"><span>TCID</span> &nbsp;Trading Card ID</a>
@@ -419,7 +402,6 @@
     <li><a href="api.html">API</a></li>
   </ul>
 </nav>
-
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
@@ -436,7 +418,6 @@
     </div>
   </div>
 </section>
-
 <!-- STATS -->
 <div class="stats-bar">
   <div class="stats-inner">
@@ -462,7 +443,6 @@
     </div>
   </div>
 </div>
-
 <!-- WHAT IS TCID -->
 <section id="what">
   <div class="section-inner">
@@ -490,7 +470,6 @@
     </div>
   </div>
 </section>
-
 <!-- HOW IT WORKS -->
 <section id="how" class="how-bg">
   <div class="section-inner">
@@ -504,7 +483,7 @@
         <div class="stack-content">
           <strong>What card is this? — TCID</strong>
           <p>Identifies the card type by player, set, year, parallel, and variation. Every copy of a given card shares the same TCID, whether raw, graded, or never touched. The foundational layer all others reference.</p>
-          <span class="stack-id">SC-4X7KQ29R3A &nbsp;·&nbsp; 2025 Topps Series 1 Baseball #27 Shohei Ohtani Base</span>
+          <span class="stack-id">SC4X7KQ29R3A &nbsp;·&nbsp; 2025 Topps Series 1 Baseball #27 Shohei Ohtani Base</span>
         </div>
       </div>
       <div class="stack-row">
@@ -526,7 +505,6 @@
     </div>
   </div>
 </section>
-
 <!-- ANALOGS -->
 <section id="analogs">
   <div class="section-inner">
@@ -556,7 +534,6 @@
     </div>
   </div>
 </section>
-
 <!-- GOVERNANCE -->
 <section id="governance" class="how-bg">
   <div class="section-inner">
@@ -581,7 +558,6 @@
     </div>
   </div>
 </section>
-
 <!-- API PREVIEW -->
 <section id="api" class="api-bg">
   <div class="section-inner">
@@ -591,12 +567,11 @@
     <p class="section-body">The TCID Registry API provides structured, authenticated access to card type data. The identifier itself is always free. API membership unlocks enriched metadata, batch lookup, and commercial use rights.</p>
     <div class="code-block">
       <pre><span class="code-comment">// Example: Resolve a TCID to full card metadata</span>
-GET https://api.tradingcardid.org/v1/cards/<span class="code-string">SC-4X7KQ29R3A</span>
+GET https://api.tradingcardid.org/v1/cards/<span class="code-string">SC4X7KQ29R3A</span>
 Authorization: Bearer <span class="code-string">{api_key}</span>
-
 <span class="code-comment">// Response</span>
 {
-  <span class="code-key">"tcid"</span>:         <span class="code-string">"SC-4X7KQ29R3A"</span>,
+  <span class="code-key">"tcid"</span>:         <span class="code-string">"SC4X7KQ29R3A"</span>,
   <span class="code-key">"sport"</span>:        <span class="code-string">"Baseball"</span>,
   <span class="code-key">"manufacturer"</span>: <span class="code-string">"Topps"</span>,
   <span class="code-key">"season"</span>:       <span class="code-string">"2025"</span>,
@@ -662,7 +637,6 @@ Authorization: Bearer <span class="code-string">{api_key}</span>
     </div>
   </div>
 </section>
-
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -685,6 +659,5 @@ Authorization: Bearer <span class="code-string">{api_key}</span>
     <span class="footer-cc">TCID identifiers published under Creative Commons Attribution 4.0 International.</span>
   </div>
 </footer>
-
 </body>
 </html>
