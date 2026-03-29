@@ -22,7 +22,6 @@
       --serif:  'IBM Plex Serif', serif;
     }
     body { font-family: var(--sans); color: var(--text); background: var(--white); font-size: 16px; line-height: 1.6; }
-
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: var(--navy); border-bottom: 2px solid var(--accent);
@@ -34,15 +33,12 @@
     .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a { font-size: 13px; color: #aab2c4; text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--white); }
-
-    /* LAYOUT */
     .page-wrapper { margin-top: 56px; display: flex; }
     .sidebar {
       width: 220px; flex-shrink: 0;
       position: sticky; top: 56px; height: calc(100vh - 56px);
       overflow-y: auto; background: var(--light);
-      border-right: 1px solid var(--rule);
-      padding: 32px 0;
+      border-right: 1px solid var(--rule); padding: 32px 0;
     }
     .sidebar-section { margin-bottom: 28px; }
     .sidebar-label {
@@ -58,10 +54,7 @@
     }
     .sidebar-links a:hover { color: var(--navy); background: var(--rule); }
     .sidebar-links a.active { color: var(--accent); font-weight: 500; }
-
     .content { flex: 1; padding: 48px 56px 80px; max-width: 840px; }
-
-    /* HEADINGS */
     .doc-section { margin-bottom: 60px; }
     .doc-label { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px; }
     .doc-h1 { font-family: var(--serif); font-size: 34px; font-weight: 300; color: var(--navy); margin-bottom: 12px; }
@@ -69,76 +62,44 @@
     .doc-h3 { font-family: var(--mono); font-size: 14px; font-weight: 500; color: var(--navy); margin-bottom: 8px; margin-top: 28px; }
     .doc-rule { width: 36px; height: 2px; background: var(--accent); margin-bottom: 24px; }
     .doc-body { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 16px; }
-
-    /* ENDPOINT */
-    .endpoint {
-      border: 1px solid var(--rule); border-radius: 2px;
-      overflow: hidden; margin-bottom: 32px;
-    }
+    .endpoint { border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; margin-bottom: 32px; }
     .endpoint-header {
       display: flex; align-items: center; gap: 14px;
-      padding: 14px 20px; background: var(--light);
-      border-bottom: 1px solid var(--rule);
+      padding: 14px 20px; background: var(--light); border-bottom: 1px solid var(--rule);
     }
-    .method {
-      font-family: var(--mono); font-size: 12px; font-weight: 500;
-      padding: 4px 10px; border-radius: 2px; letter-spacing: 0.06em;
-    }
+    .method { font-family: var(--mono); font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 2px; letter-spacing: 0.06em; }
     .method-get { background: #e8f5e9; color: #2e7d32; }
     .method-post { background: #e3f2fd; color: #1565c0; }
     .endpoint-path { font-family: var(--mono); font-size: 14px; color: var(--navy); }
     .endpoint-desc { font-size: 13px; color: var(--muted); margin-left: auto; }
     .endpoint-body { padding: 20px; }
-
-    /* CODE */
-    .code-block {
-      background: #0d1f3c; border-radius: 2px;
-      padding: 20px 24px; overflow-x: auto; margin: 12px 0 20px;
-    }
+    .code-block { background: #0d1f3c; border-radius: 2px; padding: 20px 24px; overflow-x: auto; margin: 12px 0 20px; }
     .code-block pre { font-family: var(--mono); font-size: 13px; color: #c8d0e0; line-height: 1.8; margin: 0; }
     .code-comment { color: #4a5f80; }
     .code-key { color: #7eb8f7; }
     .code-string { color: #a8d08d; }
     .code-num { color: var(--accent); }
-    .code-label {
-      font-family: var(--mono); font-size: 11px; color: var(--muted);
-      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px;
-    }
-
-    /* PARAMS TABLE */
+    .code-label { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
     table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 14px; }
     thead th { text-align: left; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 2px solid var(--rule); }
     tbody td { padding: 10px 12px; border-bottom: 1px solid var(--rule); color: var(--muted); vertical-align: top; }
     tbody td:first-child { font-family: var(--mono); font-size: 13px; color: var(--navy); }
     tbody tr:last-child td { border-bottom: none; }
     .required { color: var(--accent); font-size: 11px; font-family: var(--mono); }
-
-    /* TIERS */
     .tier-table { border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; margin-top: 20px; }
     .tier-table table { margin: 0; }
     .tier-table thead th { background: var(--navy); color: var(--accent); border-bottom: none; }
-    .tier-badge {
-      font-family: var(--mono); font-size: 11px; font-weight: 500;
-      padding: 3px 8px; border-radius: 2px; letter-spacing: 0.06em;
-    }
+    .tier-badge { font-family: var(--mono); font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 2px; letter-spacing: 0.06em; }
     .tier-free { background: rgba(200,168,75,0.12); color: #8a6820; }
     .tier-silver { background: #e8f0fd; color: #1a3a6e; }
     .tier-gold { background: #fdf3e8; color: #8a4a10; }
-
-    /* NOTICE */
-    .notice {
-      background: rgba(200,168,75,0.08); border: 1px solid rgba(200,168,75,0.25);
-      border-radius: 2px; padding: 14px 20px; margin: 16px 0;
-      font-size: 13px; color: var(--muted); font-family: var(--mono);
-    }
+    .notice { background: rgba(200,168,75,0.08); border: 1px solid rgba(200,168,75,0.25); border-radius: 2px; padding: 14px 20px; margin: 16px 0; font-size: 13px; color: var(--muted); font-family: var(--mono); }
     .notice strong { color: var(--accent); }
-
     footer { background: #060e1a; border-top: 2px solid var(--accent); padding: 32px 40px; text-align: center; }
     .footer-copy { font-size: 12px; color: #2a3a55; font-family: var(--mono); }
   </style>
 </head>
 <body>
-
 <nav>
   <a class="nav-brand" href="index.html"><span>TCID</span> &nbsp;Trading Card Identification Number</a>
   <ul class="nav-links">
@@ -181,7 +142,6 @@
 
   <div class="content">
 
-    <!-- INTRO -->
     <div class="doc-section" id="intro">
       <div class="doc-label">API Documentation</div>
       <h1 class="doc-h1">TCID Registry API</h1>
@@ -189,11 +149,10 @@
       <p class="doc-body">The TCID Registry API provides programmatic access to the Trading Card Identification Number registry. The API returns structured metadata for every registered card type, keyed by its permanent TCID identifier.</p>
       <p class="doc-body">The TCID identifier itself is always free to reference. API membership unlocks enriched metadata, batch processing, and commercial use rights.</p>
       <div class="notice">
-        <strong>Status:</strong> API launching Q3 2026. This documentation reflects the planned interface. Contact <strong>info@api.tradingcardid.org</strong> to join the early access list.
+        <strong>Status:</strong> API launching Q3 2026. This documentation reflects the planned interface. Contact <strong>info@tradingcardid.org</strong> to join the early access list.
       </div>
     </div>
 
-    <!-- AUTH -->
     <div class="doc-section" id="auth">
       <h2 class="doc-h2">Authentication</h2>
       <p class="doc-body">All API requests require a Bearer token passed in the Authorization header. API keys are issued per organization at the time of membership enrollment.</p>
@@ -202,61 +161,38 @@
       <p class="doc-body">Free tier lookups (up to 1,000/month) do not require authentication. Include the header to track usage against your key and avoid rate limiting.</p>
     </div>
 
-    <!-- BASE URL -->
     <div class="doc-section" id="base-url">
       <h2 class="doc-h2">Base URL</h2>
-      <div class="code-block"><pre>https://api.api.tradingcardid.org/v1</pre></div>
+      <div class="code-block"><pre>https://api.tradingcardid.org/v1</pre></div>
       <p class="doc-body">All endpoints are versioned. The current version is <code style="font-family:var(--mono);color:var(--navy);">v1</code>. Breaking changes will be introduced in a new version with a minimum 90-day deprecation notice.</p>
     </div>
 
-    <!-- TIERS -->
     <div class="doc-section" id="tiers">
       <h2 class="doc-h2">Access Tiers</h2>
       <p class="doc-body">TCID API access is governed by annual membership tier. All tiers include the right to reference TCID identifiers in your own systems.</p>
       <div class="tier-table">
         <table>
           <thead>
-            <tr>
-              <th>Tier</th>
-              <th>Lookups / Month</th>
-              <th>Batch</th>
-              <th>Full Metadata</th>
-              <th>Commercial Use</th>
-              <th>Price</th>
-            </tr>
+            <tr><th>Tier</th><th>Lookups / Month</th><th>Batch</th><th>Full Metadata</th><th>Commercial Use</th><th>Price</th></tr>
           </thead>
           <tbody>
             <tr>
               <td><span class="tier-badge tier-free">Free</span></td>
-              <td>1,000</td>
-              <td>No</td>
-              <td>Basic</td>
-              <td>No</td>
-              <td>$0</td>
+              <td>1,000</td><td>No</td><td>Basic</td><td>No</td><td>$0</td>
             </tr>
             <tr>
               <td><span class="tier-badge tier-silver">Silver</span></td>
-              <td>50,000</td>
-              <td>Up to 500/request</td>
-              <td>Full</td>
-              <td>Yes</td>
-              <td>Contact Us</td>
+              <td>50,000</td><td>Up to 500/request</td><td>Full incl. print run</td><td>Yes</td><td>Contact Us</td>
             </tr>
             <tr>
               <td><span class="tier-badge tier-gold">Gold</span></td>
-              <td>Unlimited</td>
-              <td>Unlimited</td>
-              <td>Full + Images</td>
-              <td>Yes</td>
-              <td>Contact Us</td>
+              <td>Unlimited</td><td>Unlimited</td><td>Full + Images</td><td>Yes</td><td>Contact Us</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-
-    <!-- LOOKUP -->
-    <div class="doc-section" id="lookup-tcid">
+<div class="doc-section" id="lookup-tcid">
       <h2 class="doc-h2">Endpoints</h2>
 
       <div class="endpoint">
@@ -271,34 +207,31 @@
           <table>
             <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td>tcid</td><td>string</td><td>The TCID to resolve (e.g., <code style="font-family:var(--mono)">SC-4X7KQ29R3A</code>) <span class="required">required</span></td></tr>
+              <tr><td>tcid</td><td>string</td><td>The TCID to resolve (e.g., <code style="font-family:var(--mono)">SC-XA7KDPJPK</code>) <span class="required">required</span></td></tr>
             </tbody>
           </table>
           <div class="code-label">Example request</div>
-          <div class="code-block"><pre>GET https://api.api.tradingcardid.org/v1/cards/<span class="code-string">SC-4X7KQ29R3A</span>
+          <div class="code-block"><pre>GET https://api.tradingcardid.org/v1/cards/<span class="code-string">SC-XA7KDPJPK</span>
 Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div>
           <div class="code-label">Example response</div>
           <div class="code-block"><pre>{
-  <span class="code-key">"tcid"</span>:         <span class="code-string">"SC-4X7KQ29R3A"</span>,
+  <span class="code-key">"tcid"</span>:         <span class="code-string">"SC-XA7KDPJPK"</span>,
   <span class="code-key">"sport"</span>:        <span class="code-string">"Baseball"</span>,
   <span class="code-key">"manufacturer"</span>: <span class="code-string">"Topps"</span>,
   <span class="code-key">"season"</span>:       <span class="code-string">"2025"</span>,
-  <span class="code-key">"product"</span>:      <span class="code-string">"Topps Series 1"</span>,
-  <span class="code-key">"card_number"</span>:  <span class="code-string">"27"</span>,
-  <span class="code-key">"player"</span>:       <span class="code-string">"Shohei Ohtani"</span>,
-  <span class="code-key">"team"</span>:         <span class="code-string">"Los Angeles Dodgers"</span>,
+  <span class="code-key">"product"</span>:      <span class="code-string">"2025 Topps Series 1"</span>,
+  <span class="code-key">"card_number"</span>:  <span class="code-string">"1"</span>,
+  <span class="code-key">"player"</span>:       <span class="code-string">"Aaron Judge"</span>,
+  <span class="code-key">"team"</span>:         <span class="code-string">"New York Yankees"</span>,
   <span class="code-key">"card_type"</span>:    <span class="code-string">"Base"</span>,
-  <span class="code-key">"parallel"</span>:     <span class="code-num">null</span>,
+  <span class="code-key">"parallel"</span>:     <span class="code-string">"Base"</span>,
   <span class="code-key">"print_run"</span>:    <span class="code-num">null</span>,
   <span class="code-key">"autograph"</span>:    <span class="code-num">false</span>,
-  <span class="code-key">"relic"</span>:        <span class="code-num">false</span>,
-  <span class="code-key">"namespace"</span>:    <span class="code-string">"SC"</span>,
-  <span class="code-key">"registered"</span>:   <span class="code-string">"2026-01-15"</span>
+  <span class="code-key">"relic"</span>:        <span class="code-num">false</span>
 }</pre></div>
         </div>
       </div>
 
-      <!-- SEARCH -->
       <div class="endpoint" id="search">
         <div class="endpoint-header">
           <span class="method method-get">GET</span>
@@ -322,34 +255,31 @@ Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div
             </tbody>
           </table>
           <div class="code-label">Example request</div>
-          <div class="code-block"><pre>GET https://api.api.tradingcardid.org/v1/cards/search?player=<span class="code-string">Ohtani</span>&sport=<span class="code-string">Baseball</span>&autograph=<span class="code-num">true</span>
+          <div class="code-block"><pre>GET https://api.tradingcardid.org/v1/cards/search?player=<span class="code-string">Judge</span>&sport=<span class="code-string">Baseball</span>&autograph=<span class="code-num">true</span>
 Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div>
         </div>
       </div>
 
-      <!-- BATCH -->
       <div class="endpoint" id="batch">
         <div class="endpoint-header">
           <span class="method method-post">POST</span>
           <span class="endpoint-path">/cards/batch</span>
-          <span class="endpoint-desc">Bulk TCID resolution — Silver/Gold only</span>
+          <span class="endpoint-desc">Bulk TCID resolution -- Silver/Gold only</span>
         </div>
         <div class="endpoint-body">
           <p class="doc-body">Resolve up to 500 TCIDs in a single request. Silver tier: 500/request. Gold tier: unlimited.</p>
           <div class="code-label">Request body</div>
           <div class="code-block"><pre>{
   <span class="code-key">"tcids"</span>: [
-    <span class="code-string">"SC-4X7KQ29R3A"</span>,
-    <span class="code-string">"SC-7B2MN58P1K"</span>,
-    <span class="code-string">"SC-9K3QR72A8D"</span>
+    <span class="code-string">"SC-XA7KDPJPK"</span>,
+    <span class="code-string">"SC-JKBWH2EWE"</span>,
+    <span class="code-string">"SC-6574G7PX6"</span>
   ]
 }</pre></div>
         </div>
       </div>
     </div>
-
-    <!-- FIELDS -->
-    <div class="doc-section" id="fields">
+<div class="doc-section" id="fields">
       <h2 class="doc-h2">Data Fields</h2>
       <p class="doc-body">Every TCID record contains the following fields. Fields marked with an asterisk are available on all tiers; remaining fields require Silver or above.</p>
       <table>
@@ -361,20 +291,20 @@ Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div
           <tr><td>season *</td><td>string</td><td>Product season or year</td></tr>
           <tr><td>product *</td><td>string</td><td>Product name</td></tr>
           <tr><td>card_number *</td><td>string</td><td>Card number within the set</td></tr>
-          <tr><td>player</td><td>string</td><td>Player name</td></tr>
-          <tr><td>team</td><td>string</td><td>Team at time of card production</td></tr>
-          <tr><td>card_type</td><td>string</td><td>Base, Parallel, Autograph, Rookie, etc.</td></tr>
-          <tr><td>parallel</td><td>string | null</td><td>Parallel name, if applicable</td></tr>
-          <tr><td>print_run</td><td>integer | null</td><td>Numbered print run, if applicable</td></tr>
-          <tr><td>autograph</td><td>boolean</td><td>Whether the card includes an autograph</td></tr>
-          <tr><td>relic</td><td>boolean</td><td>Whether the card includes a memorabilia relic</td></tr>
-          <tr><td>namespace</td><td>string</td><td>Registry namespace prefix (SC = Sports Cards)</td></tr>
-          <tr><td>registered</td><td>date</td><td>Date of TCID registration</td></tr>
+          <tr><td>player *</td><td>string</td><td>Player name</td></tr>
+          <tr><td>team *</td><td>string</td><td>Team at time of card production</td></tr>
+          <tr><td>card_type *</td><td>string</td><td>Base, Parallel, Autograph, Rookie, etc.</td></tr>
+          <tr><td>parallel *</td><td>string | null</td><td>Parallel name, if applicable</td></tr>
+          <tr><td>autograph *</td><td>boolean</td><td>Whether the card includes an autograph</td></tr>
+          <tr><td>relic *</td><td>boolean</td><td>Whether the card includes a memorabilia relic</td></tr>
+          <tr><td>print_run</td><td>integer | null</td><td>Numbered print run, if applicable. Silver and above.</td></tr>
+          <tr><td>image_ref_url</td><td>string | null</td><td>Manufacturer image reference URL. Silver and above.</td></tr>
+          <tr><td>retail_channel</td><td>string | null</td><td>Retail distribution channel. Gold only.</td></tr>
+          <tr><td>notes</td><td>string | null</td><td>Additional registry notes. Gold only.</td></tr>
         </tbody>
       </table>
     </div>
 
-    <!-- ERRORS -->
     <div class="doc-section" id="errors">
       <h2 class="doc-h2">Error Codes</h2>
       <table>
@@ -390,7 +320,6 @@ Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div
       </table>
     </div>
 
-    <!-- RATE LIMITS -->
     <div class="doc-section" id="rate-limits">
       <h2 class="doc-h2">Rate Limits</h2>
       <p class="doc-body">Limits are enforced per API key per calendar month. Concurrent request rate is capped at 10 requests/second across all tiers. Rate limit status is returned in response headers.</p>
@@ -400,13 +329,12 @@ X-RateLimit-Remaining: <span class="code-num">48312</span>
 X-RateLimit-Reset:     <span class="code-string">2026-07-01T00:00:00Z</span></pre></div>
     </div>
 
-    <!-- LICENSING -->
     <div class="doc-section" id="licensing">
       <h2 class="doc-h2">Licensing</h2>
       <p class="doc-body">TCID identifiers are published under Creative Commons Attribution 4.0 International (CC BY 4.0). You may reference, store, and redistribute TCID identifiers in any system, commercial or otherwise, provided attribution is maintained.</p>
       <p class="doc-body">API access is governed by the TCID API Terms of Service. Commercial use of enriched metadata (player names, product details, images) requires Silver or Gold membership and compliance with manufacturer data terms.</p>
       <div class="notice">
-        <strong>Questions?</strong> Contact <strong>info@api.tradingcardid.org</strong> for licensing, enterprise agreements, or manufacturer partnership inquiries.
+        <strong>Questions?</strong> Contact <strong>info@tradingcardid.org</strong> for licensing, enterprise agreements, or manufacturer partnership inquiries.
       </div>
     </div>
 
@@ -414,7 +342,7 @@ X-RateLimit-Reset:     <span class="code-string">2026-07-01T00:00:00Z</span></pr
 </div>
 
 <footer>
-  <p class="footer-copy">&copy; 2026 TCID Standards Organization &nbsp;·&nbsp; TCID identifiers published under CC BY 4.0 &nbsp;·&nbsp; <a href="index.html" style="color:#4a5f80;text-decoration:none;">api.tradingcardid.org</a></p>
+  <p class="footer-copy">&copy; 2026 TCID Standards Organization &nbsp;·&nbsp; TCID identifiers published under CC BY 4.0 &nbsp;·&nbsp; <a href="index.html" style="color:#4a5f80;text-decoration:none;">tradingcardid.org</a></p>
 </footer>
 
 </body>
