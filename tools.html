@@ -332,23 +332,38 @@
     <div class="section-rule"></div>
     <p class="section-body">TCID tools use AI to parse real-world inventory data -- messy descriptions, inconsistent column names, mixed formats -- and match each card to its canonical TCID registry identifier.</p>
 
-    <div class="tools-grid two-cards">
+    <div class="tools-grid two-cards" style="grid-template-columns:1fr 1fr 1fr;max-width:100%;">
 
-      <!-- Inventory Mapper -->
+      <!-- Inventory Template -->
       <div class="tool-card featured">
-        <div class="tool-tag">Inventory Mapper</div>
-        <h3>AI Inventory Mapper</h3>
-        <p>Paste card descriptions or upload a spreadsheet in any format. AI parses each row into structured fields and matches against the TCID registry. Download your original inventory with TCID added, or a full enriched export.</p>
+        <div class="tool-tag">Inventory Template</div>
+        <h3>Structured Submission Template</h3>
+        <p>The fastest path to TCID. Download the Excel template, fill in your inventory using the standard field structure, and submit. The registry returns your file with TCID, match status, and confidence score for every row.</p>
         <ul class="tool-features">
-          <li>Handles free-text descriptions and structured spreadsheets</li>
-          <li>Recognizes inconsistent column names across dealer formats</li>
-          <li>Cleans seller notations ($$, PSA grades, lot notes)</li>
-          <li>Returns original inventory file with TCID column appended</li>
-          <li>Also exports full enriched version with confidence scores</li>
-          <li>Download .xlsx or copy for Google Sheets</li>
+          <li>Structured fields with dropdown validation</li>
+          <li>Up to 10,000 cards per submission</li>
+          <li>Returns TCID, Match Status, and Confidence for every row</li>
+          <li>Review Required flag highlights rows needing verification</li>
+          <li>Submit by upload or email to info@tradingcardid.org</li>
         </ul>
-        <span class="tool-badge requires-api">Requires API Key</span>
-        <a href="tcid-mapper.html" class="btn-primary">Open Mapper</a>
+        <span class="tool-badge free">Free</span>
+        <a href="TCID_Inventory_Template.xlsx" class="btn-primary" download>Download Template</a>
+      </div>
+
+      <!-- AI Mapper / Consulting -->
+      <div class="tool-card">
+        <div class="tool-tag">Consulting Service</div>
+        <h3>Inventory Mapping Service</h3>
+        <p>Have messy inventory data -- single-cell descriptions, non-standard formats, or legacy spreadsheets that don't fit the template? We map it for you. AI-assisted, human-reviewed, delivered back as an enriched file with TCIDs and confidence scores.</p>
+        <ul class="tool-features">
+          <li>Works with any existing inventory format</li>
+          <li>AI parses unstructured descriptions automatically</li>
+          <li>Human review of low-confidence matches</li>
+          <li>Delivered as enriched .xlsx with TCID column appended</li>
+          <li>Fee-based engagement -- contact us to scope</li>
+        </ul>
+        <span class="tool-badge requires-api">Consulting Engagement</span>
+        <a href="mailto:info@tradingcardid.org?subject=Inventory Mapping Inquiry" class="btn-primary">Contact Us</a>
       </div>
 
       <!-- Card Lookup -->
@@ -369,7 +384,7 @@
     </div>
 
     <div class="notice">
-      <strong>API key required for Inventory Mapper.</strong> Bronze, Silver, or Gold membership unlocks full tool access. Contact us at info@tradingcardid.org to request access during the pilot period.
+      <strong>Template submissions are free.</strong> Download the template, fill in your inventory, and submit by upload or email. For unstructured or legacy inventory formats, contact us about our consulting mapping service at info@tradingcardid.org.
     </div>
 
   </div>
@@ -378,30 +393,30 @@
 <!-- HOW IT WORKS -->
 <section class="how-bg">
   <div class="section-inner">
-    <div class="section-label">Inventory Mapper</div>
-    <h2 class="section-title">How the mapper works.</h2>
+    <div class="section-label">Submission Template</div>
+    <h2 class="section-title">How the template works.</h2>
     <div class="section-rule"></div>
-    <p class="section-body">The mapper handles real-world inventory data in any format -- from single-cell descriptions to multi-column spreadsheets with inconsistent headers.</p>
+    <p class="section-body">The structured template is the fastest path to TCID for any dealer with organized inventory data. Fill in the fields, submit, get your file back with TCIDs populated.</p>
     <div class="steps-grid">
       <div class="step">
         <span class="step-num">01</span>
-        <h4>Paste or Upload</h4>
-        <p>Paste card descriptions one per line, or upload an Excel or CSV file. Select which columns to include -- the mapper handles the rest.</p>
+        <h4>Download</h4>
+        <p>Download the Excel template. It includes dropdown validation for key fields, 10,000 rows, and three example cards to show the format.</p>
       </div>
       <div class="step">
         <span class="step-num">02</span>
-        <h4>AI Parsing</h4>
-        <p>Each row is parsed by AI into structured fields -- player, year, manufacturer, product, parallel, grade, and more -- regardless of input format or column naming.</p>
+        <h4>Fill In</h4>
+        <p>Enter your inventory one card type per row. Required fields are highlighted blue. Optional fields are white. Delete the example rows before submitting.</p>
       </div>
       <div class="step">
         <span class="step-num">03</span>
-        <h4>Registry Match</h4>
-        <p>Parsed fields are searched against the TCID registry. Each card returns a matched TCID and confidence score, or a clear "not in registry" flag.</p>
+        <h4>Submit</h4>
+        <p>Upload your completed template at tradingcardid.org/tools or email it to info@tradingcardid.org. We process submissions and return results within one business day.</p>
       </div>
       <div class="step">
         <span class="step-num">04</span>
-        <h4>Export Results</h4>
-        <p>Download the enriched inventory as .xlsx, or copy tab-separated data directly into Google Sheets with one click.</p>
+        <h4>Review Results</h4>
+        <p>Your file comes back with TCID, Match Status, and Confidence for every row. Filter by Match Status -- Exact and High Confidence rows are done. Review Required rows need a second look.</p>
       </div>
     </div>
   </div>
@@ -410,14 +425,14 @@
 <!-- CTA -->
 <section class="cta-bg">
   <div class="section-inner">
-    <div class="section-label">Get Access</div>
+    <div class="section-label">Get Started</div>
     <h2 class="section-title">Ready to map your inventory?</h2>
     <div class="section-rule"></div>
-    <p class="section-body">The Inventory Mapper is available to Bronze, Silver, and Gold API members during the pilot period. Contact us to request access or learn more about API membership.</p>
+    <p class="section-body">Download the free template and submit your inventory today. If your data doesn't fit the template, contact us about our consulting mapping service -- we handle any format.</p>
     <div class="cta-actions">
-      <a href="tcid-mapper.html" class="btn-primary">Open Mapper</a>
+      <a href="TCID_Inventory_Template.xlsx" class="btn-primary" download>Download Template</a>
+      <a href="mailto:info@tradingcardid.org?subject=Inventory Mapping Inquiry" class="btn-outline">Contact Us</a>
       <a href="api.html" class="btn-outline">View API Plans</a>
-      <a href="mailto:info@tradingcardid.org" class="btn-outline">Contact Us</a>
     </div>
   </div>
 </section>
