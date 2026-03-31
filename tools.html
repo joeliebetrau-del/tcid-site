@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tools — TCID Registry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0a1628;
+      --blue:   #1a3a6e;
+      --accent: #c8a84b;
+      --rule:   #d0d5de;
+      --light:  #f4f5f7;
+      --white:  #ffffff;
+      --text:   #1c2333;
+      --muted:  #5a6378;
+      --mono:   'IBM Plex Mono', monospace;
+      --sans:   'IBM Plex Sans', sans-serif;
+      --serif:  'IBM Plex Serif', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      color: var(--text);
+      background: var(--white);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--navy);
+      border-bottom: 2px solid var(--accent);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 0 40px; height: 56px;
+    }
+    .nav-brand {
+      font-family: var(--mono); font-size: 14px; font-weight: 500;
+      color: var(--white); letter-spacing: 0.08em; text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-brand span { color: var(--accent); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: 13px; font-weight: 400; color: #aab2c4;
+      text-decoration: none; letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--accent); }
+
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px; background: none; border: none;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--accent); transition: opacity 0.2s;
+    }
+
+    @media (max-width: 720px) {
+      nav { height: auto; padding: 14px 20px; gap: 0; }
+      .nav-brand { font-size: 13px; }
+      .nav-hamburger { display: flex; }
+      .nav-links {
+        display: none; flex-direction: column; gap: 0;
+        width: 100%; padding: 8px 0 4px; margin-top: 8px;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { border-bottom: 1px solid #1e2f50; }
+      .nav-links li:last-child { border-bottom: none; }
+      .nav-links a { display: block; padding: 11px 0; font-size: 14px; }
+    }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      margin-top: 56px;
+      background: var(--navy);
+      padding: 64px 40px 56px;
+      border-bottom: 1px solid #1e2f50;
+    }
+    @media (max-width: 720px) {
+      .page-hero { margin-top: 0; padding: 60px 20px 48px; }
+    }
+    .page-hero-inner { max-width: 900px; margin: 0 auto; }
+    .page-label {
+      font-family: var(--mono); font-size: 11px; font-weight: 500;
+      color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .page-hero h1 {
+      font-family: var(--serif); font-size: clamp(28px, 4vw, 42px);
+      font-weight: 300; color: var(--white); line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .page-hero h1 strong { font-weight: 400; color: var(--accent); }
+    .page-hero-sub {
+      font-size: 17px; font-weight: 300; color: #8a96b0;
+      max-width: 580px; line-height: 1.7;
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 72px 40px; }
+    @media (max-width: 720px) { section { padding: 52px 20px; } }
+    .section-inner { max-width: 900px; margin: 0 auto; }
+    .section-label {
+      font-family: var(--mono); font-size: 11px; font-weight: 500;
+      color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: var(--serif); font-size: clamp(22px, 3vw, 30px);
+      font-weight: 300; color: var(--navy); line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .section-rule {
+      width: 40px; height: 2px; background: var(--accent);
+      margin-bottom: 32px;
+    }
+    .section-body {
+      font-size: 16px; color: var(--muted); line-height: 1.75;
+      max-width: 680px;
+    }
+
+    /* ── TOOL CARDS ── */
+    .tools-grid {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+    @media (max-width: 680px) { .tools-grid { grid-template-columns: 1fr; } }
+
+    .tool-card {
+      background: var(--white);
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+    }
+    .tool-card.featured {
+      background: var(--navy);
+    }
+    .tool-tag {
+      font-family: var(--mono); font-size: 10px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px;
+    }
+    .tool-card h3 {
+      font-family: var(--sans); font-size: 18px; font-weight: 600;
+      color: var(--navy); margin-bottom: 12px; line-height: 1.3;
+    }
+    .tool-card.featured h3 { color: var(--white); }
+    .tool-card p {
+      font-size: 14px; color: var(--muted); line-height: 1.7;
+      flex: 1; margin-bottom: 24px;
+    }
+    .tool-card.featured p { color: #8a96b0; }
+
+    .tool-features {
+      list-style: none; margin-bottom: 28px;
+    }
+    .tool-features li {
+      font-size: 13px; color: var(--muted);
+      padding: 5px 0; border-bottom: 1px solid var(--rule);
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+    .tool-card.featured .tool-features li {
+      color: #8a96b0; border-bottom-color: #1e3055;
+    }
+    .tool-features li:last-child { border-bottom: none; }
+    .tool-features li::before {
+      content: ""; width: 4px; height: 4px;
+      background: var(--accent); border-radius: 50%;
+      margin-top: 8px; flex-shrink: 0;
+    }
+
+    .tool-badge {
+      display: inline-block; font-family: var(--mono);
+      font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 3px 8px; border-radius: 2px;
+      margin-bottom: 20px;
+    }
+    .tool-badge.requires-api {
+      background: rgba(200,168,75,0.12); color: var(--accent);
+      border: 1px solid rgba(200,168,75,0.3);
+    }
+    .tool-badge.free {
+      background: rgba(26,122,74,0.1); color: #1a7a4a;
+      border: 1px solid rgba(26,122,74,0.25);
+    }
+    .tool-badge.coming-soon {
+      background: rgba(90,99,120,0.1); color: var(--muted);
+      border: 1px solid var(--rule);
+    }
+
+    .btn-primary {
+      display: inline-block; padding: 11px 24px;
+      background: var(--accent); color: var(--navy);
+      font-family: var(--sans); font-size: 13px; font-weight: 600;
+      letter-spacing: 0.04em; text-decoration: none; border-radius: 2px;
+      transition: opacity 0.2s; align-self: flex-start;
+    }
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-outline {
+      display: inline-block; padding: 11px 24px;
+      border: 1px solid #3a4f75; color: #aab2c4;
+      font-family: var(--sans); font-size: 13px; font-weight: 400;
+      letter-spacing: 0.04em; text-decoration: none; border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s; align-self: flex-start;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--white); }
+    .btn-disabled {
+      display: inline-block; padding: 11px 24px;
+      border: 1px solid var(--rule); color: var(--muted);
+      font-family: var(--sans); font-size: 13px; font-weight: 400;
+      letter-spacing: 0.04em; text-decoration: none; border-radius: 2px;
+      cursor: not-allowed; align-self: flex-start; opacity: 0.6;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-bg { background: var(--light); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+
+    .steps-grid {
+      margin-top: 40px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+    }
+    .step { }
+    .step-num {
+      font-family: var(--mono); font-size: 28px; font-weight: 500;
+      color: var(--accent); margin-bottom: 12px; display: block;
+    }
+    .step h4 {
+      font-size: 14px; font-weight: 600; color: var(--navy);
+      text-transform: uppercase; letter-spacing: 0.04em;
+      margin-bottom: 8px; padding-bottom: 8px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .step p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+    /* ── API CTA ── */
+    .cta-bg { background: var(--navy); }
+    .cta-bg .section-title { color: var(--white); }
+    .cta-bg .section-body { color: #8a96b0; }
+    .cta-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px; }
+
+    /* ── NOTICE ── */
+    .notice {
+      background: rgba(200,168,75,0.08);
+      border: 1px solid rgba(200,168,75,0.25);
+      border-radius: 2px; padding: 14px 20px;
+      margin-top: 32px;
+      font-size: 13px; color: #8a96b0;
+      font-family: var(--mono);
+    }
+    .notice strong { color: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #060e1a;
+      border-top: 2px solid var(--accent);
+      padding: 48px 40px;
+    }
+    @media (max-width: 720px) { footer { padding: 40px 20px; } }
+    .footer-inner {
+      max-width: 900px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 40px; flex-wrap: wrap;
+    }
+    .footer-brand {
+      font-family: var(--mono); font-size: 16px; font-weight: 500;
+      color: var(--white); margin-bottom: 8px;
+    }
+    .footer-brand span { color: var(--accent); }
+    .footer-tagline { font-size: 13px; color: #4a5f80; max-width: 280px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-links a { font-size: 13px; color: #4a5f80; text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-bottom {
+      max-width: 900px; margin: 32px auto 0;
+      padding-top: 24px; border-top: 1px solid #1a2a45;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-copy { font-size: 12px; color: #2a3a55; font-family: var(--mono); }
+    .footer-cc { font-size: 12px; color: #2a3a55; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="index.html"><span>TCID</span> &nbsp;Trading Card ID</a>
+  <button class="nav-hamburger" aria-label="Toggle navigation" onclick="document.getElementById('nav-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-menu">
+    <li><a href="index.html#what">Standard</a></li>
+    <li><a href="index.html#how">How It Works</a></li>
+    <li><a href="index.html#governance">Governance</a></li>
+    <li><a href="lookup.html">Lookup</a></li>
+    <li><a href="api.html">API</a></li>
+    <li><a href="tools.html" class="active">Tools</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-label">Registry Tools</div>
+    <h1>Tools built on the <strong>TCID standard.</strong></h1>
+    <p class="page-hero-sub">Practical tools for dealers, platforms, and insurers to integrate TCID into their workflows. API membership required for commercial use.</p>
+  </div>
+</div>
+
+<!-- TOOLS -->
+<section>
+  <div class="section-inner">
+    <div class="section-label">Available Tools</div>
+    <h2 class="section-title">Start mapping your inventory.</h2>
+    <div class="section-rule"></div>
+    <p class="section-body">TCID tools use AI to parse real-world inventory data -- messy descriptions, inconsistent column names, mixed formats -- and match each card to its canonical TCID registry identifier.</p>
+
+    <div class="tools-grid">
+
+      <!-- Inventory Mapper -->
+      <div class="tool-card featured">
+        <div class="tool-tag">Inventory Mapper</div>
+        <h3>AI Inventory Mapper</h3>
+        <p>Paste card descriptions or upload a spreadsheet in any format. AI parses each row into structured fields and matches against the TCID registry. Download results as .xlsx or copy directly to Google Sheets.</p>
+        <ul class="tool-features">
+          <li>Handles free-text descriptions and structured spreadsheets</li>
+          <li>Recognizes inconsistent column names across dealer formats</li>
+          <li>Cleans seller notations ($$, PSA grades, lot notes)</li>
+          <li>Exports matched TCIDs with confidence scores</li>
+          <li>Download .xlsx or copy for Google Sheets</li>
+        </ul>
+        <span class="tool-badge requires-api">Requires API Key</span>
+        <a href="tcid-mapper.html" class="btn-primary">Open Mapper</a>
+      </div>
+
+      <!-- Card Lookup -->
+      <div class="tool-card">
+        <div class="tool-tag">Card Lookup</div>
+        <h3>Single Card Lookup</h3>
+        <p>Look up any card in the TCID registry by identifier or browse by manufacturer, sport, and season. Free for all users -- no API key required.</p>
+        <ul class="tool-features">
+          <li>Search by player, set, year, or TCID</li>
+          <li>Full card type metadata returned</li>
+          <li>8,500+ card types across 4 sports</li>
+          <li>No account required</li>
+        </ul>
+        <span class="tool-badge free">Free</span>
+        <a href="lookup.html" class="btn-primary">Look Up a Card</a>
+      </div>
+
+      <!-- Bulk Lookup - Coming Soon -->
+      <div class="tool-card">
+        <div class="tool-tag">Bulk Lookup</div>
+        <h3>Bulk TCID Resolver</h3>
+        <p>Submit a list of TCIDs and retrieve full metadata for each in a single API call. Designed for platforms and insurers maintaining large card databases.</p>
+        <ul class="tool-features">
+          <li>Up to 500 TCIDs per request</li>
+          <li>Full metadata fields returned</li>
+          <li>JSON response, CSV download</li>
+          <li>Silver and Gold tier access</li>
+        </ul>
+        <span class="tool-badge coming-soon">Coming Soon</span>
+        <span class="btn-disabled">Not Yet Available</span>
+      </div>
+
+      <!-- Registry Export - Coming Soon -->
+      <div class="tool-card">
+        <div class="tool-tag">Registry Export</div>
+        <h3>Registry Data Export</h3>
+        <p>Download a full or filtered snapshot of the TCID registry for offline use, database integration, or insurance documentation workflows.</p>
+        <ul class="tool-features">
+          <li>Filter by sport, manufacturer, or season</li>
+          <li>CSV and JSON formats</li>
+          <li>Updated monthly</li>
+          <li>Gold tier access</li>
+        </ul>
+        <span class="tool-badge coming-soon">Coming Soon</span>
+        <span class="btn-disabled">Not Yet Available</span>
+      </div>
+
+    </div>
+
+    <div class="notice">
+      <strong>API key required for Inventory Mapper.</strong> Bronze, Silver, or Gold membership unlocks full tool access. Contact us at info@tradingcardid.org to request access during the pilot period.
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-bg">
+  <div class="section-inner">
+    <div class="section-label">Inventory Mapper</div>
+    <h2 class="section-title">How the mapper works.</h2>
+    <div class="section-rule"></div>
+    <p class="section-body">The mapper handles real-world inventory data in any format -- from single-cell descriptions to multi-column spreadsheets with inconsistent headers.</p>
+    <div class="steps-grid">
+      <div class="step">
+        <span class="step-num">01</span>
+        <h4>Paste or Upload</h4>
+        <p>Paste card descriptions one per line, or upload an Excel or CSV file. Select which columns to include -- the mapper handles the rest.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <h4>AI Parsing</h4>
+        <p>Each row is parsed by AI into structured fields -- player, year, manufacturer, product, parallel, grade, and more -- regardless of input format or column naming.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <h4>Registry Match</h4>
+        <p>Parsed fields are searched against the TCID registry. Each card returns a matched TCID and confidence score, or a clear "not in registry" flag.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">04</span>
+        <h4>Export Results</h4>
+        <p>Download the enriched inventory as .xlsx, or copy tab-separated data directly into Google Sheets with one click.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-bg">
+  <div class="section-inner">
+    <div class="section-label">Get Access</div>
+    <h2 class="section-title">Ready to map your inventory?</h2>
+    <div class="section-rule"></div>
+    <p class="section-body">The Inventory Mapper is available to Bronze, Silver, and Gold API members during the pilot period. Contact us to request access or learn more about API membership.</p>
+    <div class="cta-actions">
+      <a href="tcid-mapper.html" class="btn-primary">Open Mapper</a>
+      <a href="api.html" class="btn-outline">View API Plans</a>
+      <a href="mailto:info@tradingcardid.org" class="btn-outline">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand"><span>TCID</span> &nbsp;— Trading Card Identification Number</div>
+      <p class="footer-tagline">An open identifier standard for the trading card market. Governed by a neutral nonprofit. Free to reference.</p>
+    </div>
+    <div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="lookup.html">Card Lookup</a></li>
+        <li><a href="api.html">API Documentation</a></li>
+        <li><a href="tools.html">Tools</a></li>
+        <li><a href="index.html#governance">Governance</a></li>
+        <li><a href="mailto:info@tradingcardid.org">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">&copy; 2026 TCID Standards Organization. All rights reserved.</span>
+    <span class="footer-cc">TCID identifiers published under Creative Commons Attribution 4.0 International.</span>
+  </div>
+</footer>
+
+</body>
+</html>
