@@ -140,6 +140,7 @@
       border: 1px solid var(--rule);
     }
     @media (max-width: 680px) { .tools-grid { grid-template-columns: 1fr; } }
+    .tools-grid.two-cards { grid-template-columns: 1fr 1fr; max-width: 900px; }
 
     .tool-card {
       background: var(--white);
@@ -329,20 +330,21 @@
     <div class="section-label">Available Tools</div>
     <h2 class="section-title">Start mapping your inventory.</h2>
     <div class="section-rule"></div>
-    <p class="section-body">TCID tools use AI to parse real-world inventory data, address inconsistent column names, mixed formats, and match each card to its canonical TCID registry identifier.</p>
+    <p class="section-body">TCID tools use AI to parse real-world inventory data -- messy descriptions, inconsistent column names, mixed formats -- and match each card to its canonical TCID registry identifier.</p>
 
-    <div class="tools-grid">
+    <div class="tools-grid two-cards">
 
       <!-- Inventory Mapper -->
       <div class="tool-card featured">
         <div class="tool-tag">Inventory Mapper</div>
         <h3>AI Inventory Mapper</h3>
-        <p>Paste card descriptions or upload a spreadsheet in any format. AI parses each row into structured fields and matches against the TCID registry. Download results as .xlsx or copy directly to Google Sheets.</p>
+        <p>Paste card descriptions or upload a spreadsheet in any format. AI parses each row into structured fields and matches against the TCID registry. Download your original inventory with TCID added, or a full enriched export.</p>
         <ul class="tool-features">
           <li>Handles free-text descriptions and structured spreadsheets</li>
           <li>Recognizes inconsistent column names across dealer formats</li>
           <li>Cleans seller notations ($$, PSA grades, lot notes)</li>
-          <li>Exports matched TCIDs with confidence scores</li>
+          <li>Returns original inventory file with TCID column appended</li>
+          <li>Also exports full enriched version with confidence scores</li>
           <li>Download .xlsx or copy for Google Sheets</li>
         </ul>
         <span class="tool-badge requires-api">Requires API Key</span>
@@ -362,36 +364,6 @@
         </ul>
         <span class="tool-badge free">Free</span>
         <a href="lookup.html" class="btn-primary">Look Up a Card</a>
-      </div>
-
-      <!-- Bulk Lookup - Coming Soon -->
-      <div class="tool-card">
-        <div class="tool-tag">Bulk Lookup</div>
-        <h3>Bulk TCID Resolver</h3>
-        <p>Submit a list of TCIDs and retrieve full metadata for each in a single API call. Designed for platforms and insurers maintaining large card databases.</p>
-        <ul class="tool-features">
-          <li>Up to 500 TCIDs per request</li>
-          <li>Full metadata fields returned</li>
-          <li>JSON response, CSV download</li>
-          <li>Silver and Gold tier access</li>
-        </ul>
-        <span class="tool-badge coming-soon">Coming Soon</span>
-        <span class="btn-disabled">Not Yet Available</span>
-      </div>
-
-      <!-- Registry Export - Coming Soon -->
-      <div class="tool-card">
-        <div class="tool-tag">Registry Export</div>
-        <h3>Registry Data Export</h3>
-        <p>Download a full or filtered snapshot of the TCID registry for offline use, database integration, or insurance documentation workflows.</p>
-        <ul class="tool-features">
-          <li>Filter by sport, manufacturer, or season</li>
-          <li>CSV and JSON formats</li>
-          <li>Updated monthly</li>
-          <li>Gold tier access</li>
-        </ul>
-        <span class="tool-badge coming-soon">Coming Soon</span>
-        <span class="btn-disabled">Not Yet Available</span>
       </div>
 
     </div>
