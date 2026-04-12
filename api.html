@@ -91,9 +91,15 @@
     .tier-table thead th { background: var(--navy); color: var(--accent); border-bottom: none; }
     .tier-badge { font-family: var(--mono); font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 2px; letter-spacing: 0.06em; }
     .tier-free { background: rgba(200,168,75,0.12); color: #8a6820; }
+    .tier-registered { background: #e6f4ea; color: #1e6b3a; }
     .tier-bronze { background: #c8924a; color: #fff; }
     .tier-silver { background: #e8f0fd; color: #1a3a6e; }
     .tier-gold { background: #fdf3e8; color: #8a4a10; }
+    .cta-block { background: rgba(200,168,75,0.07); border: 1px solid rgba(200,168,75,0.3); border-radius: 2px; padding: 20px 24px; margin: 24px 0 8px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .cta-block p { font-size: 14px; color: var(--muted); margin: 0; }
+    .cta-block strong { color: var(--text); }
+    .btn-cta { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.08em; white-space: nowrap; background: var(--accent); color: var(--navy); border: none; border-radius: 2px; padding: 10px 20px; text-decoration: none; display: inline-block; transition: opacity 0.2s; }
+    .btn-cta:hover { opacity: 0.85; }
     .notice { background: rgba(200,168,75,0.08); border: 1px solid rgba(200,168,75,0.25); border-radius: 2px; padding: 14px 20px; margin: 16px 0; font-size: 13px; color: var(--muted); font-family: var(--mono); }
     .notice strong { color: var(--accent); }
     footer { background: #060e1a; border-top: 2px solid var(--accent); padding: 32px 40px; text-align: center; }
@@ -127,7 +133,6 @@
       <ul class="sidebar-links">
         <li><a href="#lookup-tcid">GET /cards/{tcid}</a></li>
         <li><a href="#search">GET /cards/search</a></li>
-        <li><a href="#batch">POST /cards/batch</a></li>
       </ul>
     </div>
     <div class="sidebar-section">
@@ -155,8 +160,8 @@
       <h2 class="doc-h2">Authentication</h2>
       <p class="doc-body">All API requests require a Bearer token passed in the Authorization header. API keys are issued per organization at the time of membership enrollment.</p>
       <div class="code-label">Request header</div>
-      <div class="code-block"><pre>Authorization: Bearer <span class="code-string">tcid_live_xxxxxxxxxxxxxxxxxxxx</span></pre></div>
-      <p class="doc-body">All API access requires a valid Bearer token. Free tier users access the registry via the website lookup at tradingcardid.org/lookup and do not receive API keys.</p>
+      <div class="code-block"><pre>Authorization: Bearer <span class="code-string">YOUR_API_KEYxxxxxxxxxxxxxxxx</span></pre></div>
+      <p class="doc-body">Free tier users access the registry via the website lookup at tradingcardid.org/lookup and do not receive API keys. <strong>Free Registered</strong> and all paid tiers receive an API key. <a href="mailto:info@tradingcardid.org?subject=Free%20API%20Key%20Request">Request a free API key</a> to get started.</p>
     </div>
     <div class="doc-section" id="base-url">
       <h2 class="doc-h2">Base URL</h2>
@@ -165,16 +170,20 @@
     </div>
 <div class="doc-section" id="tiers">
   <h2 class="doc-h2">Access Tiers</h2>
-  <p class="doc-body">TCID API access is governed by annual membership tier. All tiers include the right to reference TCID identifiers in your own systems.</p>
+  <p class="doc-body">TCID API access is governed by membership tier. All tiers include the right to reference TCID identifiers in your own systems.</p>
   <div class="tier-table">
     <table>
       <thead>
-        <tr><th>Tier</th><th>Lookups / Month</th><th>Batch</th><th>Metadata</th><th>Commercial Use</th><th>API Access</th><th>Price</th></tr>
+        <tr><th>Tier</th><th>Lookups / Month</th><th>API Key</th><th>Metadata</th><th>Parse / Mapper</th><th>Batch / Bulk</th><th>Price</th></tr>
       </thead>
       <tbody>
         <tr>
           <td><span class="tier-badge tier-free">Free</span></td>
-          <td>1,000</td><td>No</td><td>Basic</td><td>No</td><td>No</td><td>$0</td>
+          <td>1,000</td><td>No</td><td>Basic</td><td>No</td><td>No</td><td>$0; website only</td>
+        </tr>
+        <tr>
+          <td><span class="tier-badge tier-registered">Free Registered</span></td>
+          <td>5,000</td><td>Yes</td><td>Full</td><td>Yes</td><td>No</td><td>$0; registration required</td>
         </tr>
         <tr>
           <td><span class="tier-badge tier-bronze">Bronze</span></td>
@@ -186,12 +195,16 @@
         </tr>
         <tr>
           <td><span class="tier-badge tier-gold">Gold</span></td>
-          <td>Custom</td><td>Yes</td><td>Full</td><td>Yes</td><td>Yes</td><td>Contact Us</td>
+          <td>Unlimited</td><td>Yes</td><td>Full</td><td>Yes</td><td>Yes</td><td>Contact Us</td>
         </tr>
       </tbody>
     </table>
   </div>
-  <p class="doc-body">Monthly limits are fair-use ceilings, not billing dimensions. Paid tiers are priced on an annual membership basis. <a href="mailto:info@tradingcardid.org">Contact us</a> for Bronze, Silver, and Gold pricing.</p>
+  <div class="cta-block">
+    <p><strong>Dealers, shops, appraisers, insurers, and individual collectors</strong> can access the full registry API for free. Registration takes under a minute and gives you 5,000 lookups per month, full metadata, and parse access at no cost.</p>
+    <a class="btn-cta" href="mailto:info@tradingcardid.org?subject=Free%20API%20Key%20Request">Get Free API Key</a>
+  </div>
+  <p class="doc-body">The <strong>Free</strong> tier requires no account and is limited to website lookup at tradingcardid.org/lookup; no API key is issued. <strong>Free Registered</strong> adds a personal API key with full metadata, parse, and mapper access, but no batch/bulk operations. Bronze and above are for commercial integrations requiring bulk access or higher volume. <a href="mailto:info@tradingcardid.org">Contact us</a> for paid tier pricing.</p>
 </div>
 <div class="doc-section" id="lookup-tcid">
       <h2 class="doc-h2">Endpoints</h2>
@@ -212,7 +225,7 @@
           </table>
           <div class="code-label">Example request</div>
           <div class="code-block"><pre>GET https://api.tradingcardid.org/v1/cards/<span class="code-string">SCXA7KDPJPK</span>
-Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div>
+Authorization: Bearer <span class="code-string">YOUR_API_KEY</span></pre></div>
           <div class="code-label">Example response</div>
           <div class="code-block"><pre>{
   <span class="code-key">"tcid"</span>:         <span class="code-string">"SCXA7KDPJPK"</span>,
@@ -250,55 +263,50 @@ Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div
               <tr><td>product</td><td>string</td><td>Product name (partial match supported)</td></tr>
               <tr><td>autograph</td><td>boolean</td><td>Filter to autograph cards</td></tr>
               <tr><td>page</td><td>integer</td><td>Page number (default: 1)</td></tr>
-              <tr><td>per_page</td><td>integer</td><td>Results per page (default: 25, max: 100)</td></tr>
+              <tr><td>per_page</td><td>integer</td><td>Results per page (default: 25, max: 25 for Free Registered; max: 100 for Bronze and above)</td></tr>
             </tbody>
           </table>
           <div class="code-label">Example request</div>
           <div class="code-block"><pre>GET https://api.tradingcardid.org/v1/cards/search?player=<span class="code-string">Judge</span>&sport=<span class="code-string">Baseball</span>&autograph=<span class="code-num">true</span>
-Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div>
-        </div>
-      </div>
-      <div class="endpoint" id="batch">
-        <div class="endpoint-header">
-          <span class="method method-post">POST</span>
-          <span class="endpoint-path">/cards/batch</span>
-          <span class="endpoint-desc">Bulk TCID resolution - Bronze, Silver, and Gold only</span>
-        </div>
-        <div class="endpoint-body">
-          <p class="doc-body">Submit multiple TCIDs in a single request. Each TCID in the batch counts as one lookup against your monthly limit. Requests that would exceed your remaining monthly allowance are rejected in full, partial processing is not performed.</p>
-          <div class="code-label">Request body</div>
+Authorization: Bearer <span class="code-string">YOUR_API_KEY</span></pre></div>
+          <div class="code-label">Example response</div>
           <div class="code-block"><pre>{
-  <span class="code-key">"tcids"</span>: [
-    <span class="code-string">"SCXA7KDPJPK"</span>,
-    <span class="code-string">"SCJKBWH2EWE"</span>,
-    <span class="code-string">"SC6574G7PX6"</span>
-  ]
+  <span class="code-key">"results"</span>: [ <span class="code-comment">/* array of card objects */</span> ],
+  <span class="code-key">"count"</span>:   <span class="code-num">12</span>,
+  <span class="code-key">"page"</span>:    <span class="code-num">1</span>,
+  <span class="code-key">"per_page"</span>: <span class="code-num">25</span>,
+  <span class="code-key">"tier_info"</span>: {
+    <span class="code-key">"tier"</span>:                <span class="code-string">"FREE_REGISTERED"</span>,
+    <span class="code-key">"requests_used"</span>:      <span class="code-num">14</span>,
+    <span class="code-key">"requests_remaining"</span>: <span class="code-num">4986</span>
+  }
 }</pre></div>
+          <p class="doc-body" style="margin-top:8px;">Each result object also includes <code style="font-family:var(--mono);color:var(--navy)">match_confidence</code> (0&ndash;100) and <code style="font-family:var(--mono);color:var(--navy)">match_status</code> (Exact, High Confidence, Review Required, Not Found) scored against your query parameters. Results are sorted by confidence descending.</p>
         </div>
       </div>
     </div>
 <div class="doc-section" id="fields">
       <h2 class="doc-h2">Data Fields</h2>
-      <p class="doc-body">Every TCID record contains the following fields. Fields marked with an asterisk are available on all tiers; remaining fields require Bronze or above.</p>
+      <p class="doc-body">All fields are returned for Free Registered and above. The free website lookup at tradingcardid.org/lookup does not provide programmatic API access. <code style="font-family:var(--mono);color:var(--navy)">image_ref_url</code>, <code style="font-family:var(--mono);color:var(--navy)">retail_channel</code>, and <code style="font-family:var(--mono);color:var(--navy)">notes</code> are enrichment fields and may be null for registry entries not yet fully enriched.</p>
       <table>
         <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
         <tbody>
-          <tr><td>tcid *</td><td>string</td><td>The permanent TCID identifier</td></tr>
-          <tr><td>sport *</td><td>string</td><td>Sport (Baseball, Football, Basketball, Hockey)</td></tr>
-          <tr><td>manufacturer *</td><td>string</td><td>Card manufacturer</td></tr>
-          <tr><td>season *</td><td>string</td><td>Product season or year</td></tr>
-          <tr><td>product *</td><td>string</td><td>Product name</td></tr>
-          <tr><td>card_number *</td><td>string</td><td>Card number within the set</td></tr>
-          <tr><td>player *</td><td>string</td><td>Player name</td></tr>
-          <tr><td>team *</td><td>string</td><td>Team at time of card production</td></tr>
-          <tr><td>card_type *</td><td>string</td><td>Base, Parallel, Autograph, Rookie, etc.</td></tr>
-          <tr><td>parallel *</td><td>string | null</td><td>Parallel name, if applicable</td></tr>
-          <tr><td>autograph *</td><td>boolean</td><td>Whether the card includes an autograph</td></tr>
-          <tr><td>relic *</td><td>boolean</td><td>Whether the card includes a memorabilia relic</td></tr>
-          <tr><td>print_run</td><td>integer | null</td><td>Numbered print run, if applicable. Bronze and above.</td></tr>
-          <tr><td>image_ref_url</td><td>string | null</td><td>Manufacturer image reference URL. Bronze and above.</td></tr>
-          <tr><td>retail_channel</td><td>string | null</td><td>Retail distribution channel. Bronze and above.</td></tr>
-          <tr><td>notes</td><td>string | null</td><td>Additional registry notes. Bronze and above.</td></tr>
+          <tr><td>tcid</td><td>string</td><td>The permanent TCID identifier</td></tr>
+          <tr><td>sport</td><td>string</td><td>Sport (Baseball, Football, Basketball, Hockey)</td></tr>
+          <tr><td>manufacturer</td><td>string</td><td>Card manufacturer</td></tr>
+          <tr><td>season</td><td>string</td><td>Product season or year</td></tr>
+          <tr><td>product</td><td>string</td><td>Product name</td></tr>
+          <tr><td>card_number</td><td>string</td><td>Card number within the set</td></tr>
+          <tr><td>player</td><td>string</td><td>Player name</td></tr>
+          <tr><td>team</td><td>string</td><td>Team at time of card production</td></tr>
+          <tr><td>card_type</td><td>string</td><td>Base, Parallel, Autograph, Rookie, etc.</td></tr>
+          <tr><td>parallel</td><td>string | null</td><td>Parallel name, if applicable</td></tr>
+          <tr><td>autograph</td><td>boolean</td><td>Whether the card includes an autograph</td></tr>
+          <tr><td>relic</td><td>boolean</td><td>Whether the card includes a memorabilia relic</td></tr>
+          <tr><td>print_run</td><td>integer | null</td><td>Numbered print run, if applicable (e.g. 10 for a /10 card)</td></tr>
+          <tr><td>image_ref_url</td><td>string | null</td><td>Manufacturer image reference URL</td></tr>
+          <tr><td>retail_channel</td><td>string | null</td><td>Retail distribution channel (Hobby, Retail, Hobby/Retail)</td></tr>
+          <tr><td>notes</td><td>string | null</td><td>Additional registry notes</td></tr>
         </tbody>
       </table>
     </div>
@@ -318,11 +326,10 @@ Authorization: Bearer <span class="code-string">tcid_live_xxxx</span></pre></div
     </div>
     <div class="doc-section" id="rate-limits">
       <h2 class="doc-h2">Rate Limits</h2>
-      <p class="doc-body">Limits are enforced per API key per calendar month. Concurrent request rate is capped at 10 requests/second across all tiers. Rate limit status is returned in response headers.</p>
-      <div class="code-block"><pre>X-RateLimit-Tier:      <span class="code-string">silver</span>
+      <p class="doc-body">Limits are enforced per API key per calendar month. Rate limit status is returned in response headers on all registry endpoints.</p>
+      <div class="code-block"><pre>X-RateLimit-Tier:      <span class="code-string">SILVER</span>
 X-RateLimit-Limit:     <span class="code-num">100000</span>
-X-RateLimit-Remaining: <span class="code-num">98312</span>
-X-RateLimit-Reset:     <span class="code-string">2026-07-01T00:00:00Z</span></pre></div>
+X-RateLimit-Remaining: <span class="code-num">98312</span></pre></div>
     </div>
     <div class="doc-section" id="licensing">
       <h2 class="doc-h2">Licensing</h2>
