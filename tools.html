@@ -163,7 +163,7 @@
     .tool-card.featured h3 { color: var(--white); }
     .tool-card p {
       font-size: 14px; color: var(--muted); line-height: 1.7;
-      flex: 1; margin-bottom: 24px;
+      min-height: 9em; margin-bottom: 24px;
     }
     .tool-card.featured p { color: #8a96b0; }
 
@@ -189,7 +189,7 @@
       display: inline-block; font-family: var(--mono);
       font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
       text-transform: uppercase; padding: 3px 8px; border-radius: 2px;
-      margin-bottom: 20px;
+      margin-top: auto; margin-bottom: 20px;
     }
     .tool-badge.requires-api {
       background: rgba(200,168,75,0.12); color: var(--accent);
@@ -336,7 +336,6 @@
 
       <!-- Inventory Template -->
       <div class="tool-card featured">
-        <div class="tool-tag">Inventory Template</div>
         <h3>Submission Template</h3>
         <p>The fastest path to TCID. Download the Excel template, fill in your inventory, and email it to info@tradingcardid.org. We return your file with TCID, match status, and confidence score populated for every row.</p>
         <ul class="tool-features">
@@ -355,7 +354,6 @@
 
       <!-- Card Lookup -->
       <div class="tool-card">
-        <div class="tool-tag">Card Lookup</div>
         <h3>Single Card Lookup</h3>
         <p>Look up any card in the TCID registry by identifier or browse by manufacturer, sport, and season. Free for all users, no API key required.</p>
         <ul class="tool-features">
@@ -370,7 +368,6 @@
 
       <!-- AI Mapper / Consulting -->
       <div class="tool-card featured">
-        <div class="tool-tag">Consulting Service</div>
         <h3>Inventory Mapping Service</h3>
         <p>Have messy inventory data, single-cell descriptions, non-standard formats, or legacy spreadsheets that don't fit the template? We map it for you. AI-assisted, human-reviewed, delivered back as an enriched file with TCIDs and confidence scores.</p>
         <ul class="tool-features">
@@ -386,9 +383,6 @@
 
     </div>
 
-    <div class="notice">
-      <strong>Template submissions are free.</strong> Download the template, fill in your inventory, and email it to info@tradingcardid.org. We process submissions and return your enriched file within one business day. For unstructured or legacy formats, contact us about our consulting mapping service.
-    </div>
 
   </div>
 </section>
