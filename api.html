@@ -113,6 +113,15 @@
     .sidebar-links a:hover { color: var(--navy); background: var(--rule); }
     .sidebar-links a.active { color: var(--accent); font-weight: 500; }
     .content { flex: 1; padding: 48px 56px 80px; max-width: 840px; }
+    @media (max-width: 720px) {
+      .page-wrapper { flex-direction: column; }
+      .sidebar {
+        width: 100%; position: static; height: auto; max-height: 180px;
+        border-right: none; border-bottom: 1px solid var(--rule);
+        padding: 16px 0;
+      }
+      .content { padding: 32px 20px 60px; max-width: 100%; }
+    }
     .doc-section { margin-bottom: 60px; }
     .doc-label { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px; }
     .doc-h1 { font-family: var(--serif); font-size: 34px; font-weight: 300; color: var(--navy); margin-bottom: 12px; }
