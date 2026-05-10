@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About TCID — Trading Card Identification Number</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:   #0a1628;
+      --blue:   #1a3a6e;
+      --accent: #c8a84b;
+      --rule:   #d0d5de;
+      --light:  #f4f5f7;
+      --white:  #ffffff;
+      --text:   #1c2333;
+      --muted:  #5a6378;
+      --mono:   'IBM Plex Mono', monospace;
+      --sans:   'IBM Plex Sans', sans-serif;
+      --serif:  'IBM Plex Serif', serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      color: var(--text);
+      background: var(--white);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--navy);
+      border-bottom: 2px solid var(--accent);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 0 40px; height: 56px;
+    }
+    .nav-brand {
+      font-family: var(--mono); font-size: 14px; font-weight: 500;
+      color: var(--white); letter-spacing: 0.08em; text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-brand span { color: var(--accent); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: 13px; font-weight: 400; color: #aab2c4;
+      text-decoration: none; letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    /* Hamburger — hidden on desktop */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--accent);
+      transition: opacity 0.2s;
+    }
+    /* ── MOBILE NAV ── */
+    @media (max-width: 720px) {
+      nav {
+        height: auto;
+        padding: 14px 20px;
+        gap: 0;
+      }
+      .nav-brand {
+        font-size: 13px;
+      }
+      .nav-hamburger {
+        display: flex;
+      }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+        padding: 8px 0 4px;
+        margin-top: 8px;
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .nav-links li {
+        border-bottom: 1px solid #1e2f50;
+      }
+      .nav-links li:last-child {
+        border-bottom: none;
+      }
+      .nav-links a {
+        display: block;
+        padding: 11px 0;
+        font-size: 14px;
+      }
+    }
+    /* ── SECTION BASE ── */
+    section { padding: 80px 40px; }
+    @media (max-width: 720px) { section { padding: 60px 20px; } }
+    .section-inner { max-width: 900px; margin: 0 auto; }
+    .section-label {
+      font-family: var(--mono); font-size: 11px; font-weight: 500;
+      color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: var(--serif); font-size: clamp(24px, 3vw, 34px);
+      font-weight: 300; color: var(--navy); line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .section-rule {
+      width: 40px; height: 2px; background: var(--accent);
+      margin-bottom: 32px;
+    }
+    .section-body {
+      font-size: 16px; color: var(--muted); line-height: 1.75;
+      max-width: 680px;
+      margin-bottom: 18px;
+    }
+    .about-section h3 {
+      font-family: var(--sans); font-size: 18px; font-weight: 600;
+      color: var(--navy); letter-spacing: 0.01em;
+    }
+    /* clear fixed nav on first section */
+    .about-section { margin-top: 56px; }
+    @media (max-width: 720px) {
+      .about-section { margin-top: 0; padding-top: 100px; }
+    }
+    /* ── NOTICE BANNER ── */
+    .notice {
+      background: rgba(200,168,75,0.08);
+      border: 1px solid rgba(200,168,75,0.25);
+      border-radius: 2px; padding: 14px 20px;
+      margin-top: 32px;
+      font-size: 13px; color: #5a6378;
+      font-family: var(--mono);
+      max-width: 680px;
+      line-height: 1.7;
+    }
+    .notice strong { color: var(--accent); }
+    /* ── FOOTER ── */
+    footer {
+      background: #060e1a;
+      border-top: 2px solid var(--accent);
+      padding: 48px 40px;
+    }
+    @media (max-width: 720px) { footer { padding: 40px 20px; } }
+    .footer-inner {
+      max-width: 900px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 40px; flex-wrap: wrap;
+    }
+    .footer-brand {
+      font-family: var(--mono); font-size: 16px; font-weight: 500;
+      color: var(--white); margin-bottom: 8px;
+    }
+    .footer-brand span { color: var(--accent); }
+    .footer-tagline { font-size: 13px; color: #4a5f80; max-width: 280px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-links a { font-size: 13px; color: #4a5f80; text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-bottom {
+      max-width: 900px; margin: 32px auto 0;
+      padding-top: 24px; border-top: 1px solid #1a2a45;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-copy { font-size: 12px; color: #2a3a55; font-family: var(--mono); }
+    .footer-cc { font-size: 12px; color: #2a3a55; }
+  </style>
+</head>
+<body>
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="index.html"><span>TCID</span> &nbsp;Trading Card ID</a>
+  <button class="nav-hamburger" aria-label="Toggle navigation" onclick="document.getElementById('nav-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-menu">
+    <li><a href="index.html#what">Standard</a></li>
+    <li><a href="index.html#how">How It Works</a></li>
+    <li><a href="index.html#governance">Governance</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="lookup.html">Lookup</a></li>
+    <li><a href="api.html">API</a></li>
+    <li><a href="tools.html">Tools</a></li>
+  </ul>
+</nav>
+<!-- ABOUT -->
+<section class="about-section">
+  <div class="section-inner">
+    <div class="section-label">The Project</div>
+    <h2 class="section-title">About TCID</h2>
+    <div class="section-rule"></div>
+
+    <p class="section-body">
+      TCID is an open identifier standard for the trading card market. It assigns a
+      stable, permanent reference to each distinct card type, governed by a neutral
+      standards body and free for any market participant to reference.
+    </p>
+
+    <h3 style="margin-top: 48px; margin-bottom: 16px;">The Problem TCID Solves</h3>
+    <p class="section-body">
+      Every major platform in the trading card market maintains its own proprietary
+      identifier for the same physical card. Grading companies, marketplaces,
+      insurance carriers, appraisers, and collector applications each reference cards
+      differently, with no shared canonical key. The same Aaron Judge rookie card
+      may have a dozen different identifiers across the systems that touch it.
+    </p>
+    <p class="section-body">
+      TCID solves interoperability, not identification. Vision systems and grading
+      platforms identify cards. TCID provides the permanent, neutral, citable
+      reference layer that all of those systems can resolve to. A card sold raw,
+      graded, and resold across different platforms generates separate records with
+      no neutral identifier persisting across them. That is the gap TCID fills.
+    </p>
+
+    <h3 style="margin-top: 48px; margin-bottom: 16px;">Why a Neutral Standard</h3>
+    <p class="section-body">
+      A neutral standard governed by a neutral entity avoids structural commercial
+      conflicts of interest. The model TCID follows is well-established in other industries. Securities
+      use CUSIP, governed by the American Bankers Association. Fine wine uses LWIN,
+      governed by Liv-ex. Retail uses GTIN, governed by GS1. Each is a neutral
+      registry, separately funded from the commercial activity it indexes, with
+      governance designed to preserve neutrality over time.
+    </p>
+
+    <h3 style="margin-top: 48px; margin-bottom: 16px;">Governance Status</h3>
+    <p class="section-body">
+      TCID is being structured as a 501(c)(6) standards body. The nonprofit will
+      own and govern the standard itself. A separately incorporated commercial
+      entity will operate the API access layer that funds the registry's
+      maintenance.
+    </p>
+
+    <div class="notice" style="margin-top: 32px;">
+      <strong>Legal Notice:</strong>
+      TCID is being structured as a 501(c)(6) standards body. Intellectual property
+      counsel for trademark and certification mark matters is Andrus Intellectual
+      Property Law, LLP, Milwaukee, WI.
+    </div>
+
+    <h3 style="margin-top: 48px; margin-bottom: 16px;">Get Involved</h3>
+    <p class="section-body">
+      TCID is in active development. Manufacturers, grading companies, insurers,
+      appraisers, and dealers interested in early conversations about adoption or
+      partnership can reach the project at
+      <a href="mailto:info@tradingcardid.org" style="color: var(--accent);">info@tradingcardid.org</a>.
+    </p>
+  </div>
+</section>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand"><span>TCID</span> &nbsp;— Trading Card Identification Number</div>
+      <p class="footer-tagline">An open identifier standard for the trading card market. Governed by a neutral nonprofit. Free to reference.</p>
+    </div>
+    <div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="lookup.html">Card Lookup</a></li>
+        <li><a href="api.html">API Documentation</a></li>
+        <li><a href="tools.html">Tools</a></li>
+        <li><a href="index.html#governance">Governance</a></li>
+        <li><a href="mailto:info@tradingcardid.org">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">&copy; 2026 TCID Standards Organization. All rights reserved.</span>
+    <span class="footer-cc">TCID identifiers published under Creative Commons Attribution 4.0 International.</span>
+    <span class="footer-legal" style="font-size: 12px; color: #2a3a55; flex-basis: 100%; margin-top: 12px; line-height: 1.5;">
+      TCID is being structured as a 501(c)(6) standards body. Intellectual property counsel for trademark and certification mark matters is Andrus Intellectual Property Law, LLP, Milwaukee, WI.
+    </span>
+  </div>
+</footer>
+</body>
+</html>
