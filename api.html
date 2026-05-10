@@ -26,13 +26,71 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: var(--navy); border-bottom: 2px solid var(--accent);
       display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap;
       padding: 0 40px; height: 56px;
     }
-    .nav-brand { font-family: var(--mono); font-size: 14px; font-weight: 500; color: var(--white); letter-spacing: 0.08em; text-decoration: none; }
+    .nav-brand {
+      font-family: var(--mono); font-size: 14px; font-weight: 500;
+      color: var(--white); letter-spacing: 0.08em; text-decoration: none;
+      white-space: nowrap;
+    }
     .nav-brand span { color: var(--accent); }
     .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a { font-size: 13px; color: #aab2c4; text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    /* Hamburger — hidden on desktop */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--accent);
+      transition: opacity 0.2s;
+    }
+    /* ── MOBILE NAV ── */
+    @media (max-width: 720px) {
+      nav {
+        height: auto;
+        padding: 14px 20px;
+        gap: 0;
+      }
+      .nav-brand {
+        font-size: 13px;
+      }
+      .nav-hamburger {
+        display: flex;
+      }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+        padding: 8px 0 4px;
+        margin-top: 8px;
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .nav-links li {
+        border-bottom: 1px solid #1e2f50;
+      }
+      .nav-links li:last-child {
+        border-bottom: none;
+      }
+      .nav-links a {
+        display: block;
+        padding: 11px 0;
+        font-size: 14px;
+      }
+    }
     .page-wrapper { margin-top: 56px; display: flex; }
     .sidebar {
       width: 220px; flex-shrink: 0;
@@ -108,8 +166,11 @@
 </head>
 <body>
 <nav>
-  <a class="nav-brand" href="index.html"><span>TCID</span> &nbsp;Trading Card Identification Number</a>
-  <ul class="nav-links">
+  <a class="nav-brand" href="index.html"><span>TCID</span> &nbsp;Trading Card ID</a>
+  <button class="nav-hamburger" aria-label="Toggle navigation" onclick="document.getElementById('nav-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-menu">
     <li><a href="index.html#what">Standard</a></li>
     <li><a href="index.html#governance">Governance</a></li>
     <li><a href="about.html">About</a></li>
