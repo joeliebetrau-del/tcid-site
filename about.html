@@ -104,6 +104,24 @@
         font-size: 14px;
       }
     }
+    /* ── PAGE HEADER (HERO) ── */
+    .page-header {
+      margin-top: 56px; background: var(--navy);
+      padding: 48px 40px 40px; border-bottom: 1px solid #1e2f50;
+    }
+    .page-header-inner { max-width: 900px; margin: 0 auto; }
+    .page-label {
+      font-family: var(--mono); font-size: 11px; color: var(--accent);
+      letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 10px;
+    }
+    .page-title {
+      font-family: var(--serif); font-size: 32px; font-weight: 300;
+      color: var(--white);
+    }
+    @media (max-width: 720px) {
+      .page-header { padding: 36px 20px 32px; }
+      .page-title { font-size: 26px; }
+    }
     /* ── SECTION BASE ── */
     section { padding: 80px 40px; }
     @media (max-width: 720px) { section { padding: 60px 20px; } }
@@ -130,11 +148,6 @@
     .about-section h3 {
       font-family: var(--sans); font-size: 18px; font-weight: 600;
       color: var(--navy); letter-spacing: 0.01em;
-    }
-    /* clear fixed nav on first section */
-    .about-section { margin-top: 56px; }
-    @media (max-width: 720px) {
-      .about-section { margin-top: 0; padding-top: 100px; }
     }
     /* ── NOTICE BANNER ── */
     .notice {
@@ -203,13 +216,16 @@
     });
   });
 </script>
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-label">The Project</div>
+    <div class="page-title">About TCID</div>
+  </div>
+</div>
 <!-- ABOUT -->
 <section class="about-section">
   <div class="section-inner">
-    <div class="section-label">The Project</div>
-    <h2 class="section-title">About TCID</h2>
-    <div class="section-rule"></div>
-
     <p class="section-body">
       TCID is an open identifier standard for the trading card market. It assigns a
       stable, permanent reference to each distinct card type, governed by a neutral

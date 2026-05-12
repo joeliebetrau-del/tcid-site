@@ -91,7 +91,25 @@
         font-size: 14px;
       }
     }
-    .page-wrapper { margin-top: 56px; display: flex; }
+    /* ── PAGE HEADER (HERO) ── */
+    .page-header {
+      margin-top: 56px; background: var(--navy);
+      padding: 48px 40px 40px; border-bottom: 1px solid #1e2f50;
+    }
+    .page-header-inner { max-width: 900px; margin: 0 auto; }
+    .page-label {
+      font-family: var(--mono); font-size: 11px; color: var(--accent);
+      letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 10px;
+    }
+    .page-title {
+      font-family: var(--serif); font-size: 32px; font-weight: 300;
+      color: var(--white);
+    }
+    @media (max-width: 720px) {
+      .page-header { padding: 36px 20px 32px; }
+      .page-title { font-size: 26px; }
+    }
+    .page-wrapper { display: flex; }
     .sidebar {
       width: 220px; flex-shrink: 0;
       position: sticky; top: 56px; height: calc(100vh - 56px);
@@ -196,6 +214,13 @@
     });
   });
 </script>
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-label">API Documentation</div>
+    <div class="page-title">TCID Registry API</div>
+  </div>
+</div>
 <div class="page-wrapper">
   <div class="sidebar">
     <div class="sidebar-section">
@@ -226,9 +251,6 @@
   </div>
   <div class="content">
     <div class="doc-section" id="intro">
-      <div class="doc-label">API Documentation</div>
-      <h1 class="doc-h1">TCID Registry API</h1>
-      <div class="doc-rule"></div>
       <p class="doc-body">The TCID Registry API provides programmatic access to the Trading Card Identification Number registry. The API returns structured metadata for every registered card type, keyed by its permanent TCID identifier.</p>
       <p class="doc-body">The TCID identifier itself is always free to reference. API membership unlocks enriched metadata, batch processing, and commercial use rights.</p>
       <div class="notice">
