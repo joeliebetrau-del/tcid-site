@@ -140,7 +140,8 @@
       border: 1px solid var(--rule);
     }
     @media (max-width: 680px) { .tools-grid { grid-template-columns: 1fr; } }
-    .tools-grid.two-cards { grid-template-columns: 1fr 1fr; max-width: 900px; }
+    .tools-grid.three-cards { grid-template-columns: 1fr 1fr 1fr; }
+    @media (max-width: 680px) { .tools-grid.three-cards { grid-template-columns: 1fr; } }
 
     .tool-card {
       background: var(--white);
@@ -340,7 +341,7 @@
     <div class="section-rule"></div>
     <p class="section-body">TCID tools provide easy integration of the TCID identifier.</p>
 
-    <div class="tools-grid two-cards" style="grid-template-columns:1fr 1fr 1fr;max-width:100%;">
+    <div class="tools-grid three-cards">
 
       <!-- Inventory Template -->
       <div class="tool-card featured">
