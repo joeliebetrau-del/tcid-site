@@ -388,7 +388,7 @@ Authorization: Bearer <span class="code-string">YOUR_API_KEY</span></pre></div>
     </div>
 <div class="doc-section" id="fields">
       <h2 class="doc-h2">Data Fields</h2>
-      <p class="doc-body">All fields are returned for Free Registered and above. The free website lookup at tradingcardid.org/lookup does not provide programmatic API access. <code style="font-family:var(--mono);color:var(--navy)">image_ref_url</code>, <code style="font-family:var(--mono);color:var(--navy)">retail_channel</code>, and <code style="font-family:var(--mono);color:var(--navy)">notes</code> are enrichment fields and may be null for registry entries not yet fully enriched.</p>
+      <p class="doc-body">All fields are returned for Free Registered and above. The free website lookup at tradingcardid.org/lookup does not provide programmatic API access. <code style="font-family:var(--mono);color:var(--navy)">image_ref_url</code> and <code style="font-family:var(--mono);color:var(--navy)">notes</code> are enrichment fields and may be null for registry entries not yet fully enriched.</p>
       <table>
         <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
         <tbody>
@@ -397,6 +397,7 @@ Authorization: Bearer <span class="code-string">YOUR_API_KEY</span></pre></div>
           <tr><td>manufacturer</td><td>string</td><td>Card manufacturer</td></tr>
           <tr><td>season</td><td>string</td><td>Product season or year</td></tr>
           <tr><td>product</td><td>string</td><td>Product name</td></tr>
+          <tr><td>subset</td><td>string | null</td><td>Set or subset within the product (e.g., "Base", "Base Legends Prizms Ruby Wave")</td></tr>
           <tr><td>card_number</td><td>string</td><td>Card number within the set</td></tr>
           <tr><td>player</td><td>string</td><td>Player name</td></tr>
           <tr><td>team</td><td>string</td><td>Team at time of card production</td></tr>
@@ -406,7 +407,6 @@ Authorization: Bearer <span class="code-string">YOUR_API_KEY</span></pre></div>
           <tr><td>relic</td><td>boolean</td><td>Whether the card includes a memorabilia relic</td></tr>
           <tr><td>print_run</td><td>integer | null</td><td>Numbered print run, if applicable (e.g. 10 for a /10 card)</td></tr>
           <tr><td>image_ref_url</td><td>string | null</td><td>Manufacturer image reference URL</td></tr>
-          <tr><td>retail_channel</td><td>string | null</td><td>Retail distribution channel (Hobby, Retail, Hobby/Retail)</td></tr>
           <tr><td>notes</td><td>string | null</td><td>Additional registry notes</td></tr>
         </tbody>
       </table>

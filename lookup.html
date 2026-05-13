@@ -305,7 +305,7 @@ async function runSearch() {
   const autoFilter = document.getElementById('filter-auto').value;
 
   // Check if this is a TCID lookup (format: SC + 8-10 alphanumeric)
-  const tcidPattern = /^SC[A-Z0-9]{8,10}$/i;
+  const tcidPattern = /^SC[A-Z0-9]{9}$/i;
   if (tcidPattern.test(query.toUpperCase())) {
     await lookupTCID(query.toUpperCase());
     return;
@@ -413,6 +413,7 @@ function renderResults(results, query) {
     const player = card.PLAYER_NAME || card.PLAYER;
     const season = card.SEASON;
     const product = card.PRODUCT;
+    const subset = card.SUBSET;
     const cardNumber = card.CARD_NUMBER;
     const cardType = card.CARD_TYPE;
     const printRun = card.PRINT_RUN;
@@ -435,7 +436,7 @@ function renderResults(results, query) {
         <div class="result-tcid">${tcid}</div>
         <div class="result-main">
           <div class="result-player">${player}</div>
-          <div class="result-card-name">${season} ${product} · #${cardNumber} · ${cardType}${printRun ? ` · /${printRun}` : ''}</div>
+          <div class="result-card-name">${product} · #${cardNumber} · ${cardType}${printRun ? ` · /${printRun}` : ''}</div>
           <div class="result-meta">${badges.join('')}</div>
         </div>
         <div style="font-size:13px;color:var(--muted);">${manufacturer}</div>
@@ -447,6 +448,7 @@ function renderResults(results, query) {
           <div class="detail-field"><label>Manufacturer</label><span>${manufacturer}</span></div>
           <div class="detail-field"><label>Season</label><span>${season}</span></div>
           <div class="detail-field"><label>Product</label><span>${product}</span></div>
+          <div class="detail-field"><label>Subset</label><span>${subset || '—'}</span></div>
           <div class="detail-field"><label>Card Number</label><span>#${cardNumber}</span></div>
           <div class="detail-field"><label>Player</label><span>${player}</span></div>
           <div class="detail-field"><label>Team</label><span>${team || '—'}</span></div>
