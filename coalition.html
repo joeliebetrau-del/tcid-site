@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tools — TCID Registry</title>
+  <title>Coalition | TCID</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:wght@300;400&display=swap" rel="stylesheet">
   <!-- Favicons -->
@@ -16,7 +16,6 @@
   <meta name="theme-color" content="#0a1628">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --navy:   #0a1628;
       --blue:   #1a3a6e;
@@ -30,9 +29,7 @@
       --sans:   'IBM Plex Sans', sans-serif;
       --serif:  'IBM Plex Serif', serif;
     }
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: var(--sans);
       color: var(--text);
@@ -40,8 +37,7 @@
       font-size: 16px;
       line-height: 1.6;
     }
-
-    /* ── NAV ── */
+    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: var(--navy);
@@ -142,7 +138,7 @@
       }
     }
 
-    /* ── PAGE HEADER (HERO) ── */
+    /* PAGE HEADER */
     .page-header {
       margin-top: 56px; background: var(--navy);
       padding: 48px 40px 40px; border-bottom: 1px solid #1e2f50;
@@ -161,167 +157,130 @@
       .page-title { font-size: 26px; }
     }
 
-    /* ── SECTION BASE ── */
+    /* SECTION BASE */
     section { padding: 72px 40px; }
     @media (max-width: 720px) { section { padding: 52px 20px; } }
     .section-inner { max-width: 900px; margin: 0 auto; }
-    .section-label {
-      font-family: var(--mono); font-size: 11px; font-weight: 500;
-      color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase;
-      margin-bottom: 12px;
-    }
     .section-title {
-      font-family: var(--serif); font-size: clamp(22px, 3vw, 30px);
-      font-weight: 300; color: var(--navy); line-height: 1.25;
-      margin-bottom: 16px;
+      font-family: var(--serif);
+      font-size: clamp(22px, 2.6vw, 30px);
+      font-weight: 300;
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 14px;
     }
     .section-rule {
-      width: 40px; height: 2px; background: var(--accent);
-      margin-bottom: 32px;
+      width: 40px; height: 2px;
+      background: var(--accent);
+      margin-bottom: 28px;
     }
-    .section-body {
-      font-size: 16px; color: var(--muted); line-height: 1.75;
+    .alt-bg { background: var(--light); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+
+    /* INTRO */
+    .coalition-intro {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 720px;
+    }
+
+    /* LETTERS OF SUPPORT */
+    .letters-block { margin-top: 56px; }
+    .supporter-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 4px;
+    }
+    @media (min-width: 720px) {
+      .supporter-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 340px));
+        justify-content: start;
+      }
+    }
+    .supporter-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      padding: 26px 26px 24px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .supporter-card:hover {
+      border-color: rgba(200,168,75,0.5);
+      box-shadow: 0 2px 12px rgba(10,22,40,0.06);
+    }
+    .supporter-name {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+    .supporter-title {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .supporter-org {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: 0.01em;
+    }
+    .supporter-link {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      margin-top: 16px;
+      transition: opacity 0.2s;
+    }
+    .supporter-link:hover { opacity: 0.7; }
+    .supporter-link .arrow {
+      font-family: var(--sans);
+      margin-left: 4px;
+    }
+
+    /* PLACEHOLDER PARAGRAPHS */
+    .placeholder-paragraph {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.75;
       max-width: 680px;
     }
 
-    /* ── TOOL CARDS ── */
-    .tools-grid {
-      margin-top: 48px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      background: var(--rule);
-      border: 1px solid var(--rule);
-    }
-    @media (max-width: 680px) { .tools-grid { grid-template-columns: 1fr; } }
-    .tools-grid.three-cards { grid-template-columns: 1fr 1fr 1fr; }
-    @media (max-width: 680px) { .tools-grid.three-cards { grid-template-columns: 1fr; } }
-
-    .tool-card {
-      background: var(--white);
-      padding: 36px 32px;
-      display: flex;
-      flex-direction: column;
-    }
-    .tool-card.featured {
-      background: var(--navy);
-    }
-    .tool-tag {
-      font-family: var(--mono); font-size: 10px; font-weight: 500;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 14px;
-    }
-    .tool-card h3 {
-      font-family: var(--sans); font-size: 18px; font-weight: 600;
-      color: var(--navy); margin-bottom: 12px; line-height: 1.3;
-    }
-    .tool-card.featured h3 { color: var(--white); }
-    .tool-card p {
-      font-size: 14px; color: var(--muted); line-height: 1.7;
-      min-height: 9em; margin-bottom: 24px;
-    }
-    .tool-card.featured p { color: #8a96b0; }
-
-    .tool-features {
-      list-style: none; padding: 0; margin-bottom: 28px;
-    }
-    .tool-features li {
-      font-size: 13px; color: var(--muted);
-      padding: 5px 0; border-bottom: 1px solid var(--rule);
-      display: flex; align-items: flex-start; gap: 8px;
-    }
-    .tool-card.featured .tool-features li {
-      color: #8a96b0; border-bottom-color: #1e3055;
-    }
-    .tool-features li:last-child { border-bottom: none; }
-    .tool-features li::before {
-      content: ""; width: 4px; height: 4px;
-      background: var(--accent); border-radius: 50%;
-      margin-top: 8px; flex-shrink: 0;
-    }
-
-    .tool-badge {
-      display: inline-block; font-family: var(--mono);
-      font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
-      text-transform: uppercase; padding: 3px 8px; border-radius: 2px;
-      margin-top: auto; margin-bottom: 20px;
-    }
-    .tool-badge.requires-api {
-      background: rgba(200,168,75,0.12); color: var(--accent);
-      border: 1px solid rgba(200,168,75,0.3);
-    }
-    .tool-badge.free {
-      background: rgba(26,122,74,0.1); color: #1a7a4a;
-      border: 1px solid rgba(26,122,74,0.25);
-    }
-    .tool-badge.coming-soon {
-      background: rgba(90,99,120,0.1); color: var(--muted);
-      border: 1px solid var(--rule);
-    }
-
-    .btn-primary {
-      display: inline-block; padding: 11px 24px;
-      background: var(--accent); color: var(--navy);
-      font-family: var(--sans); font-size: 13px; font-weight: 600;
-      letter-spacing: 0.04em; text-decoration: none; border-radius: 2px;
-      transition: opacity 0.2s; align-self: flex-start;
-    }
-    .btn-primary:hover { opacity: 0.88; }
-    .btn-outline {
-      display: inline-block; padding: 11px 24px;
-      border: 1px solid #3a4f75; color: #aab2c4;
-      font-family: var(--sans); font-size: 13px; font-weight: 400;
-      letter-spacing: 0.04em; text-decoration: none; border-radius: 2px;
-      transition: border-color 0.2s, color 0.2s; align-self: flex-start;
-    }
-    .btn-outline:hover { border-color: var(--accent); color: var(--white); }
-    .btn-disabled {
-      display: inline-block; padding: 11px 24px;
-      border: 1px solid var(--rule); color: var(--muted);
-      font-family: var(--sans); font-size: 13px; font-weight: 400;
-      letter-spacing: 0.04em; text-decoration: none; border-radius: 2px;
-      cursor: not-allowed; align-self: flex-start; opacity: 0.6;
-    }
-
-    /* ── HOW IT WORKS ── */
-    .how-bg { background: var(--light); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
-
-    .steps-grid {
-      margin-top: 40px;
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 32px;
-    }
-    .step { }
-    .step-num {
-      font-family: var(--mono); font-size: 28px; font-weight: 500;
-      color: var(--accent); margin-bottom: 12px; display: block;
-    }
-    .step h4 {
-      font-size: 14px; font-weight: 600; color: var(--navy);
-      text-transform: uppercase; letter-spacing: 0.04em;
-      margin-bottom: 8px; padding-bottom: 8px;
+    /* CLOSING */
+    .coalition-closing {
+      background: var(--light);
+      border-top: 1px solid var(--rule);
       border-bottom: 1px solid var(--rule);
+      padding: 36px 40px;
     }
-    .step p { font-size: 14px; color: var(--muted); line-height: 1.65; }
-
-    /* ── API CTA ── */
-    .cta-bg { background: var(--navy); }
-    .cta-bg .section-title { color: var(--white); }
-    .cta-bg .section-body { color: #8a96b0; }
-    .cta-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px; }
-
-    /* ── NOTICE ── */
-    .notice {
-      background: rgba(200,168,75,0.08);
-      border: 1px solid rgba(200,168,75,0.25);
-      border-radius: 2px; padding: 14px 20px;
-      margin-top: 32px;
-      font-size: 13px; color: #8a96b0;
+    @media (max-width: 720px) { .coalition-closing { padding: 32px 20px; } }
+    .closing-line {
+      font-size: 14px;
+      color: var(--muted);
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .closing-line a {
+      color: var(--accent);
+      text-decoration: none;
       font-family: var(--mono);
+      font-size: 13px;
     }
-    .notice strong { color: var(--accent); }
+    .closing-line a:hover { text-decoration: underline; }
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer {
       background: #060e1a;
       border-top: 2px solid var(--accent);
@@ -342,7 +301,6 @@
       color: var(--white); margin-bottom: 20px; letter-spacing: 0.04em;
     }
     .footer-brand span { color: var(--accent); }
-    .footer-tagline { font-size: 13px; color: #aab2c4; max-width: 280px; }
     .footer-heading {
       font-family: var(--mono); font-size: 11px; font-weight: 500;
       color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase;
@@ -362,7 +320,10 @@
     }
     .footer-cta:hover { opacity: 0.85; color: var(--navy); }
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; padding: 0; margin: 0; }
-    .footer-links a { font-size: 13px; color: #aab2c4; text-decoration: none; transition: color 0.2s; }
+    .footer-links a {
+      font-size: 13px; color: #aab2c4; text-decoration: none;
+      transition: color 0.2s;
+    }
     .footer-links a:hover { color: var(--accent); }
     .footer-social-icon {
       display: inline-flex; align-items: center; justify-content: center;
@@ -381,10 +342,10 @@
     }
     .footer-copy { font-size: 12px; color: #aab2c4; font-family: var(--mono); }
     .footer-cc { font-size: 12px; color: #aab2c4; }
+    .footer-legal { font-size: 12px; color: #aab2c4; flex-basis: 100%; margin-top: 10px; line-height: 1.5; }
   </style>
 </head>
 <body>
-
 <!-- NAV -->
 <nav>
   <a class="nav-brand" href="index.html"><span>TCID</span> &nbsp;Trading Card ID</a>
@@ -412,7 +373,7 @@
     </li>
     <li><a href="lookup.html">Lookup</a></li>
     <li><a href="api.html">API</a></li>
-    <li><a href="coalition.html">Coalition</a></li>
+    <li><a href="coalition.html" class="active">Coalition</a></li>
     <li class="contact-li"><a href="mailto:info@tradingcardid.org" class="nav-contact">Contact</a></li>
   </ul>
 </nav>
@@ -453,120 +414,54 @@
 <!-- PAGE HEADER -->
 <div class="page-header">
   <div class="page-header-inner">
-    <div class="page-label">Registry Tools</div>
-    <div class="page-title">Tools built on the TCID standard.</div>
+    <div class="page-label">Industry Recognition</div>
+    <div class="page-title">Coalition</div>
   </div>
 </div>
 
-<!-- TOOLS -->
+<!-- INTRO + LETTERS OF SUPPORT -->
 <section>
   <div class="section-inner">
-    <div class="section-label">Available Tools</div>
-    <h2 class="section-title">Start mapping your inventory.</h2>
-    <div class="section-rule"></div>
-    <p class="section-body">Practical tools for dealers, platforms, and insurers to integrate TCID into their workflows. API membership required for commercial use.</p>
+    <p class="coalition-intro">Practitioners, organizations, and publications backing the TCID standard.</p>
 
-    <div class="tools-grid three-cards">
-
-      <!-- Inventory Template -->
-      <div class="tool-card featured">
-        <h3>Submission Template</h3>
-        <p>The fastest path to TCID. Download the Excel template, fill in your inventory, and email it to info@tradingcardid.org. We return your file with TCID, match status, and confidence score populated for every row.</p>
-        <ul class="tool-features">
-          <li>Structured fields with dropdown validation</li>
-          <li>Up to 1,000 cards per submission</li>
-          <li>Returns TCID, Match Status, and Confidence for every row</li>
-          <li>Email completed template to info@tradingcardid.org</li>
-          <li>No account required</li>
-        </ul>
-        <span class="tool-badge free">Free</span>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <a href="TCID_Inventory_Template.xlsx" class="btn-primary" download>Download Template</a>
-          <a href="mailto:info@tradingcardid.org?subject=TCID Inventory Submission" class="btn-outline">Submit by Email</a>
-        </div>
+    <div class="letters-block">
+      <h2 class="section-title">Letters of Support</h2>
+      <div class="section-rule"></div>
+      <p class="placeholder-paragraph" style="margin-bottom: 32px;">The following practitioners have formally backed the TCID standard.</p>
+      <div class="supporter-grid">
+        <article class="supporter-card">
+          <div class="supporter-name">Todd Sawatzky</div>
+          <div class="supporter-title">Independent Appraiser</div>
+          <div class="supporter-org">Todd Sawatzky Appraisals</div>
+          <a class="supporter-link" href="https://toddsawatzkyappraisals.com" target="_blank" rel="noopener noreferrer">toddsawatzkyappraisals.com<span class="arrow">&nbsp;&rarr;</span></a>
+        </article>
       </div>
-
-      <!-- Card Lookup -->
-      <div class="tool-card">
-        <h3>Single Card Lookup</h3>
-        <p>Look up any card in the TCID registry by identifier or browse by manufacturer, sport, and season. Free for all users.</p>
-        <ul class="tool-features">
-          <li>Search by player, set, year, or TCID</li>
-          <li>Full card type metadata returned</li>
-          <li>75,000+ card types across 4 sports</li>
-          <li>No account required</li>
-        </ul>
-        <span class="tool-badge free">Free</span>
-        <a href="lookup.html" class="btn-primary">Look Up a Card</a>
-      </div>
-
-      <!-- AI Mapper / Consulting -->
-      <div class="tool-card featured">
-        <h3>Inventory Mapping Service</h3>
-        <p>Have messy inventory data, single-cell descriptions, non-standard formats, or legacy spreadsheets that don't fit the template? We map it for you. AI-assisted, human-reviewed, delivered back as an enriched file with TCIDs and confidence scores.</p>
-        <ul class="tool-features">
-          <li>Works with any existing inventory format</li>
-          <li>AI parses unstructured descriptions automatically</li>
-          <li>Human review of low-confidence matches</li>
-          <li>Delivered as enriched .xlsx with TCID column appended</li>
-          <li>Fee-based engagement, email info@tradingcardid.org</li>
-        </ul>
-        <span class="tool-badge requires-api">Consulting Engagement</span>
-        <a href="mailto:info@tradingcardid.org?subject=Inventory Mapping Inquiry" class="btn-primary">Contact Us</a>
-      </div>
-
     </div>
-
-
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="how-bg">
+<!-- ENDORSING ORGANIZATIONS -->
+<section class="alt-bg">
   <div class="section-inner">
-    <div class="section-label">Submission Template</div>
-    <h2 class="section-title">How the template works.</h2>
+    <h2 class="section-title">Endorsing Organizations</h2>
     <div class="section-rule"></div>
-    <p class="section-body">The structured template is the fastest path to TCID identification. Fill in the fields, submit, get your file back with TCIDs populated.</p>
-    <div class="steps-grid">
-      <div class="step">
-        <span class="step-num">01</span>
-        <h4>Download</h4>
-        <p>Download the Excel template. It includes dropdown validation for key fields and three example cards to show the format. Submit up to 1,000 cards.</p>
-      </div>
-      <div class="step">
-        <span class="step-num">02</span>
-        <h4>Fill In</h4>
-        <p>Enter your card inventory. Required fields are highlighted blue. Optional fields are highlighted gray.</p>
-      </div>
-      <div class="step">
-        <span class="step-num">03</span>
-        <h4>Submit by Email</h4>
-        <p>Email your completed template to info@tradingcardid.org. We process submissions and return your results by email.</p>
-      </div>
-      <div class="step">
-        <span class="step-num">04</span>
-        <h4>Review Results</h4>
-        <p>Your file comes back with TCID, Match Status, and Confidence for every row. Filter by Match Status, "Exact" and "High Confidence" rows are done. "Review Required" rows need a second look and can be resubmitted.</p>
-      </div>
-    </div>
+    <p class="placeholder-paragraph">This section recognizes trade associations and industry organizations that publicly endorse the TCID standard.</p>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-bg">
+<!-- IN THE PRESS -->
+<section>
   <div class="section-inner">
-    <div class="section-label">Get Started</div>
-    <h2 class="section-title">Ready to map your inventory?</h2>
+    <h2 class="section-title">In the Press</h2>
     <div class="section-rule"></div>
-    <p class="section-body">Download the free template, fill in your inventory, and email it to info@tradingcardid.org. We return your file with TCIDs populated. If your data does not fit the template, contact us about our consulting mapping service.</p>
-    <div class="cta-actions">
-      <a href="TCID_Inventory_Template.xlsx" class="btn-primary" download>Download Template</a>
-      <a href="mailto:info@tradingcardid.org?subject=TCID Inventory Submission" class="btn-outline">Submit by Email</a>
-      <a href="mailto:info@tradingcardid.org?subject=Inventory Mapping Inquiry" class="btn-outline">Consulting Inquiry</a>
-    </div>
+    <p class="placeholder-paragraph">This section references substantive coverage of TCID in trade publications and industry media.</p>
   </div>
 </section>
+
+<!-- CLOSING LINE -->
+<div class="coalition-closing">
+  <p class="closing-line">Practitioners and organizations interested in joining the TCID Coalition can contact us at <a href="mailto:info@tradingcardid.org">info@tradingcardid.org</a></p>
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -597,11 +492,10 @@
   <div class="footer-bottom">
     <span class="footer-copy">&copy; 2026 TCID. All rights reserved.</span>
     <span class="footer-cc">TCID identifiers will be published under Creative Commons Attribution 4.0 International.</span>
-    <span class="footer-legal" style="font-size: 12px; color: #aab2c4; flex-basis: 100%; margin-top: 10px; line-height: 1.5;">
+    <span class="footer-legal">
       TCID is being structured as a 501(c)(6) standards body. Intellectual property counsel for trademark and certification mark matters is Andrus Intellectual Property Law, LLP, Milwaukee, WI.
     </span>
   </div>
 </footer>
-
 </body>
 </html>

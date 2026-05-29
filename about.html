@@ -52,64 +52,90 @@
       white-space: nowrap;
     }
     .nav-brand span { color: var(--accent); }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a {
-      font-size: 13px; font-weight: 400; color: #aab2c4;
-      text-decoration: none; letter-spacing: 0.04em;
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
+    .nav-links > li { position: relative; }
+    .nav-links a, .nav-dropdown-toggle {
+      font-family: var(--sans); font-size: 13px; font-weight: 400;
+      color: #aab2c4; text-decoration: none; letter-spacing: 0.04em;
       transition: color 0.2s;
+      background: none; border: none; padding: 0; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 5px;
     }
-    .nav-links a:hover, .nav-links a.active { color: var(--white); }
-    /* Hamburger — hidden on desktop */
-    .nav-hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-      background: none;
-      border: none;
+    .nav-links a:hover, .nav-links a.active,
+    .nav-dropdown-toggle:hover, .nav-dropdown-toggle[aria-expanded="true"] { color: var(--white); }
+    .dropdown-caret { transition: transform 0.2s; }
+    .has-dropdown:hover .dropdown-caret,
+    .nav-dropdown-toggle[aria-expanded="true"] .dropdown-caret { transform: rotate(180deg); }
+    .nav-dropdown {
+      position: absolute; top: 100%; left: -16px;
+      min-width: 200px;
+      background: #0d1f3c;
+      border: 1px solid #1e2f50; border-top: 2px solid var(--accent);
+      padding: 8px 0; margin: 0;
+      list-style: none; display: none;
+      z-index: 200;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.35);
     }
-    .nav-hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
+    .has-dropdown:hover .nav-dropdown,
+    .has-dropdown:focus-within .nav-dropdown,
+    .nav-dropdown-toggle[aria-expanded="true"] + .nav-dropdown { display: block; }
+    .nav-dropdown li { width: 100%; }
+    .nav-dropdown a {
+      display: block; padding: 10px 20px;
+      font-size: 13px; color: #aab2c4;
+      letter-spacing: 0.04em; white-space: nowrap;
+    }
+    .nav-dropdown a:hover { color: var(--white); background: rgba(200,168,75,0.08); }
+    .nav-links a.nav-contact {
       background: var(--accent);
+      color: var(--navy) !important;
+      padding: 7px 16px;
+      border-radius: 2px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       transition: opacity 0.2s;
     }
+    .nav-links a.nav-contact:hover { opacity: 0.85; color: var(--navy) !important; }
+    .nav-hamburger {
+      display: none; cursor: pointer; padding: 4px;
+      background: none; border: none; color: var(--accent);
+    }
+    .hamburger-icon { display: block; }
     /* ── MOBILE NAV ── */
-    @media (max-width: 720px) {
-      nav {
-        height: auto;
-        padding: 14px 20px;
-        gap: 0;
-      }
-      .nav-brand {
-        font-size: 13px;
-      }
-      .nav-hamburger {
-        display: flex;
-      }
+    @media (max-width: 767px) {
+      nav { height: auto; padding: 14px 20px; gap: 0; }
+      .nav-brand { font-size: 13px; }
+      .nav-hamburger { display: block; }
       .nav-links {
-        display: none;
-        flex-direction: column;
-        gap: 0;
-        width: 100%;
-        padding: 8px 0 4px;
-        margin-top: 8px;
+        display: none; flex-direction: column; align-items: stretch;
+        gap: 0; width: 100%;
+        padding: 8px 0 4px; margin-top: 8px;
       }
-      .nav-links.open {
-        display: flex;
+      .nav-links.open { display: flex; }
+      .nav-links > li { border-bottom: 1px solid #1e2f50; width: 100%; }
+      .nav-links > li:last-child { border-bottom: none; }
+      .nav-links a, .nav-dropdown-toggle {
+        display: block; padding: 11px 0; font-size: 14px;
+        width: 100%; text-align: left;
       }
-      .nav-links li {
-        border-bottom: 1px solid #1e2f50;
+      .dropdown-caret { display: none; }
+      .nav-dropdown {
+        position: static; display: block;
+        background: transparent; border: none; box-shadow: none;
+        padding: 0 0 8px 16px; margin: 4px 0 8px 8px;
+        border-left: 2px solid var(--accent);
       }
-      .nav-links li:last-child {
-        border-bottom: none;
-      }
-      .nav-links a {
-        display: block;
-        padding: 11px 0;
-        font-size: 14px;
+      .nav-dropdown a { padding: 8px 0; font-size: 13px; }
+      .nav-dropdown a:hover { background: transparent; }
+      .nav-links > li.contact-li { border-bottom: none; }
+      .nav-links a.nav-contact {
+        background: var(--accent);
+        color: var(--navy) !important;
+        padding: 11px 16px;
+        border-radius: 2px;
+        font-weight: 600;
+        text-align: center;
+        margin: 12px 0 4px;
       }
     }
     /* ── PAGE HEADER (HERO) ── */
@@ -173,26 +199,57 @@
     footer {
       background: #060e1a;
       border-top: 2px solid var(--accent);
-      padding: 48px 40px;
+      padding: 56px 40px 36px;
     }
-    @media (max-width: 720px) { footer { padding: 40px 20px; } }
+    @media (max-width: 767px) { footer { padding: 40px 20px 28px; } }
     .footer-inner {
-      max-width: 900px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: flex-start;
-      gap: 40px; flex-wrap: wrap;
+      max-width: 1000px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) auto;
+      gap: 48px; align-items: start;
+    }
+    @media (max-width: 767px) {
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
     }
     .footer-brand {
-      font-family: var(--mono); font-size: 16px; font-weight: 500;
-      color: var(--white); margin-bottom: 8px;
+      font-family: var(--mono); font-size: 14px; font-weight: 500;
+      color: var(--white); margin-bottom: 20px; letter-spacing: 0.04em;
     }
     .footer-brand span { color: var(--accent); }
     .footer-tagline { font-size: 13px; color: #aab2c4; max-width: 280px; }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-heading {
+      font-family: var(--mono); font-size: 11px; font-weight: 500;
+      color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .footer-cta {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--navy);
+      text-decoration: none;
+      font-family: var(--sans);
+      font-size: 14px; font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 11px 24px;
+      border-radius: 2px;
+      transition: opacity 0.2s;
+    }
+    .footer-cta:hover { opacity: 0.85; color: var(--navy); }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; padding: 0; margin: 0; }
     .footer-links a { font-size: 13px; color: #aab2c4; text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: var(--accent); }
+    .footer-social-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px;
+      color: var(--accent);
+      border: 1px solid rgba(200,168,75,0.35);
+      border-radius: 2px;
+      transition: color 0.2s, background 0.2s, border-color 0.2s;
+    }
+    .footer-social-icon:hover { color: var(--navy); background: var(--accent); border-color: var(--accent); }
     .footer-bottom {
-      max-width: 900px; margin: 32px auto 0;
-      padding-top: 24px; border-top: 1px solid #1a2a45;
+      max-width: 1000px; margin: 32px auto 0;
+      padding-top: 20px; border-top: 1px solid #1a2a45;
       display: flex; justify-content: space-between; align-items: center;
       flex-wrap: wrap; gap: 12px;
     }
@@ -204,25 +261,66 @@
 <!-- NAV -->
 <nav>
   <a class="nav-brand" href="index.html"><span>TCID</span> &nbsp;Trading Card ID</a>
-  <button class="nav-hamburger" aria-label="Toggle navigation" onclick="document.getElementById('nav-menu').classList.toggle('open')">
-    <span></span><span></span><span></span>
+  <button class="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false" onclick="toggleNav()">
+    <svg class="hamburger-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true">
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
   </button>
   <ul class="nav-links" id="nav-menu">
-    <li><a href="index.html#what">Standard</a></li>
-    <li><a href="index.html#how">How It Works</a></li>
-    <li><a href="index.html#governance">Governance</a></li>
-    <li><a href="about.html" class="active">About</a></li>
+    <li class="has-dropdown">
+      <button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+        About
+        <svg class="dropdown-caret" viewBox="0 0 10 6" width="10" height="6" aria-hidden="true">
+          <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+        </svg>
+      </button>
+      <ul class="nav-dropdown">
+        <li><a href="index.html#how">How It Works</a></li>
+        <li><a href="index.html#governance">Governance</a></li>
+        <li><a href="index.html#what">Standard</a></li>
+        <li><a href="about.html" class="active">About TCID</a></li>
+      </ul>
+    </li>
     <li><a href="lookup.html">Lookup</a></li>
     <li><a href="api.html">API</a></li>
-    <li><a href="tools.html">Tools</a></li>
+    <li><a href="coalition.html">Coalition</a></li>
+    <li class="contact-li"><a href="mailto:info@tradingcardid.org" class="nav-contact">Contact</a></li>
   </ul>
 </nav>
 <script>
+  function toggleNav() {
+    var menu = document.getElementById('nav-menu');
+    var btn = document.querySelector('.nav-hamburger');
+    var isOpen = menu.classList.toggle('open');
+    if (btn) btn.setAttribute('aria-expanded', String(isOpen));
+  }
   document.querySelectorAll('#nav-menu a').forEach(function(link) {
     link.addEventListener('click', function() {
-      document.getElementById('nav-menu').classList.remove('open');
+      var menu = document.getElementById('nav-menu');
+      var btn = document.querySelector('.nav-hamburger');
+      menu.classList.remove('open');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
     });
   });
+  (function() {
+    var aboutToggle = document.querySelector('.nav-dropdown-toggle');
+    if (!aboutToggle) return;
+    aboutToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = aboutToggle.getAttribute('aria-expanded') === 'true';
+      aboutToggle.setAttribute('aria-expanded', String(!isOpen));
+    });
+    document.addEventListener('click', function(e) {
+      if (!aboutToggle.parentElement.contains(e.target)) {
+        aboutToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') aboutToggle.setAttribute('aria-expanded', 'false');
+    });
+  })();
 </script>
 <!-- PAGE HEADER -->
 <div class="page-header">
@@ -294,25 +392,32 @@
 <footer>
   <div class="footer-inner">
     <div>
-      <div class="footer-brand"><span>TCID</span> &nbsp;— Trading Card Identification Number</div>
-      <p class="footer-tagline">An open identifier standard for the trading card market. Governed by a neutral nonprofit. Free to reference.</p>
+      <div class="footer-brand"><span>TCID</span> &nbsp;Trading Card Identification Number</div>
+      <a class="footer-cta" href="mailto:info@tradingcardid.org">Contact</a>
     </div>
     <div>
+      <div class="footer-heading">Quick Links</div>
       <ul class="footer-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="lookup.html">Card Lookup</a></li>
-        <li><a href="api.html">API Documentation</a></li>
-        <li><a href="tools.html">Tools</a></li>
-        <li><a href="index.html#governance">Governance</a></li>
-        <li><a href="mailto:info@tradingcardid.org">Contact</a></li>
+        <li><a href="lookup.html">Lookup</a></li>
+        <li><a href="api.html">API</a></li>
+        <li><a href="coalition.html">Coalition</a></li>
       </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Follow</div>
+      <a href="https://www.linkedin.com/company/113329098" target="_blank" rel="noopener noreferrer" aria-label="TCID on LinkedIn" class="footer-social-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+        </svg>
+      </a>
     </div>
   </div>
   <div class="footer-bottom">
     <span class="footer-copy">&copy; 2026 TCID. All rights reserved.</span>
     <span class="footer-cc">TCID identifiers will be published under Creative Commons Attribution 4.0 International.</span>
-    <span class="footer-legal" style="font-size: 12px; color: #aab2c4; flex-basis: 100%; margin-top: 12px; line-height: 1.5;">
+    <span class="footer-legal" style="font-size: 12px; color: #aab2c4; flex-basis: 100%; margin-top: 10px; line-height: 1.5;">
       TCID is being structured as a 501(c)(6) standards body. Intellectual property counsel for trademark and certification mark matters is Andrus Intellectual Property Law, LLP, Milwaukee, WI.
     </span>
   </div>
