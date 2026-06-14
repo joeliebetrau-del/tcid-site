@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coalition | TCID</title>
+  <title>CTCA and TCID Announce Strategic Partnership — TCID</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:wght@300;400&display=swap" rel="stylesheet">
   <!-- Favicons -->
@@ -37,7 +37,7 @@
       font-size: 16px;
       line-height: 1.6;
     }
-    /* NAV */
+    /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: var(--navy);
@@ -101,6 +101,7 @@
       background: none; border: none; color: var(--accent);
     }
     .hamburger-icon { display: block; }
+    /* ── MOBILE NAV ── */
     @media (max-width: 767px) {
       nav { height: auto; padding: 14px 20px; gap: 0; }
       .nav-brand { font-size: 13px; }
@@ -137,221 +138,89 @@
         margin: 12px 0 4px;
       }
     }
-
-    /* PAGE HEADER */
+    /* ── PAGE HEADER ── */
     .page-header {
       margin-top: 56px; background: var(--navy);
-      padding: 48px 40px 40px; border-bottom: 1px solid #1e2f50;
+      padding: 44px 40px 36px; border-bottom: 1px solid #1e2f50;
     }
-    .page-header-inner { max-width: 900px; margin: 0 auto; }
-    .page-label {
-      font-family: var(--mono); font-size: 11px; color: var(--accent);
-      letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 10px;
-    }
-    .page-title {
-      font-family: var(--serif); font-size: 32px; font-weight: 300;
-      color: var(--white);
-    }
-    @media (max-width: 720px) {
-      .page-header { padding: 36px 20px 32px; }
-      .page-title { font-size: 26px; }
-    }
-
-    /* SECTION BASE */
-    section { padding: 72px 40px; }
-    @media (max-width: 720px) { section { padding: 52px 20px; } }
-    .section-inner { max-width: 900px; margin: 0 auto; }
-    .section-title {
-      font-family: var(--serif);
-      font-size: clamp(22px, 2.6vw, 30px);
-      font-weight: 300;
-      color: var(--navy);
-      line-height: 1.25;
-      margin-bottom: 14px;
-    }
-    .section-rule {
-      width: 40px; height: 2px;
-      background: var(--accent);
-      margin-bottom: 28px;
-    }
-    .alt-bg { background: var(--light); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
-
-    /* INTRO */
-    .coalition-intro {
-      font-size: 17px;
-      color: var(--muted);
-      line-height: 1.75;
-      max-width: 720px;
-    }
-
-    /* LETTERS OF SUPPORT */
-    .letters-block { margin-top: 56px; }
-    .supporter-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 24px;
-      margin-top: 4px;
-    }
-    @media (min-width: 720px) {
-      .supporter-grid {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 340px));
-        justify-content: start;
-      }
-    }
-    .supporter-card {
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 2px;
-      padding: 26px 26px 24px;
-      display: flex;
-      flex-direction: column;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .supporter-card:hover {
-      border-color: rgba(200,168,75,0.5);
-      box-shadow: 0 2px 12px rgba(10,22,40,0.06);
-    }
-    .supporter-name {
-      font-family: var(--serif);
-      font-size: 20px;
-      font-weight: 400;
-      color: var(--navy);
-      line-height: 1.25;
-      margin-bottom: 6px;
-    }
-    .supporter-title {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 2px;
-    }
-    .supporter-org {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--navy);
-      letter-spacing: 0.01em;
-    }
-    .supporter-link {
+    .page-header-inner { max-width: 760px; margin: 0 auto; }
+    .back-link {
       display: inline-block;
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--accent);
-      letter-spacing: 0.04em;
-      text-decoration: none;
-      margin-top: 16px;
+      font-family: var(--mono); font-size: 12px;
+      color: var(--accent); letter-spacing: 0.04em;
+      text-decoration: none; margin-bottom: 22px;
       transition: opacity 0.2s;
     }
-    .supporter-link:hover { opacity: 0.7; }
-    .supporter-link .arrow {
-      font-family: var(--sans);
-      margin-left: 4px;
+    .back-link:hover { opacity: 0.7; }
+    .page-label {
+      font-family: var(--mono); font-size: 11px; color: var(--accent);
+      letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px;
     }
-
-    /* STRATEGIC PARTNERSHIPS */
-    .partnerships-block { margin-top: 56px; }
-    .partner-card {
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 2px;
-      padding: 28px;
-      display: flex;
-      gap: 28px;
-      align-items: center;
-      max-width: 700px;
-      margin-top: 4px;
-      transition: border-color 0.2s, box-shadow 0.2s;
+    .pr-headline {
+      font-family: var(--serif); font-size: clamp(26px, 3.4vw, 36px);
+      font-weight: 400; color: var(--white); line-height: 1.25;
+      margin-bottom: 16px;
     }
-    .partner-card:hover {
-      border-color: rgba(200,168,75,0.5);
-      box-shadow: 0 2px 12px rgba(10,22,40,0.06);
+    .pr-subhead {
+      font-family: var(--sans); font-size: 16px; font-weight: 300;
+      color: #aab2c4; line-height: 1.6; max-width: 680px;
     }
-    .partner-logo {
-      flex-shrink: 0;
-      width: 200px;
-      height: auto;
-      display: block;
+    @media (max-width: 720px) {
+      .page-header { padding: 32px 20px 28px; }
     }
-    .partner-body { display: flex; flex-direction: column; }
-    .partner-name {
-      font-family: var(--serif);
-      font-size: 20px;
-      font-weight: 400;
-      color: var(--navy);
-      line-height: 1.25;
-      margin-bottom: 10px;
+    /* ── ARTICLE ── */
+    .pr-article { padding: 56px 40px 72px; }
+    @media (max-width: 720px) { .pr-article { padding: 44px 20px 56px; } }
+    .pr-inner { max-width: 760px; margin: 0 auto; }
+    .pr-dateline {
+      font-family: var(--mono); font-size: 13px; color: var(--muted);
+      letter-spacing: 0.03em; margin-bottom: 28px;
     }
-    .partner-desc {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.7;
+    .pr-dateline strong { color: var(--navy); font-weight: 500; }
+    .pr-body p {
+      font-size: 16px; color: var(--text); line-height: 1.8;
+      margin-bottom: 22px;
     }
-    @media (max-width: 600px) {
-      .partner-card { flex-direction: column; align-items: flex-start; gap: 20px; }
-      .partner-logo { width: 160px; }
+    .pr-focus {
+      list-style: none; margin: 8px 0 28px; padding: 0;
     }
-
-    /* PLACEHOLDER PARAGRAPHS */
-    .placeholder-paragraph {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 15px;
-      color: var(--muted);
-      line-height: 1.75;
-      max-width: 680px;
+    .pr-focus li {
+      position: relative;
+      padding: 0 0 0 22px; margin-bottom: 16px;
+      font-size: 16px; color: var(--text); line-height: 1.8;
     }
-
-    /* IN THE PRESS */
-    .press-list { margin-top: 8px; display: flex; flex-direction: column; gap: 0; max-width: 720px; }
-    .press-item {
-      padding: 20px 0;
-      border-bottom: 1px solid var(--rule);
+    .pr-focus li::before {
+      content: ""; position: absolute; left: 0; top: 13px;
+      width: 7px; height: 7px; background: var(--accent); border-radius: 1px;
     }
-    .press-item:first-child { border-top: 1px solid var(--rule); }
-    .press-title {
-      font-family: var(--serif);
-      font-size: 18px;
-      font-weight: 400;
-      color: var(--navy);
-      line-height: 1.3;
-      margin-bottom: 6px;
+    .pr-focus strong { color: var(--navy); font-weight: 600; }
+    .pr-quote {
+      border-left: 3px solid var(--accent);
+      padding: 6px 0 6px 24px; margin: 32px 0;
     }
-    .press-title .press-link {
-      color: var(--navy);
-      text-decoration: none;
-      transition: color 0.2s;
+    .pr-quote p {
+      font-family: var(--serif); font-size: 19px; font-weight: 300;
+      font-style: italic; color: var(--navy); line-height: 1.6;
+      margin-bottom: 12px;
     }
-    .press-title .press-link:hover { color: var(--accent); }
-    .press-meta {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--muted);
-      letter-spacing: 0.03em;
+    .pr-quote cite {
+      font-family: var(--sans); font-style: normal;
+      font-size: 13px; color: var(--muted);
     }
-
-    /* CLOSING */
-    .coalition-closing {
-      background: var(--light);
+    .pr-about {
+      margin-top: 48px; padding-top: 28px;
       border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      padding: 36px 40px;
     }
-    @media (max-width: 720px) { .coalition-closing { padding: 32px 20px; } }
-    .closing-line {
-      font-size: 14px;
-      color: var(--muted);
-      text-align: center;
-      max-width: 720px;
-      margin: 0 auto;
-      line-height: 1.7;
+    .pr-about h2 {
+      font-family: var(--sans); font-size: 16px; font-weight: 600;
+      color: var(--navy); margin-bottom: 14px;
     }
-    .closing-line a {
-      color: var(--accent);
-      text-decoration: none;
-      font-family: var(--mono);
-      font-size: 13px;
+    .pr-about p {
+      font-size: 15px; color: var(--muted); line-height: 1.8;
     }
-    .closing-line a:hover { text-decoration: underline; }
-
-    /* FOOTER */
+    .pr-about a { color: var(--accent); text-decoration: none; }
+    .pr-about a:hover { text-decoration: underline; }
+    /* ── FOOTER ── */
     footer {
       background: #060e1a;
       border-top: 2px solid var(--accent);
@@ -391,10 +260,7 @@
     }
     .footer-cta:hover { opacity: 0.85; color: var(--navy); }
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; padding: 0; margin: 0; }
-    .footer-links a {
-      font-size: 13px; color: #aab2c4; text-decoration: none;
-      transition: color 0.2s;
-    }
+    .footer-links a { font-size: 13px; color: #aab2c4; text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: var(--accent); }
     .footer-social-icon {
       display: inline-flex; align-items: center; justify-content: center;
@@ -419,7 +285,7 @@
 <body>
 <!-- NAV -->
 <nav>
-  <a class="nav-brand" href="index.html"><span>TCID</span> &nbsp;Trading Card ID</a>
+  <a class="nav-brand" href="../index.html"><span>TCID</span> &nbsp;Trading Card ID</a>
   <button class="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false" onclick="toggleNav()">
     <svg class="hamburger-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true">
       <line x1="3" y1="6" x2="21" y2="6"/>
@@ -436,15 +302,15 @@
         </svg>
       </button>
       <ul class="nav-dropdown">
-        <li><a href="index.html#how">How It Works</a></li>
-        <li><a href="index.html#governance">Governance</a></li>
-        <li><a href="index.html#what">Standard</a></li>
-        <li><a href="about.html">About TCID</a></li>
+        <li><a href="../index.html#how">How It Works</a></li>
+        <li><a href="../index.html#governance">Governance</a></li>
+        <li><a href="../index.html#what">Standard</a></li>
+        <li><a href="../about.html">About TCID</a></li>
       </ul>
     </li>
-    <li><a href="lookup.html">Lookup</a></li>
-    <li><a href="api.html">API</a></li>
-    <li><a href="coalition.html" class="active">Coalition</a></li>
+    <li><a href="../lookup.html">Lookup</a></li>
+    <li><a href="../api.html">API</a></li>
+    <li><a href="../coalition.html" class="active">Coalition</a></li>
     <li class="contact-li"><a href="mailto:info@tradingcardid.org" class="nav-contact">Contact</a></li>
   </ul>
 </nav>
@@ -481,68 +347,60 @@
     });
   })();
 </script>
-
 <!-- PAGE HEADER -->
 <div class="page-header">
   <div class="page-header-inner">
-    <div class="page-label">Industry Recognition</div>
-    <div class="page-title">Coalition</div>
+    <a class="back-link" href="../coalition.html">&larr;&nbsp; Back to Coalition</a>
+    <div class="page-label">For Immediate Release</div>
+    <h1 class="pr-headline">CTCA and TCID Announce Strategic Partnership to Help Build a Safer, Smarter, Stronger Hobby Ecosystem</h1>
+    <p class="pr-subhead">Certified Trading Card Association (CTCA) and Trading Card Identification Number (TCID) to collaborate on standards, transparency, and foundational hobby infrastructure</p>
   </div>
 </div>
+<!-- ARTICLE -->
+<article class="pr-article">
+  <div class="pr-inner">
+    <div class="pr-dateline"><strong>Wentzville, MO</strong> &mdash; June 2026</div>
+    <div class="pr-body">
+      <p>The Certified Trading Card Association (CTCA), the first and only national trade association dedicated to the trading card industry, today announced a strategic partnership with Trading Card Identification Number (TCID), an emerging open identifier standard designed to create a neutral, permanent identification system for trading cards.</p>
 
-<!-- INTRO + LETTERS OF SUPPORT -->
-<section>
-  <div class="section-inner">
-    <p class="coalition-intro">Practitioners, organizations, and publications backing the TCID standard.</p>
+      <p>Together, CTCA and TCID will explore opportunities to strengthen trust, transparency, and interoperability across the hobby by helping create a stronger foundation for collectors, marketplaces, grading companies, insurers, technology providers, retailers, and other stakeholders.</p>
 
-    <div class="partnerships-block">
-      <h2 class="section-title">Strategic Partnerships</h2>
-      <div class="section-rule"></div>
-      <article class="partner-card">
-        <img class="partner-logo" src="images/ctca-logo.jpg" alt="Certified Trading Card Association (CTCA) logo" width="200">
-        <div class="partner-body">
-          <div class="partner-name">Certified Trading Card Association (CTCA)</div>
-          <p class="partner-desc">The first national trade association dedicated to the trading card industry. CTCA and TCID announced a strategic partnership in June 2026 to collaborate on standards, transparency, and foundational hobby infrastructure.</p>
-          <a class="supporter-link" href="https://thectca.org" target="_blank" rel="noopener noreferrer">thectca.org<span class="arrow">&nbsp;&rarr;</span></a>
-        </div>
-      </article>
-    </div>
+      <p>TCID is building an open identifier framework intended to assign a stable, permanent identifier to every distinct trading card type, helping various platforms and participants across the hobby "speak the same language" when referencing cards. The initiative is being structured with independent governance principles to support long-term neutrality and industry-wide adoption.</p>
 
-    <div class="letters-block">
-      <h2 class="section-title">Letters of Support</h2>
-      <div class="section-rule"></div>
-      <p class="placeholder-paragraph" style="margin-bottom: 32px;">The following practitioners have formally backed the TCID standard.</p>
-      <div class="supporter-grid">
-        <article class="supporter-card">
-          <div class="supporter-name">Todd Sawatzky</div>
-          <div class="supporter-title">Independent Appraiser</div>
-          <div class="supporter-org">Todd Sawatzky Appraisals</div>
-          <a class="supporter-link" href="https://toddsawatzkyappraisals.com" target="_blank" rel="noopener noreferrer">toddsawatzkyappraisals.com<span class="arrow">&nbsp;&rarr;</span></a>
-        </article>
+      <div class="pr-quote">
+        <p>"As the hobby continues to grow, so does the need for better infrastructure, greater transparency, and more collaboration across the ecosystem. At CTCA, we believe a safer, smarter, stronger hobby requires foundational systems that help reduce friction, improve trust, and support innovation. TCID represents a forward-thinking effort to create a common language for the hobby, and we are excited to work together to explore what that future can look like."</p>
+        <cite>Nick Jarman, Founder and CEO, Certified Trading Card Association (CTCA)</cite>
       </div>
+
+      <p>The partnership will focus on evaluating ways CTCA and TCID can collaborate on:</p>
+      <ul class="pr-focus">
+        <li><strong>Industry Standards and Best Practices</strong> &mdash; Supporting broader dialogue around standardization, interoperability, and trusted infrastructure.</li>
+        <li><strong>Collector Protection and Transparency</strong> &mdash; Exploring how identification systems may complement hobby safety initiatives, provenance efforts, and transparency solutions.</li>
+        <li><strong>Technology and Ecosystem Collaboration</strong> &mdash; Encouraging thoughtful collaboration between marketplaces, grading companies, hobby technology providers, and other stakeholders.</li>
+        <li><strong>Long-Term Hobby Infrastructure</strong> &mdash; Helping support the development of systems designed to make participation in the hobby easier, safer, and more connected.</li>
+      </ul>
+
+      <div class="pr-quote">
+        <p>"Every participant in the trading card ecosystem describes the same card differently. We're building the reference layer that lets them speak the same language. Collaborating with CTCA is an important step in making that a reality."</p>
+        <cite>Joe Liebetrau, Founder, TCID</cite>
+      </div>
+
+      <p>The partnership reflects both organizations' shared belief that the future of the hobby depends on proactive leadership, industry cooperation, and long-term thinking.</p>
+
+      <p>As the collectibles industry continues to evolve, CTCA and TCID believe collaboration, not fragmentation, will be essential in creating a more trusted and sustainable future for collectors and businesses alike.</p>
+    </div>
+
+    <div class="pr-about">
+      <h2>About the Certified Trading Card Association (CTCA)</h2>
+      <p>The Certified Trading Card Association (CTCA) is the first and only national trade association dedicated to the trading card industry. Founded to create a Safer. Smarter. Stronger. hobby ecosystem, CTCA brings together businesses, collectors, creators, retailers, grading companies, marketplaces, and technology providers to advance standards, trust, education, protection, and industry collaboration. Learn more at <a href="https://thectca.org" target="_blank" rel="noopener noreferrer">thectca.org</a>.</p>
+    </div>
+
+    <div class="pr-about">
+      <h2>About Trading Card Identification Number (TCID)</h2>
+      <p>Trading Card Identification Number (TCID) is an open identifier standard designed to assign a stable, permanent identifier to every distinct trading card type. TCID seeks to provide foundational infrastructure that enables marketplaces, grading companies, insurers, collectors, and technology providers to reference cards through a common identifier system. Learn more at <a href="https://tradingcardid.org" target="_blank" rel="noopener noreferrer">tradingcardid.org</a>.</p>
     </div>
   </div>
-</section>
-
-<!-- IN THE PRESS -->
-<section class="alt-bg">
-  <div class="section-inner">
-    <h2 class="section-title">In the Press</h2>
-    <div class="section-rule"></div>
-    <div class="press-list">
-      <article class="press-item">
-        <div class="press-title"><a class="press-link" href="press/ctca-partnership.html">CTCA and TCID Announce Strategic Partnership</a></div>
-        <div class="press-meta">Press Release &nbsp;&middot;&nbsp; June 2026</div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- CLOSING LINE -->
-<div class="coalition-closing">
-  <p class="closing-line">Practitioners and organizations interested in joining the TCID Coalition can contact us at <a href="mailto:info@tradingcardid.org">info@tradingcardid.org</a></p>
-</div>
-
+</article>
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -553,11 +411,11 @@
     <div>
       <div class="footer-heading">Quick Links</div>
       <ul class="footer-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="lookup.html">Lookup</a></li>
-        <li><a href="api.html">API</a></li>
-        <li><a href="coalition.html">Coalition</a></li>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../lookup.html">Lookup</a></li>
+        <li><a href="../api.html">API</a></li>
+        <li><a href="../coalition.html">Coalition</a></li>
       </ul>
     </div>
     <div>
