@@ -184,6 +184,23 @@
     }
     .results-count { font-family: var(--mono); font-size: 13px; color: var(--muted); }
     .results-count span { color: var(--navy); font-weight: 500; }
+    /* TRUNCATION NOTICE + LOAD MORE */
+    .results-notice {
+      background: #fffaf0; border: 1px solid var(--accent); border-left: 3px solid var(--accent);
+      border-radius: 2px; padding: 14px 18px; margin-bottom: 16px;
+      font-size: 13px; color: var(--text); line-height: 1.5;
+    }
+    .results-notice strong { color: var(--navy); font-weight: 600; }
+    .load-more-wrap { text-align: center; margin-top: 20px; }
+    .btn-load-more {
+      height: 44px; padding: 0 28px;
+      background: var(--navy); color: var(--white);
+      font-family: var(--sans); font-size: 14px; font-weight: 600;
+      border: 1px solid var(--navy); border-radius: 2px; cursor: pointer;
+      letter-spacing: 0.04em; transition: opacity 0.2s;
+    }
+    .btn-load-more:hover { opacity: 0.88; }
+    .btn-load-more:disabled { opacity: 0.5; cursor: not-allowed; }
     .result-card {
       background: var(--white); border: 1px solid var(--rule);
       border-radius: 2px; margin-bottom: 8px; overflow: hidden;
@@ -457,6 +474,11 @@
 // ============================================================================
 const API_BASE = 'https://api.tradingcardid.org/v1';
 const API_KEY = 'tcid_public_web_lookup';
+// FREE tier returns at most this many results per page; a full page means more may exist.
+const PAGE_SIZE = 25;
+
+// Holds the active paginated search so "Load more" can request the next page.
+let currentSearch = null;
 
 // ============================================================================
 // SEARCH FUNCTION
@@ -471,6 +493,7 @@ async function runSearch() {
   // Check if this is a TCID lookup (format: SC + 8-10 alphanumeric)
   const tcidPattern = /^SC[A-Z0-9]{9}$/i;
   if (tcidPattern.test(query.toUpperCase())) {
+    currentSearch = null;
     await lookupTCID(query.toUpperCase());
     return;
   }
@@ -489,11 +512,29 @@ async function runSearch() {
     return; // Do nothing if no params
   }
 
-  // Show loading state
+  // Start a fresh paginated search at page 1.
+  currentSearch = {
+    baseParams: params.toString(),
+    autoFilter,
+    label: query || 'filtered',
+    page: 1,
+    results: [],
+    seen: new Set(),
+    truncated: false
+  };
+
   showLoading();
+  await fetchPage();
+}
+
+// Fetch the current page of the active search and append it to the results.
+async function fetchPage() {
+  const s = currentSearch;
+  if (!s) return;
 
   try {
-    const response = await fetch(`${API_BASE}/cards/search?${params}`, {
+    const url = `${API_BASE}/cards/search?${s.baseParams}&page=${s.page}&per_page=${PAGE_SIZE}`;
+    const response = await fetch(url, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${API_KEY}`,
@@ -507,17 +548,38 @@ async function runSearch() {
     }
 
     const data = await response.json();
-    let results = data.results || [];
+    const pageResults = data.results || [];
 
-    // Client-side filter for relics if selected
-    if (autoFilter === 'relic') {
-      results = results.filter(card => card.RELIC === true || card.RELIC === 'true');
+    // A full page means the API may be holding back more results.
+    s.truncated = pageResults.length === PAGE_SIZE;
+
+    // Client-side filter for relics if selected (applied per page, then accumulated).
+    const filtered = s.autoFilter === 'relic'
+      ? pageResults.filter(card => card.RELIC === true || card.RELIC === 'true')
+      : pageResults;
+
+    // Drop any TCID already shown. The API pages with a non-unique sort key, so
+    // tied rows can repeat across pages. Without this guard the same card
+    // would appear twice in the appended list.
+    for (const card of filtered) {
+      if (card.TCID && s.seen.has(card.TCID)) continue;
+      if (card.TCID) s.seen.add(card.TCID);
+      s.results.push(card);
     }
 
-    renderResults(results, query || 'filtered');
+    renderResults(s.results, s.label, s.truncated);
   } catch (error) {
     showError('Search failed', error.message);
   }
+}
+
+// Load the next page and append it to the existing results.
+async function loadMore() {
+  if (!currentSearch) return;
+  const btn = document.getElementById('load-more-btn');
+  if (btn) { btn.disabled = true; btn.textContent = 'Loading...'; }
+  currentSearch.page += 1;
+  await fetchPage();
 }
 
 // ============================================================================
@@ -554,9 +616,9 @@ async function lookupTCID(tcid) {
 // ============================================================================
 // RENDER RESULTS
 // ============================================================================
-function renderResults(results, query) {
+function renderResults(results, query, truncated = false) {
   const container = document.getElementById('results-container');
-  
+
   if (results.length === 0) {
     container.innerHTML = `
       <div class="empty-state">
@@ -567,9 +629,21 @@ function renderResults(results, query) {
     return;
   }
 
+  // When the last page came back full we don't know the true total, so say so
+  // honestly rather than presenting the partial count as definitive.
+  const countLabel = truncated
+    ? `Showing <span>${results.length}</span> result${results.length !== 1 ? 's' : ''} (more may exist)`
+    : `<span>${results.length}</span> card type${results.length !== 1 ? 's' : ''} found`;
+
   let html = `<div class="results-header">
-    <span class="results-count"><span>${results.length}</span> card type${results.length !== 1 ? 's' : ''} found</span>
+    <span class="results-count">${countLabel}</span>
   </div>`;
+
+  if (truncated) {
+    html += `<div class="results-notice">
+      <strong>More results may exist.</strong> Showing the first ${results.length}. Narrow your search with the Sport, Manufacturer, Season, or Card Type filters above, or load more below.
+    </div>`;
+  }
 
   results.forEach((card) => {
     // Map API field names to display
@@ -625,6 +699,12 @@ function renderResults(results, query) {
       </div>
     </div>`;
   });
+
+  if (truncated) {
+    html += `<div class="load-more-wrap">
+      <button class="btn-load-more" id="load-more-btn" onclick="loadMore()">Load more results</button>
+    </div>`;
+  }
 
   container.innerHTML = html;
 }
