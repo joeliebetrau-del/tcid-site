@@ -17,10 +17,10 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:wght@300;400&display=swap" rel="stylesheet">
   <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-180.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#0a1628">
   <style>
@@ -61,6 +61,7 @@
       white-space: nowrap;
     }
     .nav-brand span { color: var(--accent); }
+    .nav-logo { height: 36px; width: auto; display: block; }
     .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
     .nav-links > li { position: relative; }
     .nav-links a, .nav-dropdown-toggle {
@@ -151,7 +152,7 @@
     .hero {
       margin-top: 56px;
       background: var(--navy);
-      padding: 100px 40px 80px;
+      padding: 50px 40px 80px;
       border-bottom: 1px solid #1e2f50;
     }
     @media (max-width: 720px) {
@@ -457,7 +458,7 @@
 <body>
 <!-- NAV -->
 <nav>
-  <a class="nav-brand" href="index.html"><span>TCID</span> &nbsp;Trading Card ID</a>
+  <a class="nav-brand" href="index.html"><img class="nav-logo" src="images/tcid-header-logo.png" alt="TCID"></a>
   <button class="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false" onclick="toggleNav()">
     <svg class="hamburger-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true">
       <line x1="3" y1="6" x2="21" y2="6"/>
@@ -522,7 +523,7 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-label">Open Identifier Standard &nbsp;/&nbsp; Sports Cards &amp; Trading Cards</div>
+    <div class="hero-label">Trading Card Identification Number</div>
     <h1>A neutral, permanent identifier<br>for every <strong>trading card</strong>.</h1>
     <p class="hero-sub">TCID is an open registry standard that assigns a stable, opaque alphanumeric identifier to every distinct trading card type enabling platforms, insurers, grading companies, and collectors to speak the same language.</p>
     <div class="hero-actions">
