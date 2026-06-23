@@ -7,5 +7,5 @@
         stroke="#0a1628" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
   <!-- Gold checkmark: positioned in lower half, slightly thinner -->
   <path d="M 32 53 L 45 66 L 70 38"
-        stroke="#c8a84b" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        stroke="#c9a84c" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 </svg>
