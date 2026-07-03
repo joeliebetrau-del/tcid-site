@@ -160,12 +160,12 @@
     }
     .page-header-inner { max-width: 900px; margin: 0 auto; }
     .page-label {
-      font-family: var(--mono); font-size: 11px; color: var(--accent);
+      font-family: var(--mono); font-size: 15px; font-weight: 500; color: var(--accent);
       letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 10px;
     }
     .page-title {
-      font-family: var(--serif); font-size: 32px; font-weight: 300;
-      color: var(--white);
+      font-family: var(--serif); font-size: clamp(32px, 4vw, 48px); font-weight: 300;
+      line-height: 1.15; color: var(--white);
     }
     @media (max-width: 720px) {
       .page-header { padding: 36px 20px 32px; }
