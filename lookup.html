@@ -508,8 +508,8 @@ async function runSearch() {
   const seasonFilter = document.getElementById('filter-season').value;
   const autoFilter = document.getElementById('filter-auto').value;
 
-  // Check if this is a TCID lookup (format: SC + 8-10 alphanumeric)
-  const tcidPattern = /^SC[A-Z0-9]{9}$/i;
+  // Check if this is a TCID lookup (namespace prefix SC or NS + 9 alphanumeric, 11 chars; Spec Section 9)
+  const tcidPattern = /^(SC|NS)[A-Z0-9]{9}$/i;
   if (tcidPattern.test(query.toUpperCase())) {
     currentSearch = null;
     await lookupTCID(query.toUpperCase());
