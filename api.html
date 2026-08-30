@@ -508,8 +508,8 @@ Authorization: Bearer <span class="code-string">YOUR_API_KEY</span></pre></div>
             <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
             <tbody>
               <tr><td>player</td><td>string</td><td>Player name (partial match supported)</td></tr>
-              <tr><td>sport</td><td>string</td><td>Baseball, Football, Basketball, Hockey</td></tr>
-              <tr><td>manufacturer</td><td>string</td><td>Topps, Panini, Leaf, Upper Deck</td></tr>
+              <tr><td>sport</td><td>string</td><td>Exact sport value as listed in the registry (see the filters at tradingcardid.org/lookup)</td></tr>
+              <tr><td>manufacturer</td><td>string</td><td>Exact manufacturer name as listed in the registry (see the filters at tradingcardid.org/lookup)</td></tr>
               <tr><td>season</td><td>string</td><td>e.g. 2025, 2024-25</td></tr>
               <tr><td>product</td><td>string</td><td>Product name (partial match supported)</td></tr>
               <tr><td>autograph</td><td>boolean</td><td>Filter to autograph cards</td></tr>
@@ -543,7 +543,7 @@ Authorization: Bearer <span class="code-string">YOUR_API_KEY</span></pre></div>
         <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
         <tbody>
           <tr><td>tcid</td><td>string</td><td>The permanent TCID identifier</td></tr>
-          <tr><td>sport</td><td>string</td><td>Sport (Baseball, Football, Basketball, Hockey)</td></tr>
+          <tr><td>sport</td><td>string</td><td>Sport, exact value as listed in the registry</td></tr>
           <tr><td>manufacturer</td><td>string</td><td>Card manufacturer</td></tr>
           <tr><td>season</td><td>string</td><td>Product season or year</td></tr>
           <tr><td>product</td><td>string</td><td>Product name</td></tr>
