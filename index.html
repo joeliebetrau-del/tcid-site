@@ -319,6 +319,24 @@
     .gov-box.highlight h3 { color: var(--white); }
     .gov-box p { font-size: 14px; color: var(--muted); line-height: 1.65; }
     .gov-box.highlight p { color: #8a96b0; }
+    /* ── PARTICIPATING MANUFACTURERS ── */
+    .mfr-bg {
+      background: var(--navy);
+      border-top: 1px solid #1e3055;
+      border-bottom: 2px solid var(--accent);
+    }
+    .mfr-bg .section-title { color: var(--white); }
+    .mfr-bg .section-body { color: #8a96b0; }
+    .mfr-row {
+      margin-top: 40px;
+      display: flex; flex-wrap: wrap;
+      justify-content: center; align-items: center;
+      gap: 32px;
+    }
+    .mfr-row a { display: inline-flex; align-items: center; }
+    .mfr-row a:hover { opacity: 0.85; }
+    /* logo files ship on solid black, screen drops the block against the navy */
+    .mfr-row img { height: 44px; width: auto; max-width: 100%; display: block; mix-blend-mode: screen; }
     /* ── API PREVIEW ── */
     .api-bg { background: var(--navy); }
     .api-bg .section-title { color: var(--white); }
@@ -597,6 +615,20 @@
         <h3>Registry Operations</h3>
         <p>Being structured as a Delaware C-Corp. Will operate the registry database, API layer, and data products under license from the standards body. Revenue will fund nonprofit governance operations plus commercial operations.</p>
       </div>
+    </div>
+  </div>
+</section>
+<!-- PARTICIPATING MANUFACTURERS -->
+<section id="manufacturers" class="mfr-bg">
+  <div class="section-inner">
+    <div class="section-label">Participating Manufacturers</div>
+    <h2 class="section-title">Manufacturers in the registry</h2>
+    <div class="section-rule"></div>
+    <p class="section-body">Manufacturers that publish their catalogs directly through the TCID registry.</p>
+    <div class="mfr-row">
+      <a href="https://basedtradingcards.com/" target="_blank" rel="noopener noreferrer">
+        <img src="images/based-trading-cards-white.png" alt="Based Trading Cards">
+      </a>
     </div>
   </div>
 </section>
