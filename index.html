@@ -321,12 +321,10 @@
     .gov-box.highlight p { color: #8a96b0; }
     /* ── PARTICIPATING MANUFACTURERS ── */
     .mfr-bg {
-      background: var(--navy);
-      border-top: 1px solid #1e3055;
-      border-bottom: 2px solid var(--accent);
+      background: var(--light);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
     }
-    .mfr-bg .section-title { color: var(--white); }
-    .mfr-bg .section-body { color: #8a96b0; }
     .mfr-row {
       margin-top: 40px;
       display: flex; flex-wrap: wrap;
@@ -335,12 +333,13 @@
     }
     .mfr-row a { display: inline-flex; align-items: center; }
     .mfr-row a:hover { opacity: 0.85; }
-    /* logo files ship on solid black, screen drops the block against the navy */
-    .mfr-row img { height: 44px; width: auto; max-width: 100%; display: block; mix-blend-mode: screen; }
+    /* logo files ship white on solid black, invert plus multiply drops the block on light */
+    .mfr-row img {
+      height: 44px; width: auto; max-width: 100%; display: block;
+      filter: invert(1); mix-blend-mode: multiply;
+    }
     /* ── API PREVIEW ── */
-    .api-bg { background: var(--navy); }
-    .api-bg .section-title { color: var(--white); }
-    .api-bg .section-body { color: #8a96b0; }
+    .api-bg { background: var(--light); }
     .code-block {
       margin-top: 40px; background: #0d1f3c;
       border: 1px solid #1e3055; border-radius: 2px;
