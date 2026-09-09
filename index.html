@@ -327,8 +327,14 @@
       justify-content: center; align-items: center;
       gap: 32px;
     }
-    .mfr-row a { display: inline-flex; align-items: center; }
-    .mfr-row a:hover { opacity: 0.85; }
+    .mfr-row a {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 200px; padding: 22px 28px;
+      background: var(--white);
+      border: 1px solid var(--rule); border-radius: 2px;
+      transition: border-color 0.2s;
+    }
+    .mfr-row a:hover { border-color: var(--accent); }
     .mfr-row img { height: 56px; width: auto; max-width: 100%; display: block; }
     /* ── API PREVIEW ── */
     .code-block {
