@@ -333,10 +333,10 @@
     }
     .mfr-row a { display: inline-flex; align-items: center; }
     .mfr-row a:hover { opacity: 0.85; }
-    /* logo files ship white on solid black, invert plus multiply drops the block on light */
+    /* logo files ship white on transparent, invert renders them dark on the light band */
     .mfr-row img {
-      height: 44px; width: auto; max-width: 100%; display: block;
-      filter: invert(1); mix-blend-mode: multiply;
+      height: 56px; width: auto; max-width: 100%; display: block;
+      filter: invert(1);
     }
     /* ── API PREVIEW ── */
     .api-bg { background: var(--light); }
