@@ -570,7 +570,7 @@
   --tr-gold:#c9a84c; --tr-navy:#0a1628; --tr-text:#1c2333; --tr-muted:#5a6378;
   --tr-rule:#d0d5de; --tr-line:#9ba3b2;
   --tr-mono:'IBM Plex Mono',monospace; --tr-sans:'IBM Plex Sans',sans-serif;
-  margin-top:48px;
+  margin-top:52px;
 }
 #oc-resolve *{box-sizing:border-box;}
 
@@ -579,6 +579,8 @@
   position:relative; width:100%; max-width:900px; margin:0 auto;
   font-family:var(--tr-sans); color:var(--tr-text); line-height:1.6;
 }
+/* short grey rule that separates the diagram from the what-grid copy above */
+#oc-resolve .oc-panel::before{content:"";display:block;width:64px;height:2px;background:var(--tr-rule);margin:0 auto 32px;}
 
 #oc-resolve .oc-head{display:flex;align-items:center;justify-content:center;margin:0 0 30px;}
 #oc-resolve .oc-head .rule{display:none;}
@@ -589,26 +591,26 @@
 #oc-resolve .oc-grid{display:grid;grid-template-columns:1fr 168px 1fr;gap:24px;align-items:center;position:relative;z-index:2;padding:0 44px;}
 #oc-resolve .oc-col{display:flex;flex-direction:column;gap:22px;}
 
-#oc-resolve .oc-box{position:relative;border:1px solid var(--tr-rule);border-radius:2px;padding:16px 18px;text-align:center;
-  background:#fff; transition:border-color .2s ease;}
+#oc-resolve .oc-box{position:relative;border:1px solid var(--tr-navy);border-radius:2px;padding:17px 18px;text-align:center;
+  background:var(--tr-navy); transition:border-color .2s ease;}
 #oc-resolve .oc-box:hover{border-color:var(--tr-gold);}
-#oc-resolve .oc-box h3{font-family:var(--tr-sans);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;
-  color:var(--tr-navy);margin-bottom:8px;}
-#oc-resolve .oc-box p{font-family:var(--tr-sans);font-size:14px;color:var(--tr-muted);line-height:1.6;}
+#oc-resolve .oc-box h3{font-family:var(--tr-sans);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;
+  color:#fff;margin-bottom:8px;}
+#oc-resolve .oc-box p{font-family:var(--tr-sans);font-size:14px;color:#c3ccdb;line-height:1.6;}
 
 #oc-resolve .oc-cardwrap{display:flex;justify-content:center;}
 #oc-resolve .oc-card{width:148px;border-radius:2px;display:block;box-shadow:0 2px 12px rgba(10,22,40,0.14);}
 
 #oc-resolve .oc-coderow{grid-column:1/-1;display:flex;justify-content:center;margin-top:30px;position:relative;z-index:2;}
-#oc-resolve .oc-chip{font-family:var(--tr-mono);font-size:22px;font-weight:600;color:var(--tr-gold);letter-spacing:2px;
-  padding:12px 28px;border-radius:2px;background:var(--tr-navy);}
+#oc-resolve .oc-chip{font-family:var(--tr-mono);font-size:32px;font-weight:700;color:var(--tr-navy);letter-spacing:3px;
+  padding:14px 34px;border-radius:2px;background:var(--tr-gold);}
 
 #oc-resolve .oc-svg{position:absolute;top:0;left:0;width:100%;height:100%;z-index:3;pointer-events:none;}
 /* connectors and arrowheads are quiet; gold is reserved for the pulse and the resolved code */
-#oc-resolve .conn{stroke:var(--tr-line);stroke-width:1.5;}
+#oc-resolve .conn{stroke:var(--tr-line);stroke-width:2;}
 #oc-resolve #oc-gold-ar path{fill:var(--tr-line);}
-#oc-resolve .oc-pulse-group{filter:none !important;}
-#oc-resolve .pulse{stroke:var(--tr-gold);stroke-width:2.5;opacity:0;}
+#oc-resolve .oc-pulse-group{filter:drop-shadow(0 0 4px rgba(201,168,76,0.55)) !important;}
+#oc-resolve .pulse{stroke:var(--tr-gold);stroke-width:4.5;opacity:0;}
 
 #oc-resolve .reveal{opacity:0;transform:translateY(16px);}
 #oc-resolve .oc-panel.go .reveal{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease;}
@@ -621,17 +623,18 @@
    Blink does not repaint a CSS animation of stroke-dashoffset on these paths. */
 
 @media (max-width:768px){
-  #oc-resolve{margin-top:32px;}
+  #oc-resolve{margin-top:36px;}
   #oc-resolve .oc-grid{grid-template-columns:1fr;padding:0;gap:12px;}
   #oc-resolve .oc-col{gap:12px;}
   #oc-resolve .oc-svg{display:none;}
   #oc-resolve .oc-head{margin-bottom:20px;}
+  #oc-resolve .oc-panel::before{margin-bottom:22px;}
   #oc-resolve .oc-head .txt{font-size:18px;}
   #oc-resolve .oc-box{padding:12px 14px;}
   #oc-resolve .oc-box p{font-size:13px;}
   #oc-resolve .oc-card{width:118px;}
   #oc-resolve .oc-coderow{margin-top:20px;}
-  #oc-resolve .oc-chip{font-size:18px;padding:10px 20px;}
+  #oc-resolve .oc-chip{font-size:24px;letter-spacing:2px;padding:12px 22px;}
   #oc-resolve .reveal{opacity:1;transform:none;}
   /* on mobile the card is decorative and the flow reads top-to-bottom without it */
   #oc-resolve .oc-cardwrap{order:-1;margin-bottom:4px;}
@@ -694,7 +697,7 @@
   var keys=['1','2','3','4','card'], conns={}, pulses={}, lens={};
   var drawDelay={'1':500,'2':620,'3':740,'4':860,'card':400};
   var flowDelay={'1':1500,'2':1800,'3':2100,'4':2400,'card':1300};
-  var DRAW=900, FLOW=2400, elapsed=0, t0=0, running=false;
+  var DRAW=900, FLOW=2000, PULSE=0.2, elapsed=0, t0=0, running=false;
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
   keys.forEach(function(k){
     var c=document.createElementNS(NS,'path');
@@ -728,7 +731,7 @@
       conns[k].setAttribute('d',d[k]); pulses[k].setAttribute('d',d[k]);
       var L=conns[k].getTotalLength(); lens[k]=L;
       conns[k].style.strokeDasharray=L+' '+L;
-      pulses[k].style.strokeDasharray=(L*0.12)+' '+(L*0.88);
+      pulses[k].style.strokeDasharray=(L*PULSE)+' '+(L*(1-PULSE));
     });
     paint(elapsed);
   }
