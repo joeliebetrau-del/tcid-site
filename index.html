@@ -602,13 +602,9 @@
 #oc-resolve .oc-card{width:148px;border-radius:2px;display:block;box-shadow:0 2px 12px rgba(10,22,40,0.14);}
 
 #oc-resolve .oc-coderow{grid-column:1/-1;display:flex;justify-content:center;margin-top:30px;position:relative;z-index:2;}
-#oc-resolve .oc-chip{display:flex;flex-direction:column;align-items:center;gap:9px;
-  padding:15px 34px 13px;border-radius:2px;background:var(--tr-gold);}
-#oc-resolve .oc-code{font-family:var(--tr-mono);font-size:32px;font-weight:700;color:var(--tr-navy);letter-spacing:3px;line-height:1;}
-/* canonical short mark from docs/Branding/TCID_Design_Short_Navy.svg, colours swapped for the gold ground */
-#oc-resolve .oc-mark{width:116px;height:auto;display:block;}
-#oc-resolve .oc-mk-b,#oc-resolve .oc-mk-c{stroke:var(--tr-navy);}
-#oc-resolve .oc-mk-w{fill:var(--tr-navy);}
+/* padding-right is trimmed by the trailing letter-spacing so the code sits optically centred */
+#oc-resolve .oc-chip{font-family:var(--tr-mono);font-size:32px;font-weight:700;color:var(--tr-navy);letter-spacing:3px;
+  line-height:1;padding:16px 31px 16px 34px;border-radius:2px;background:var(--tr-gold);}
 
 #oc-resolve .oc-svg{position:absolute;top:0;left:0;width:100%;height:100%;z-index:3;pointer-events:none;}
 /* connectors and arrowheads are quiet; gold is reserved for the pulse and the resolved code */
@@ -640,9 +636,7 @@
   #oc-resolve .oc-box p{font-size:13px;}
   #oc-resolve .oc-card{width:118px;}
   #oc-resolve .oc-coderow{margin-top:20px;}
-  #oc-resolve .oc-chip{padding:13px 24px 11px;gap:7px;}
-  #oc-resolve .oc-code{font-size:24px;letter-spacing:2px;}
-  #oc-resolve .oc-mark{width:92px;}
+  #oc-resolve .oc-chip{font-size:24px;letter-spacing:2px;padding:14px 20px 14px 22px;}
   #oc-resolve .reveal{opacity:1;transform:none;}
   /* on mobile the card is decorative and the flow reads top-to-bottom without it */
   #oc-resolve .oc-cardwrap{order:-1;margin-bottom:4px;}
@@ -686,17 +680,7 @@
           <div class="oc-box reveal r4"><h3>Insurance Policy</h3><p>Baseball card, Shohei Ohtani, #CRA-SO, 2018, /150</p></div>
         </div>
         <div class="oc-coderow reveal rchip">
-          <div class="oc-chip">
-            <span class="oc-code">SC4X7KQ29R3</span>
-            <svg class="oc-mark" viewBox="83 95 449 122" role="img" aria-label="TCID">
-              <g transform="translate(80, 100)">
-                <path class="oc-mk-b" d="M44 0 Q8 0 8 36 L8 76 Q8 112 44 112" fill="none" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-                <path class="oc-mk-b" d="M68 0 Q104 0 104 36 L104 76 Q104 112 68 112" fill="none" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-                <path class="oc-mk-c" d="M28 58 L48 80 L88 36" fill="none" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-              </g>
-              <text class="oc-mk-w" x="240" y="195" font-family="'IBM Plex Sans','Arial',sans-serif" font-size="128" font-weight="700" letter-spacing="-2">TCID</text>
-            </svg>
-          </div>
+          <div class="oc-chip">SC4X7KQ29R3</div>
         </div>
       </div>
     </div>
