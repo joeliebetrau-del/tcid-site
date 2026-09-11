@@ -236,10 +236,10 @@
     @media (max-width: 720px) { .stats-bar { padding: 32px 20px; } }
     .stats-inner {
       max-width: 900px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 32px;
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 32px 48px;
     }
-    .stat-item {}
+    .stat-item { text-align: center; }
     .stat-value {
       font-family: var(--mono); font-size: 28px; font-weight: 500;
       color: var(--navy); display: block;
@@ -556,6 +556,231 @@
         <p>TCID is being structured for ownership by an independent nonprofit standards body, not by any manufacturer, marketplace, or grading company, ensuring no single commercial interest will control the standard.</p>
       </div>
     </div>
+<!-- ============================================================
+     TCID "One card. One code." resolve diagram
+     Drop-in section. Fully namespaced under #oc-resolve so it
+     cannot collide with or inherit from the rest of the page.
+     Place inside the #what section's .section-inner, after .what-grid.
+     Card asset expected at: images/tcid-card.png
+     ============================================================ -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=IBM+Plex+Sans:wght@400;600;700&display=swap');
+
+#oc-resolve{
+  --tr-gold:#c9a84c; --tr-navy:#0a1628; --tr-text:#1c2333; --tr-muted:#5a6378;
+  --tr-rule:#d0d5de; --tr-line:#9ba3b2;
+  --tr-mono:'IBM Plex Mono',monospace; --tr-sans:'IBM Plex Sans',sans-serif;
+  margin-top:52px;
+}
+#oc-resolve *{box-sizing:border-box;}
+
+/* no panel surface: the diagram sits on the section background as line art */
+#oc-resolve .oc-panel{
+  position:relative; width:100%; max-width:900px; margin:0 auto;
+  font-family:var(--tr-sans); color:var(--tr-text); line-height:1.6;
+}
+/* short grey rule that separates the diagram from the what-grid copy above */
+#oc-resolve .oc-panel::before{content:"";display:block;width:64px;height:2px;background:var(--tr-rule);margin:0 auto 32px;}
+
+#oc-resolve .oc-head{display:flex;align-items:center;justify-content:center;margin:0 0 30px;}
+#oc-resolve .oc-head .rule{display:none;}
+#oc-resolve .oc-head .txt{font-family:var(--tr-sans);font-size:20px;font-weight:600;letter-spacing:-0.01em;color:var(--tr-navy);}
+#oc-resolve .oc-head .txt span{color:var(--tr-gold);}
+
+#oc-resolve .oc-wrap{position:relative;}
+#oc-resolve .oc-grid{display:grid;grid-template-columns:1fr 168px 1fr;gap:24px;align-items:center;position:relative;z-index:2;padding:0 44px;}
+#oc-resolve .oc-col{display:flex;flex-direction:column;gap:22px;}
+
+#oc-resolve .oc-box{position:relative;border:1px solid var(--tr-navy);border-radius:2px;padding:14px 16px;text-align:center;
+  background:var(--tr-navy); transition:border-color .2s ease;}
+#oc-resolve .oc-box:hover{border-color:var(--tr-gold);}
+#oc-resolve .oc-box h3{font-family:var(--tr-sans);font-size:16px;font-weight:600;text-transform:uppercase;letter-spacing:0.03em;
+  color:#fff;margin-bottom:7px;}
+#oc-resolve .oc-box p{font-family:var(--tr-sans);font-size:14px;color:#c3ccdb;line-height:1.5;}
+
+#oc-resolve .oc-cardwrap{display:flex;justify-content:center;}
+#oc-resolve .oc-card{width:148px;border-radius:2px;display:block;box-shadow:0 2px 12px rgba(10,22,40,0.14);}
+
+#oc-resolve .oc-coderow{grid-column:1/-1;display:flex;justify-content:center;margin-top:30px;position:relative;z-index:2;}
+/* padding-right is trimmed by the trailing letter-spacing so the code sits optically centred */
+#oc-resolve .oc-chip{font-family:var(--tr-mono);font-size:32px;font-weight:700;color:var(--tr-navy);letter-spacing:3px;
+  line-height:1;padding:16px 31px 16px 34px;border-radius:2px;background:var(--tr-gold);}
+
+#oc-resolve .oc-svg{position:absolute;top:0;left:0;width:100%;height:100%;z-index:3;pointer-events:none;}
+/* connectors and arrowheads are quiet; gold is reserved for the pulse and the resolved code */
+#oc-resolve .conn{stroke:var(--tr-line);stroke-width:2;}
+#oc-resolve #oc-gold-ar path{fill:var(--tr-line);}
+#oc-resolve .oc-pulse-group{filter:drop-shadow(0 0 4px rgba(201,168,76,0.55)) !important;}
+#oc-resolve .pulse{stroke:var(--tr-gold);stroke-width:4.5;opacity:0;}
+
+#oc-resolve .reveal{opacity:0;transform:translateY(16px);}
+#oc-resolve .oc-panel.go .reveal{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease;}
+#oc-resolve .oc-panel.go .r1{transition-delay:.05s;} #oc-resolve .oc-panel.go .r2{transition-delay:.18s;}
+#oc-resolve .oc-panel.go .r3{transition-delay:.31s;} #oc-resolve .oc-panel.go .r4{transition-delay:.44s;}
+#oc-resolve .oc-panel.go .rcard{transition-delay:.30s;} #oc-resolve .oc-panel.go .rchip{transition-delay:.9s;}
+#oc-resolve .oc-panel.measure .reveal{transform:none !important;transition:none !important;}
+
+/* the connector draw-in and the travelling pulse are driven from the script below.
+   Blink does not repaint a CSS animation of stroke-dashoffset on these paths. */
+
+@media (max-width:768px){
+  #oc-resolve{margin-top:36px;}
+  #oc-resolve .oc-grid{grid-template-columns:1fr;padding:0;gap:12px;}
+  /* the boxes inset to open a rail channel; card and chip stay centred */
+  #oc-resolve .oc-col{gap:12px;padding-left:26px;}
+  #oc-resolve .oc-head{margin-bottom:20px;}
+  #oc-resolve .oc-panel::before{margin-bottom:22px;}
+  #oc-resolve .oc-head .txt{font-size:18px;}
+  #oc-resolve .oc-box{padding:12px 14px;}
+  #oc-resolve .oc-box h3{font-size:15px;}
+  #oc-resolve .oc-box p{font-size:13px;}
+  #oc-resolve .oc-card{width:118px;}
+  #oc-resolve .oc-coderow{margin-top:20px;}
+  #oc-resolve .oc-chip{font-size:24px;letter-spacing:2px;padding:14px 20px 14px 22px;}
+  #oc-resolve .reveal{opacity:1;transform:none;}
+  /* on mobile the card is decorative and the flow reads top-to-bottom without it */
+  #oc-resolve .oc-cardwrap{order:-1;margin-bottom:4px;}
+}
+@media (prefers-reduced-motion:reduce){
+  #oc-resolve .reveal{opacity:1;transform:none;}
+  #oc-resolve .conn{stroke-dashoffset:0 !important;}
+  #oc-resolve .pulse{display:none;}
+}
+</style>
+
+<div id="oc-resolve" aria-label="One card resolves to one TCID">
+  <div class="oc-panel">
+    <div class="oc-head">
+      <span class="rule"></span>
+      <span class="txt">One card. <span>One code.</span></span>
+      <span class="rule"></span>
+    </div>
+
+    <div class="oc-wrap">
+      <svg class="oc-svg" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <marker id="oc-gold-ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#c9a84c"/>
+          </marker>
+        </defs>
+        <g class="oc-conn-group" fill="none" stroke="#cbaa4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g class="oc-pulse-group" fill="none" stroke="#fff3cf" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 3px rgba(230,207,130,0.85))"></g>
+      </svg>
+
+      <div class="oc-grid">
+        <div class="oc-col">
+          <div class="oc-box reveal r1"><h3>Dealer Inventory</h3><p>2018 Chrome Rookie Auto (RC), Shohei Ohtani /150, #CRA-SO</p></div>
+          <div class="oc-box reveal r2"><h3>Grader Certification</h3><p>2018 #CRA-SO Shohei Ohtani RC AUTO REFRACTOR</p></div>
+        </div>
+        <div class="oc-cardwrap reveal rcard">
+          <img class="oc-card" src="images/tcid-card.png" alt="A trading card, described four different ways">
+        </div>
+        <div class="oc-col">
+          <div class="oc-box reveal r3"><h3>Marketplace Listing</h3><p>Shohei Ohtani 2018 Rookie Refractor Auto /150 #CRA-SO</p></div>
+          <div class="oc-box reveal r4"><h3>Insurance Policy</h3><p>Baseball card, Shohei Ohtani, #CRA-SO, 2018, /150</p></div>
+        </div>
+        <div class="oc-coderow reveal rchip">
+          <div class="oc-chip">SC4X7KQ29R3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root=document.getElementById('oc-resolve'); if(!root) return;
+  var panel=root.querySelector('.oc-panel');
+  var wrap=root.querySelector('.oc-wrap');
+  var svg=root.querySelector('.oc-svg');
+  var connG=root.querySelector('.oc-conn-group');
+  var pulseG=root.querySelector('.oc-pulse-group');
+  var NS='http://www.w3.org/2000/svg';
+  var keys=['1','2','3','4','card'], conns={}, pulses={}, lens={};
+  var drawDelay={'1':500,'2':620,'3':500,'4':620,'card':400};
+  var flowDelay={'1':1600,'2':1600,'3':1600,'4':1600,'card':1600};
+  var DRAW=900, FLOW=2000, PULSE=0.2, elapsed=0, t0=0, running=false;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  keys.forEach(function(k){
+    var c=document.createElementNS(NS,'path');
+    c.setAttribute('class','conn c'+k); c.setAttribute('marker-end','url(#oc-gold-ar)');
+    connG.appendChild(c); conns[k]=c;
+    var p=document.createElementNS(NS,'path');
+    p.setAttribute('class','pulse p'+k); pulseG.appendChild(p); pulses[k]=p;
+  });
+  function layout(){
+    panel.classList.add('measure');
+    var wr=wrap.getBoundingClientRect();
+    var W=wrap.clientWidth, H=wrap.clientHeight;
+    function rel(el){var r=el.getBoundingClientRect();
+      return {l:r.left-wr.left,t:r.top-wr.top,r:r.right-wr.left,b:r.bottom-wr.top,
+              cx:(r.left+r.right)/2-wr.left,cy:(r.top+r.bottom)/2-wr.top};}
+    var boxes=[].map.call(root.querySelectorAll('.oc-box'),rel);
+    var card=rel(root.querySelector('.oc-card'));
+    var pill=rel(root.querySelector('.oc-chip'));
+    panel.classList.remove('measure');
+    if(!W||!H) return;
+    svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    var stacked=!!(window.matchMedia&&window.matchMedia('(max-width:768px)').matches);
+    var d;
+    if(stacked){
+      var rail=Math.max(5,boxes[0].l-17);
+      d={
+        '1':'M '+boxes[0].l+' '+boxes[0].cy+' H '+rail+' V '+pill.cy+' H '+pill.l,
+        '2':'M '+boxes[1].l+' '+boxes[1].cy+' H '+rail+' V '+pill.cy+' H '+pill.l,
+        '3':'M '+boxes[2].l+' '+boxes[2].cy+' H '+rail+' V '+pill.cy+' H '+pill.l,
+        '4':'M '+boxes[3].l+' '+boxes[3].cy+' H '+rail+' V '+pill.cy+' H '+pill.l
+      };
+    } else {
+      var railL=boxes[0].l-26, railR=boxes[2].r+26;
+      d={
+        '1':'M '+boxes[0].l+' '+boxes[0].cy+' H '+railL+' V '+pill.cy+' H '+pill.l,
+        '2':'M '+boxes[1].l+' '+boxes[1].cy+' H '+railL+' V '+pill.cy+' H '+pill.l,
+        '3':'M '+boxes[2].r+' '+boxes[2].cy+' H '+railR+' V '+pill.cy+' H '+pill.r,
+        '4':'M '+boxes[3].r+' '+boxes[3].cy+' H '+railR+' V '+pill.cy+' H '+pill.r,
+        'card':'M '+card.cx+' '+card.b+' V '+pill.t
+      };
+    }
+    keys.forEach(function(k){
+      var show=!!d[k];
+      conns[k].style.display=show?'':'none';
+      pulses[k].style.display=show?'':'none';
+      if(!show){lens[k]=0;return;}
+      conns[k].setAttribute('d',d[k]); pulses[k].setAttribute('d',d[k]);
+      var L=conns[k].getTotalLength(); lens[k]=L;
+      conns[k].style.strokeDasharray=L+' '+L;
+      pulses[k].style.strokeDasharray=(L*PULSE)+' '+(L*(1-PULSE));
+    });
+    paint(elapsed);
+  }
+  function ease(x){return x<0.5?4*x*x*x:1-Math.pow(2-2*x,3)/2;}
+  function paint(ms){
+    keys.forEach(function(k){
+      var L=lens[k]||0;
+      var a=(ms-drawDelay[k])/DRAW; a=a<0?0:(a>1?1:a);
+      conns[k].style.strokeDashoffset=reduce?0:L*(1-ease(a));
+      var f=(ms-flowDelay[k])/FLOW;
+      if(f<0){pulses[k].style.opacity='0';}
+      else{f-=Math.floor(f); pulses[k].style.opacity='1'; pulses[k].style.strokeDashoffset=L*(1-f);}
+    });
+  }
+  function tick(now){elapsed=now-t0; paint(elapsed); requestAnimationFrame(tick);}
+  function start(){
+    if(running) return;
+    running=true;
+    panel.classList.add('go');
+    if(reduce){elapsed=0;paint(0);return;}
+    requestAnimationFrame(function(n){t0=n;tick(n);});
+  }
+  layout();
+  window.addEventListener('resize',layout);
+  window.addEventListener('load',function(){layout();setTimeout(start,250);});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){layout();start();io.disconnect();}});},{threshold:0.3});
+    io.observe(panel);
+  } else { start(); }
+})();
+</script>
   </div>
 </section>
 <!-- HOW IT WORKS -->
