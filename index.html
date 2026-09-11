@@ -626,8 +626,8 @@
 @media (max-width:768px){
   #oc-resolve{margin-top:36px;}
   #oc-resolve .oc-grid{grid-template-columns:1fr;padding:0;gap:12px;}
-  #oc-resolve .oc-col{gap:12px;}
-  #oc-resolve .oc-svg{display:none;}
+  /* the boxes inset to open a rail channel; card and chip stay centred */
+  #oc-resolve .oc-col{gap:12px;padding-left:26px;}
   #oc-resolve .oc-head{margin-bottom:20px;}
   #oc-resolve .oc-panel::before{margin-bottom:22px;}
   #oc-resolve .oc-head .txt{font-size:18px;}
@@ -721,15 +721,31 @@
     panel.classList.remove('measure');
     if(!W||!H) return;
     svg.setAttribute('viewBox','0 0 '+W+' '+H);
-    var railL=boxes[0].l-26, railR=boxes[2].r+26;
-    var d={
-      '1':'M '+boxes[0].l+' '+boxes[0].cy+' H '+railL+' V '+pill.cy+' H '+pill.l,
-      '2':'M '+boxes[1].l+' '+boxes[1].cy+' H '+railL+' V '+pill.cy+' H '+pill.l,
-      '3':'M '+boxes[2].r+' '+boxes[2].cy+' H '+railR+' V '+pill.cy+' H '+pill.r,
-      '4':'M '+boxes[3].r+' '+boxes[3].cy+' H '+railR+' V '+pill.cy+' H '+pill.r,
-      'card':'M '+card.cx+' '+card.b+' V '+pill.t
-    };
+    var stacked=!!(window.matchMedia&&window.matchMedia('(max-width:768px)').matches);
+    var d;
+    if(stacked){
+      var rail=Math.max(5,boxes[0].l-17);
+      d={
+        '1':'M '+boxes[0].l+' '+boxes[0].cy+' H '+rail+' V '+pill.cy+' H '+pill.l,
+        '2':'M '+boxes[1].l+' '+boxes[1].cy+' H '+rail+' V '+pill.cy+' H '+pill.l,
+        '3':'M '+boxes[2].l+' '+boxes[2].cy+' H '+rail+' V '+pill.cy+' H '+pill.l,
+        '4':'M '+boxes[3].l+' '+boxes[3].cy+' H '+rail+' V '+pill.cy+' H '+pill.l
+      };
+    } else {
+      var railL=boxes[0].l-26, railR=boxes[2].r+26;
+      d={
+        '1':'M '+boxes[0].l+' '+boxes[0].cy+' H '+railL+' V '+pill.cy+' H '+pill.l,
+        '2':'M '+boxes[1].l+' '+boxes[1].cy+' H '+railL+' V '+pill.cy+' H '+pill.l,
+        '3':'M '+boxes[2].r+' '+boxes[2].cy+' H '+railR+' V '+pill.cy+' H '+pill.r,
+        '4':'M '+boxes[3].r+' '+boxes[3].cy+' H '+railR+' V '+pill.cy+' H '+pill.r,
+        'card':'M '+card.cx+' '+card.b+' V '+pill.t
+      };
+    }
     keys.forEach(function(k){
+      var show=!!d[k];
+      conns[k].style.display=show?'':'none';
+      pulses[k].style.display=show?'':'none';
+      if(!show){lens[k]=0;return;}
       conns[k].setAttribute('d',d[k]); pulses[k].setAttribute('d',d[k]);
       var L=conns[k].getTotalLength(); lens[k]=L;
       conns[k].style.strokeDasharray=L+' '+L;
